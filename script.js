@@ -2,11 +2,23 @@
 data = d3.csv("data/prov.csv");
 
 // Select the container where we will put our HTML elements
-let cards = d3.select("#all-cards");
+let container = d3.select(".container");
 
-//filters
+container.append('div')
+    .attr('id', 'all-filters')
+    .attr('class', 'row no-gutters')
+    .style('column-gap', '20px')
+
+container.append('div')
+    .attr('id', 'all-cards')
+    .attr('class', 'card-columns')
+
+let cards = d3.select("#all-cards")
+
+
 
 // Load data
+
 
 data.then(function (data) {
     // Do stuff with your data!
@@ -68,27 +80,104 @@ data.then(function (data) {
             return d.SentenceAim + " " + d.Keyword + " " + topic.join(' ');
 
         })
-
-    //filter SentenceAim:dissemination
-    d3.select("#btn1")
-        .on("click", function () {
-            d3.selectAll(".card")
-                .filter(function (d) {
-                    return d.SentenceAim != 'dissemination'
-                })
-                .style('display', 'none');
-        });
-
-    //reset filters
-    d3.select("#btn2")
-        .on("click", function () {
-            d3.selectAll(".card")
-                .style('display', 'inline-block');
-        });
-
 })
 
+const recipes = [
+    {
+        recipeId: 0,
+        SentenceAim: undefined,
+        Keyword: undefined,
+        ToV: undefined,
+        Actions: undefined,
+        TagAnimal: undefined,
+        TagDistribution: undefined,
+        TagEnergy: undefined,
+        TagFood: undefined,
+        TagManagement: undefined,
+        TagWaste: undefined,
+    },
+    {
+        recipeId: 1,
+        SentenceAim: 'take action',
+        Keyword: 'impact',
+        ToV: 'TRUE',
+        Actions: 'TRUE',
+        TagAnimal: undefined,
+        TagDistribution: undefined,
+        TagEnergy: undefined,
+        TagFood: undefined,
+        TagManagement: undefined,
+        TagWaste: undefined,
+    },
+    {
+        recipeId: 2,
+        SentenceAim: 'dissemination',
+        Keyword: 'recycle',
+        ToV: 'TRUE',
+        Actions: 'FALSE',
+        TagAnimal: undefined,
+        TagDistribution: undefined,
+        TagEnergy: undefined,
+        TagFood: undefined,
+        TagManagement: undefined,
+        TagWaste: undefined,
+    },
+    {
+        recipeId: 3,
+        SentenceAim: 'take action',
+        Keyword: 'greenhouse gas',
+        ToV: 'FALSE',
+        Actions: 'FALSE',
+        TagAnimal: undefined,
+        TagDistribution: undefined,
+        TagEnergy: undefined,
+        TagFood: undefined,
+        TagManagement: undefined,
+        TagWaste: undefined,
+    }
+]
 
+//filter
+let filterDiv = d3.select("#all-filters")
+let filter = filterDiv.selectAll("div")
+    .data(recipes)
+    .join("div")
+    .attr("class", "card text-white bg-primary mb-3")
+    .style("max-width","10rem")
+filter.append("div")
+    .attr("class", "card-body")
+    .append('p')
+    .attr("class", "card-text")
+    .text(function (a) {
+        return JSON.stringify(a, null, 4)})
+filter.append("div")
+    .attr("class", "card-footer")
+    .append("button")
+    .attr("type", "button")
+    .attr("class", "btn btn-light btn-sm")
+    .attr("name", function (a) {
+        return a.recipeId})
+    .text(function (a) {
+        return 'recipe' + a.recipeId})
+    .on('click', function (btnId) {
+        let recipe = recipes[btnId.srcElement.name];
+        d3.select("#all-cards").selectAll('.card')
+            .style('display', 'none')
+            .filter(function (d) {
+                return (
+                    ((d.SentenceAim == recipe.SentenceAim) || (recipe.SentenceAim == undefined)) &&
+                    ((d.Keyword == recipe.Keyword) || (recipe.Keyword == undefined)) &&
+                    ((d.Actions == recipe.Actions) || (recipe.Actions == undefined)) &&
+                    ((d.TagAnimal == recipe.TagAnimal) || (recipe.TagAnimal == undefined)) &&
+                    ((d.TagDistribution == recipe.TagDistribution) || (recipe.TagDistribution == undefined)) &&
+                    ((d.TagEnergy == recipe.TagEnergy) || (recipe.TagEnergy == undefined)) &&
+                    ((d.TagFood == recipe.TagFood) || (recipe.TagFood == undefined)) &&
+                    ((d.TagManagement == recipe.TagManagement) || (recipe.TagManagement == undefined)) &&
+                    ((d.TagWaste == recipe.TagWaste) || (recipe.TagWaste == undefined))
+                )
+            })
+            .style('display', 'inline-flex');
+    });
 
 
 
