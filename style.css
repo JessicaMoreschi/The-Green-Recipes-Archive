@@ -1,4 +1,153 @@
-
-.card {
-    width: 18rem;
+@font-face {
+    font-family: PPEditorial;
+    font-weight: normal;
+    font-style: normal;
+    src: url("assets/font/PPEditorialNew-Regular.otf") format("opentype");
 }
+
+@font-face {
+    font-family: PPEditorial;
+    font-weight: normal;
+    font-style: italic;
+    src: url("assets/font/PPEditorialNew-Italic.otf") format("opentype");
+}
+
+@font-face {
+    font-family: PPEditorial;
+    font-weight: bold;
+    font-style: normal;
+    src: url("assets/font/PPEditorialNew-Ultrabold.otf") format("opentype");
+}
+
+@font-face {
+    font-family: PPEditorial;
+    font-weight:bold;
+    font-style: italic;
+    src: url("assets/font/PPEditorialNew-UltraboldItalic.otf") format("opentype");
+}
+
+@font-face {
+    font-family: PPEditorial;
+    font-weight: lighter;
+    font-style: normal;
+    src: url("assets/font/PPEditorialNew-Ultralight.otf") format("opentype");
+}
+@font-face {
+    font-family: PPEditorial;
+    font-weight: lighter;
+    font-style: italic;
+    src: url("assets/font/PPEditorialNew-UltralightItalic.otf") format("opentype");
+}
+@font-face {
+    font-family: PPNeueMachina;
+    font-weight: lighter;
+    font-style: normal;
+    src: url("assets/font/PPNeueMachina-InktrapLight.otf") format("opentype");
+}
+
+@font-face {
+    font-family: PPNeueMachina;
+    font-weight: normal;
+    font-style: normal;
+    src: url("assets/font/PPNeueMachina-InktrapRegular.otf") format("opentype");
+}
+
+@font-face {
+    font-family: PPNeueMachina;
+    font-weight: bold;
+    font-style: normal;
+    src: url("assets/font/PPNeueMachina-InktrapUltrabold.otf") format("opentype");
+}
+
+:root{
+    --main-color: black;
+    --primary-color: #85FF4D;
+    --secondary-color: #E6BDFF;
+}
+
+*{
+    font-family: PPNeueMachina;
+    font-weight: normal;
+    font-style: normal;
+
+    box-sizing: border-box;
+    padding: 0;
+    gap: 0;
+    margin: 0;
+    color: var(--main-color);
+}
+
+.flex-row, .flex-column{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    flex: none;
+    align-self: stretch;
+}
+
+.flex-column{
+    flex-direction: column;
+}
+
+.roundTag, .squareTag{
+    text-transform: uppercase;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: nowrap;
+    padding: 5px 10px;
+    gap: 5px;
+    background: white;
+    border: 1px solid var(--main-color);
+    border-radius: 60px;  
+    width: auto;
+    height: auto;    
+    align-self:auto;
+    font-size: 8pt;
+}
+
+.squareTag{
+border-radius: 5px;  
+}
+
+.roundTag p, .squareTag p{
+    height: 0pt;
+}
+
+.cardFooter{
+    padding: 10px 0px 0px;
+    gap: 5px;
+    width: 100%;
+    height: auto;
+}
+
+.card-content{
+    font-family: PPEditorial;
+    font-weight: lighter;
+    font-style: normal;
+    font-size: 14pt;
+    line-height: auto;
+
+}
+
+.card{
+    padding: 20px;
+    gap: 15px;
+    isolation: isolate;
+    width: 300px;
+    height: auto;
+    border: 2px solid var(--main-color);
+    border-radius: 15px;
+
+}
+
+.cardHeader{
+align-items: flex-end;
+gap: 4.5px;
+width: 100%;
+height: 20px;
+}
+
+
+
