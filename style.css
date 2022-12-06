@@ -67,17 +67,23 @@
     --secondary-color: #E6BDFF;
 }
 
+
 * {
     font-family: PPNeueMachina;
     font-weight: normal;
     font-style: normal;
     box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
     padding: 0;
     gap: 0;
     margin: 0;
     color: var(--main-color);
 }
 
+body{
+    overflow: hidden;
+}
 
 .flex-row,
 .flex-column {
@@ -109,6 +115,8 @@
     height: auto;
     align-self: auto;
     font-size: 8pt;
+    flex-wrap: nowrap;
+    display: flex;
 }
 
 .squareTag {
@@ -118,39 +126,6 @@
 .roundTag p,
 .squareTag p {
     height: 0pt;
-}
-
-.cardFooter {
-    padding: 10px 0px 0px;
-    gap: 5px;
-    width: 100%;
-    height: auto;
-}
-
-.card-content {
-    font-family: PPEditorial;
-    font-weight: lighter;
-    font-style: normal;
-    font-size: 14pt;
-    line-height: auto;
-}
-
-.card {
-    padding: 20px;
-    gap: 15px;
-    isolation: isolate;
-    min-width: 250px;
-    height: auto;
-    border: 2px solid var(--main-color);
-    border-radius: 15px;
-
-}
-
-.cardHeader {
-    align-items: flex-end;
-    gap: 4.5px;
-    width: 100%;
-    height: 20px;
 }
 
 .container {
@@ -172,7 +147,7 @@
 
 .head {
     flex: none;
-    border-bottom: 2px solid #000000;
+    border-bottom: 2px solid var(--main-color);
     width: 100%;
     height: auto;
     padding: 20px;
@@ -180,36 +155,140 @@
     align-items: center;
 }
 
-.col, .col-md-auto {
+.col,
+.col-md-auto {
     padding: 0;
-    max-width: calc(100% - 300px);
+    /* max-width: 300px; */
+    width: 100%;
 }
 
-.col-md-auto{
-    border-left: 2px solid #000000;
+.col-md-auto {
+    max-width: calc(100% - 300px);
+    border-left: 2px solid var(--main-color);
+    width: 0;
+    height: 100vh;
+    overflow: scroll;
 }
 
 .sub * {
     font-size: 10pt;
+    top: 20px;
 }
 
 .sub {
+    border-bottom: none;
     padding: 10px 20px;
+    position: fixed;
+    z-index: 1;
+    background-color: white;
+    outline: 2px solid var(--main-color);
 }
 
-.card-columns, #all-filters{
+.card-columns,
+.filter {
+    padding: 70px 20px 20px 20px;
+    max-width: none;
+}
+
+.card {
     padding: 20px;
+    gap: 15px;
+    isolation: isolate;
+    min-width: 250px;
+    height: auto;
+    border: 2px solid var(--main-color);
+    border-radius: 15px;
+
 }
 
+.cardHeader {
+    align-items: flex-end;
+    gap: 4.5px;
+    width: 100%;
+    height: 20px;
+}
 
+.card-content {
+    font-family: PPEditorial;
+    font-weight: lighter;
+    font-style: normal;
+    font-size: 14pt;
+    line-height: auto;
+}
 
-@media (max-width: 992px) {
+.cardFooter {
+    padding: 10px 0px 0px;
+    gap: 5px;
+    width: 100%;
+    height: auto;
+}
+
+.filter{
+    flex-wrap: nowrap;
+    overflow: hidden;
+    gap: 20px;
+}
+
+.recipe {
+    border: 2px solid var(--main-color);
+    max-width: 250px;
+}
+
+.card-text{
+    font-family: PPEditorial;
+    font-weight: normal;
+    font-style: normal;
+    font-size: 20pt;
+    line-height: 20pt;
+    text-transform: normal;
+    height: auto;
+}
+
+.card-body h5{
+    font-family: PPNeueMachina;
+    font-weight: normal;
+    font-style: normal;
+    font-size: 8pt;
+    line-height: 8pt;
+    text-transform:uppercase;
+    color: var(--main-color);
+    height: auto;
+    padding: 10px 0;
+}
+
+.recipe-ingredient-title *{
+    width: 60px;
+    font-family: PPEditorial;
+    font-weight: normal;
+    font-style: italic;
+    font-size: 10pt;
+    line-height: 10pt;
+    text-transform: normal;
+    height: 0;
+}
+.recipe-ingredient-title{
+display: flex;
+justify-content: center;
+flex-direction: column;
+height: 100%}
+
+.recipe-row0, .recipe-row1, .recipe-row2, .recipe-row3{
+    height: auto;
+    padding: 10px 0;
+    border-top: 0.5px solid var(--main-color);
+}
+
+.recipe-row0 *, .recipe-row1 *, .recipe-row2 *, .recipe-row3 *{
+   gap: 5px;
+}
+
+@media (max-width: 1200px) {
     .card-columns {
         column-count: 2;
     }
 }
 
-@media (max-width: 576px) {
+@media (max-width: 880px) {
     .card-columns {
         column-count: 1;
     }

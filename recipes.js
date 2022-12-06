@@ -1,9 +1,8 @@
 const recipes = [
-    {
+    {  
         recipeId: 0,
-        SentenceAim: undefined,
+        title: 'All mappazzone',
         Keyword: undefined,
-        ToV: undefined,
         Actions: undefined,
         TagAnimal: undefined,
         TagDistribution: undefined,
@@ -11,46 +10,52 @@ const recipes = [
         TagFood: undefined,
         TagManagement: undefined,
         TagWaste: undefined,
+        ToV: undefined,
+        SentenceAim: undefined
     },
-    {
+    {  
         recipeId: 1,
-        SentenceAim: 'take action',
-        Keyword: 'impact',
-        ToV: undefined,
-        Actions: 'TRUE',
-        TagAnimal: undefined,
+        title: 'Welfare tartare with commit syrup',
+        Keyword: 'sustainability',
+        Actions: undefined,
+        TagAnimal: 'TRUE',
         TagDistribution: undefined,
         TagEnergy: undefined,
-        TagFood: undefined,
+        TagFood: 'TRUE',
         TagManagement: undefined,
         TagWaste: undefined,
-    },
-    {
-        recipeId: 2,
-        SentenceAim: 'dissemination',
-        Keyword: 'recycle',
-        ToV: undefined,
-        Actions: 'FALSE',
-        TagAnimal: undefined,
-        TagDistribution: undefined,
-        TagEnergy: undefined,
-        TagFood: undefined,
-        TagManagement: undefined,
-        TagWaste: undefined,
-    },
-    {
-        recipeId:3,
-        SentenceAim: 'take action',
-        Keyword: 'greenhouse gas',
         ToV: 'FALSE',
-        Actions: 'FALSE',
+        SentenceAim: 'dissemination'
+    },
+    {  
+        recipeId: 2,
+        title: 'Zero CO2 strips stir fry',
+        Keyword: 'emissions',
+        Actions: undefined,
+        TagAnimal: undefined,
+        TagDistribution: undefined,
+        TagEnergy: 'TRUE',
+        TagFood: undefined,
+        TagManagement: 'TRUE',
+        TagWaste: undefined,
+        ToV: 'FALSE',
+        SentenceAim: 'take action'
+    },
+    {  
+        recipeId: 3,
+        title: 'Sautéed globe warming bites',
+        Keyword: 'greenhouse',
+        Actions: undefined,
         TagAnimal: undefined,
         TagDistribution: undefined,
         TagEnergy: undefined,
         TagFood: undefined,
-        TagManagement: undefined,
-        TagWaste: undefined,
-    }
+        TagManagement: 'TRUE',
+        TagWaste: 'TRUE',
+        ToV: 'TRUE',
+        SentenceAim: 'take action'
+    },
+
 ]
 
 
