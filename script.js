@@ -18,7 +18,6 @@ let cards = d3.select("#all-cards")
 
 // Load data
 data.then(function (data) {
-    // Do stuff with your data!
     // Join your data to the creation of div elements to the same number of items in your dataset.
     let card = cards.selectAll("div")
         .data(data)
@@ -40,157 +39,59 @@ data.then(function (data) {
 
     card.append("div")
         .attr("class", "flex-row cardFooter")
+    //tags
+    var allBtns = ['Keyword', 'TagAnimal', 'TagDistribution', 'TagEnergy', 'TagFood', 'TagManagement', 'TagWaste', 'Data', 'Actions'];
 
+    for (let i = 0; i < allBtns.length; i++) {
 
-        .append('div')
-        .attr("class", "flex-row roundTag")
-    var tagk = card.select('.roundTag', ":last-child")
-        .style('background-color', "var(--primary-color)")
-    tagk.append('img')
-        .attr('src', 'assets/icon/keyword.svg')
-    tagk.append("p")
-        .text(function (d) {
-            return d.Keyword
-        })
+        card.select(".cardFooter")
+            .append('div')
+            .attr("class", function () {
+                if (i < 7) { return "flex-row roundTag " + allBtns[i] }
+                else { return "flex-row squareTag " + allBtns[i] }
+            })
+        var tag = card.select('.' + allBtns[i])
+            .style('display', function (d) {
+                if (i > 0 && i <= 6) {
+                    if (d[allBtns[i]] == 'FALSE') {
+                        return 'none'
+                    } else { return 'flex' }
+                }
+            })
+            .style('background-color', function (d) {
+                if (i == 0) {
+                    if (d[allBtns[i]] == 'impact') {//recipe k.1
+                        return "var(--secondary-color)"
+                    } else { return "var(--primary-color)" }//recipe k.1
+                }
+            })
+        tag.append('img')
+            .attr('src', function () {
+                if (i == 0) { return 'assets/icon/keyword.svg' }
+                else if (i <= 6) { return 'assets/icon/topic.svg' }
+                else if (i == 7) { return 'assets/icon/data.svg' }
+                else { return 'assets/icon/action.svg' }
+            })
+        tag.append("p")
+            .text(function (d) {
+                if (i == 0) {
+                    return d.Keyword
+                }
+                else if (i <= 6) { return allBtns[i] }
+                else if (i == 7) {
+                    if (d[allBtns[i]] == 'TRUE') {
+                        return 'data'
+                    } else { return 'no data' }
+                }
+                else if (i == 8) {
+                    if (d[allBtns[i]] == 'TRUE') {
+                        return 'take action'
+                    } else { return 'dissemination' }
+                }
 
+            })
+    }
 
-    card.select(".cardFooter")
-        .append('div')
-        .attr("class", "flex-row roundTag T1")
-    var tagT1 = card.select('.T1')
-        .style('display', function (d) {
-            if (d.TagAnimal != 'TRUE') {
-                return 'none'
-            } else { return 'flex' }
-        })
-    tagT1.append('img')
-        .attr('src', 'assets/icon/topic.svg')
-    tagT1.append("p")
-        .text(function (d) {
-            if (d.TagAnimal == 'TRUE') {
-                return 'Animal'
-            }
-        })
-
-    card.select(".cardFooter")
-        .append('div')
-        .attr("class", "flex-row roundTag T2")
-    var tagT2 = card.select('.T2')
-        .style('display', function (d) {
-            if (d.TagDistribution != 'TRUE') {
-                return 'none'
-            } else { return 'flex' }
-        })
-    tagT2.append('img')
-        .attr('src', 'assets/icon/topic.svg')
-    tagT2.append("p")
-        .text(function (d) {
-            if (d.TagDistribution == 'TRUE') {
-                return 'distribution'
-            }
-        })
-
-    card.select(".cardFooter")
-        .append('div')
-        .attr("class", "flex-row roundTag T3")
-    var tagT3 = card.select('.T3')
-        .style('display', function (d) {
-            if (d.TagEnergy != 'TRUE') {
-                return 'none'
-            } else { return 'flex' }
-        })
-    tagT3.append('img')
-        .attr('src', 'assets/icon/topic.svg')
-    tagT3.append("p")
-        .text(function (d) {
-            if (d.TagEnergy == 'TRUE') {
-                return 'energy'
-            }
-        })
-
-    card.select(".cardFooter")
-        .append('div')
-        .attr("class", "flex-row roundTag T4")
-    var tagT4 = card.select('.T4')
-        .style('display', function (d) {
-            if (d.TagFood != 'TRUE') {
-                return 'none'
-            } else { return 'flex' }
-        })
-    tagT4.append('img')
-        .attr('src', 'assets/icon/topic.svg')
-    tagT4.append("p")
-        .text(function (d) {
-            if (d.TagFood == 'TRUE') {
-                return 'food'
-            }
-        })
-
-    card.select(".cardFooter")
-        .append('div')
-        .attr("class", "flex-row roundTag T5")
-    var tagT5 = card.select('.T5')
-        .style('display', function (d) {
-            if (d.TagManagement != 'TRUE') {
-                return 'none'
-            } else { return 'flex' }
-        })
-    tagT5.append('img')
-        .attr('src', 'assets/icon/topic.svg')
-    tagT5.append("p")
-        .text(function (d) {
-            if (d.TagManagement == 'TRUE') {
-                return 'management'
-            }
-        })
-
-    card.select(".cardFooter")
-        .append('div')
-        .attr("class", "flex-row roundTag T6")
-    var tagT6 = card.select('.T6')
-        .style('display', function (d) {
-            if (d.TagWaste != 'TRUE') {
-                return 'none'
-            } else { return 'flex' }
-        })
-    tagT6.append('img')
-        .attr('src', 'assets/icon/topic.svg')
-    tagT6.append("p")
-        .text(function (d) {
-            if (d.TagWaste == 'TRUE') {
-                return 'waste'
-            }
-        })
-
-    card.select(".cardFooter")
-        .append('div')
-        .attr("class", "flex-row squareTag Data")
-    var tagData = card.select('.Data')
-    tagData.append('img')
-        .attr('src', 'assets/icon/data.svg')
-    tagData.append("p")
-        .text(function (d) {
-            if (d.Data == 'TRUE') {
-                return 'data'
-            } else {
-                return 'no data'
-            }
-        })
-
-    card.select(".cardFooter")
-        .append('div')
-        .attr("class", "flex-row squareTag Act")
-    var tagAct = card.select('.Act')
-    tagAct.append('img')
-        .attr('src', 'assets/icon/action.svg')
-    tagAct.append("p")
-        .text(function (d) {
-            if (d.Actions == 'TRUE') {
-                return 'take action'
-            } else {
-                return 'dissemination'
-            }
-        })
 })
 
 //filter
@@ -238,7 +139,6 @@ filter.append("div")
             })
             .style('display', 'inline-flex');
     });
-
 
 
 
