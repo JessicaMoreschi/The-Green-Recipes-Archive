@@ -5,10 +5,28 @@ data = d3.csv("assets/data/prov.csv");
 let container = d3.select(".container");
 
 container.append('div')
-    .attr('id', 'all-filters')
-    .attr('class', 'flex-row')
+.attr('class', 'col')
+.append('div')
+.attr('class', 'flex-row head sub')
+.append('p')
+.text('recipes')
+.append('div')
+container.select('.col')
+.append('div')
+.attr('id', 'all-filters')
+.attr('class', 'flex-row')
+
+
 
 container.append('div')
+    .attr('class', 'col-md-auto')  
+    .append('div')
+    .attr('class', 'flex-row head sub')
+    .append('p')
+    .text('products')
+
+container.select('.col-md-auto')
+    .append('div')
     .attr('id', 'all-cards')
     .attr('class', 'card-columns')
 
