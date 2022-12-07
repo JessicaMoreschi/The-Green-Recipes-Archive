@@ -299,10 +299,11 @@ function openRecipe(btnId) {
             }
         }
         else if (j == recipeClicked) {
+            
             for (let i = 0; i < 4; i++) {
                 filter.selectAll('.orecchio')._groups[j][i].style.display = 'none'
             }
-            filter.select('.card-body').select('.card-text')._groups[0][j].style.marginTop = "0";
+            filter.select('.card-body').select('.card-text')._groups[0][j].style.marginTop = "0"
             filter._groups[0][j].style.order = '0';
             filter._groups[0][j].style.opacity = '1'
             filter.select('.recipe-row-T0').select('.roundTag')._groups[0][j].style.backgroundColor = 'var(--primary-color)'
@@ -319,10 +320,14 @@ function openRecipe(btnId) {
 
 function openArchive() {
     d3.select('.container').selectAll('.col')
-        .style('max-width', '300px')
-        .style('width', 'auto')
+    .style('max-width', 'auto')
+    .transition()
+    .duration(2000)
+        .style('width', '300px')
     d3.select('.container').selectAll('.col-md-auto')
-        .style('max-width', 'calc(100% - 300px)')
+    .style('max-width', 'calc(100% - 300px)')
+    .transition()
+  .duration(2000)
         .style('width', '100%')
     archiveOpen = true
 }
@@ -330,9 +335,13 @@ function openArchive() {
 function closeArchive() {
     d3.select('.container').selectAll('.col')
         .style('max-width', '100%')
+        .transition()
+        .duration(2000)
         .style('width', ' width: 100%;')
     d3.select('.container').selectAll('.col-md-auto')
         .style('max-width', 'calc(100% - 300px)')
-        .style('width', '0')
+        .transition()
+        .duration(2000)
+        .style('width', '0%')
     archiveOpen = false
 }

@@ -209,7 +209,7 @@ body{
     height: 100vh;
     overflow: scroll;
     padding-bottom: 100px;
-    justify-content: center;
+    justify-content: flex-start;
 }
 
 .card {
