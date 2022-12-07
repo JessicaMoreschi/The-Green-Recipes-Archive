@@ -68,6 +68,20 @@ const recipes = [
         TagWaste: 'TRUE',
         ToV: undefined,
         SentenceAim: undefined
+    },
+    {  
+        recipeId: 5,
+        title: 'Prova di nome prova',
+        Keyword: 'recycle',
+        Actions: undefined,
+        TagAnimal: undefined,
+        TagDistribution: undefined,
+        TagEnergy: undefined,
+        TagFood: undefined,
+        TagManagement: undefined,
+        TagWaste: 'TRUE',
+        ToV: undefined,
+        SentenceAim: undefined
     }
 
 ]

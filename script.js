@@ -11,6 +11,8 @@ container.append('div')
     .attr('class', 'flex-row head sub')
     .append('p')
     .text('recipes')
+    .on('click', function () { closeArchive(); closedRecipes() })
+    .style('cursor', 'pointer')
     .append('div')
 container.select('.col')
     .append('div')
@@ -25,6 +27,11 @@ container.append('div')
     .attr('class', 'flex-row head sub')
     .append('p')
     .text('products')
+container.select('.col-md-auto').select('.sub')
+    .append('p')
+    .text('x')
+    .on('click', function () { closeArchive(); closedRecipes() })
+    .style('cursor', 'pointer')
 
 container.select('.col-md-auto')
     .append('div')
@@ -94,10 +101,12 @@ data.then(function (data) {
                 }
             })
             .style('background-color', function (d) {
-                if (i == 0) {return "var(--primary-color)"
+                if (i == 0) {
+                    return "var(--primary-color)"
                     // if (d[allBtns[i]] == recipes[recipeClicked][allBtns[i]]) { return "var(--primary-color)" }
                 }
-                 if (i > 0 && i < 8) {return "var(--secondary-color)"
+                if (i > 0 && i < 8) {
+                    return "var(--secondary-color)"
                     // if (d[allBtns[i]] == recipes[recipeClicked][allBtns[i]]) { return "var(--secondary-color)" }
                 }
             })
@@ -141,6 +150,11 @@ let filter = filterDiv.selectAll("div")
     .join("div")
     .attr("class", "flex-column recipe")
 // .style("max-width", "10rem")
+filter.append("svg").attr("width", 50).attr("height", 50).style('background-color', 'white').style('border', '2px solid').style('margin-left', '198px').style('margin-top', '-1px').attr('class', 'orecchio')
+filter.append("svg").attr("width", 50).attr("height", 50).style('background-color', 'white').style('margin-left', '200px').style('margin-top', '-52px').attr('class', 'orecchio')
+filter.append("svg").attr("width", 50).attr("height", 50).style('background-color', 'transparent').style('margin-left', '198px').style('margin-top', '-49px').attr('class', 'orecchio')
+    .append('line').style("stroke", "#000000").style("stroke-width", 2).attr("x1", 0).attr("y1", 0).attr("x2", 200).attr("y2", 200).attr('class', 'orecchio')
+
 filter.append("div")
     .attr("class", "flex-column card-body")
 var filterBody = filter.select('.card-body')
@@ -223,49 +237,102 @@ filter
     .style('cursor', 'pointer')
     .on('click', function (btnId) {
         if (archiveOpen == false) {
-            d3.select('.container').selectAll('.col')
-                .style('max-width', '300px')
-                .style('width', 'auto')
-            d3.select('.container').selectAll('.col-md-auto')
-                .style('max-width', 'calc(100% - 300px)')
-                .style('width', '100%')
-            archiveOpen = true
-        } else if (archiveOpen == true) {
-            d3.select('.container').selectAll('.col')
-                .style('max-width', 'none')
-                .style('width', ' width: 100%;')
-            d3.select('.container').selectAll('.col-md-auto')
-                .style('max-width', 'calc(100% - 300px)')
-                .style('width', '0')
-            archiveOpen = false
+            openArchive()
         }
         recipeClicked = btnId.srcElement.__data__.recipeId;
-        let recipe = recipes[btnId.srcElement.__data__.recipeId];
-        let card=d3.select("#all-cards").selectAll('.card')
+        let recipeIdN = recipes[btnId.srcElement.__data__.recipeId];
+
+
+        let card = d3.select("#all-cards").selectAll('.card')
         card
             .style('display', 'none')
             .filter(function (d) {
                 return (
-                    ((d.SentenceAim == recipe.SentenceAim) || (recipe.SentenceAim == undefined)) &&
-                    ((d.Keyword == recipe.Keyword) || (recipe.Keyword == undefined)) && 
-                    ((d.ToV == recipe.ToV) || (recipe.ToV == undefined)) &&(
-                    (d.Actions == recipe.Actions) ||
-                    (d.TagAnimal == recipe.TagAnimal) ||
-                    (d.TagDistribution == recipe.TagDistribution) ||
-                    (d.TagEnergy == recipe.TagEnergy) ||
-                    (d.TagFood == recipe.TagFood) ||
-                    (d.TagManagement == recipe.TagManagement) ||
-                    (d.TagWaste == recipe.TagWaste ) ||
-                    ((recipe.TagWaste == undefined) && (recipe.TagManagement == undefined) && (recipe.TagFood == undefined) && (recipe.TagEnergy == undefined) && (recipe.TagDistribution == undefined) && (recipe.TagAnimal == undefined) && (recipe.Actions == undefined)) )
+                    ((d.SentenceAim == recipeIdN.SentenceAim) || (recipeIdN.SentenceAim == undefined)) &&
+                    ((d.Keyword == recipeIdN.Keyword) || (recipeIdN.Keyword == undefined)) &&
+                    ((d.ToV == recipeIdN.ToV) || (recipeIdN.ToV == undefined)) && (
+                        (d.Actions == recipeIdN.Actions) ||
+                        (d.TagAnimal == recipeIdN.TagAnimal) ||
+                        (d.TagDistribution == recipeIdN.TagDistribution) ||
+                        (d.TagEnergy == recipeIdN.TagEnergy) ||
+                        (d.TagFood == recipeIdN.TagFood) ||
+                        (d.TagManagement == recipeIdN.TagManagement) ||
+                        (d.TagWaste == recipeIdN.TagWaste) ||
+                        ((recipeIdN.TagWaste == undefined) && (recipeIdN.TagManagement == undefined) && (recipeIdN.TagFood == undefined) && (recipeIdN.TagEnergy == undefined) && (recipeIdN.TagDistribution == undefined) && (recipeIdN.TagAnimal == undefined) && (recipeIdN.Actions == undefined)))
                 )
             })
             .style('display', 'inline-flex');
-
+        openRecipe(btnId)
     });
 
 
+function closedRecipes() {
+    let filterDiv = d3.select("#all-filters")
+    let filter = filterDiv.selectAll(".recipe");
+    for (let j = 0; j < recipes.length; j++) {
+        for (let i = 0; i < 4; i++) {
+            filter.selectAll('.orecchio')._groups[j][i].style.display = 'block'
+        }
+        filter.select('.card-body').select('.card-text')._groups[0][j].style.marginTop = "-50px"
+        filter._groups[0][j].style.opacity = '1'
+        filter.select('.recipe-row-T0').select('.roundTag')._groups[0][j].style.backgroundColor = 'white'
+        for (let n = 0; n < filter.select('.recipe-row-T1').selectAll('.roundTag')._groups[j].length; n++) {
+            filter.select('.recipe-row-T1').selectAll('.roundTag')._groups[j][n].style.backgroundColor = 'white'
+        }
+    }
+}
+
+function openRecipe(btnId) {
+    recipeClicked = btnId.srcElement.__data__.recipeId;
+    for (let j = 0; j < recipes.length; j++) {
+        if (j != recipeClicked) {
+            for (let i = 0; i < 4; i++) {
+                filter.selectAll('.orecchio')._groups[j][i].style.display = 'block'
+            }
+            filter.select('.card-body').select('.card-text')._groups[0][j].style.marginTop = "-50px"
+            filter._groups[0][j].style.order = '1';
+            filter._groups[0][j].style.opacity = '0.3'
+            document.getElementById('all-filters').scrollTop = 0;
+            filter.select('.recipe-row-T0').select('.roundTag')._groups[0][j].style.backgroundColor = 'white'
+            for (let n = 0; n < filter.select('.recipe-row-T1').selectAll('.roundTag')._groups[j].length; n++) {
+                filter.select('.recipe-row-T1').selectAll('.roundTag')._groups[j][n].style.backgroundColor = 'white'
+            }
+        }
+        else if (j == recipeClicked) {
+            for (let i = 0; i < 4; i++) {
+                filter.selectAll('.orecchio')._groups[j][i].style.display = 'none'
+            }
+            filter.select('.card-body').select('.card-text')._groups[0][j].style.marginTop = "0";
+            filter._groups[0][j].style.order = '0';
+            filter._groups[0][j].style.opacity = '1'
+            filter.select('.recipe-row-T0').select('.roundTag')._groups[0][j].style.backgroundColor = 'var(--primary-color)'
+            for (let n = 0; n < filter.select('.recipe-row-T1').selectAll('.roundTag')._groups[j].length; n++) {
+                filter.select('.recipe-row-T1').selectAll('.roundTag')._groups[j][n].style.backgroundColor = 'var(--secondary-color)'
+            }
+        }
+    }
+
+}
 
 
 
 
+function openArchive() {
+    d3.select('.container').selectAll('.col')
+        .style('max-width', '300px')
+        .style('width', 'auto')
+    d3.select('.container').selectAll('.col-md-auto')
+        .style('max-width', 'calc(100% - 300px)')
+        .style('width', '100%')
+    archiveOpen = true
+}
 
+function closeArchive() {
+    d3.select('.container').selectAll('.col')
+        .style('max-width', '100%')
+        .style('width', ' width: 100%;')
+    d3.select('.container').selectAll('.col-md-auto')
+        .style('max-width', 'calc(100% - 300px)')
+        .style('width', '0')
+    archiveOpen = false
+}

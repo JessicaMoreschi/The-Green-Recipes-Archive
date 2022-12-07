@@ -160,7 +160,7 @@ body{
 .head {
     flex: none;
     border-bottom: 2px solid var(--main-color);
-    width: 100%;
+    width: -webkit-fill-available;
     height: auto;
     padding: 20px;
     justify-content: space-between;
@@ -202,6 +202,16 @@ body{
     max-width: none;
 }
 
+.filter{
+    flex-wrap: wrap;
+    overflow: hidden;
+    gap: 20px;
+    height: 100vh;
+    overflow: scroll;
+    padding-bottom: 100px;
+    justify-content: center;
+}
+
 .card {
     padding: 20px;
     gap: 15px;
@@ -235,15 +245,16 @@ body{
     height: auto;
 }
 
-.filter{
-    flex-wrap: nowrap;
-    overflow: hidden;
-    gap: 20px;
-}
 
 .recipe {
     border: 2px solid var(--main-color);
     max-width: 250px;
+    width: 250px;
+}
+
+.recipe:hover {
+    transform: rotate(2deg);
+    opacity: 1 !important;
 }
 
 .card-text{
@@ -254,6 +265,8 @@ body{
     line-height: 20pt;
     text-transform: normal;
     height: auto;
+    margin-top: -50px;
+    max-width: 160px;
 }
 
 .card-body h5{
