@@ -1,6 +1,7 @@
 // Interpret the data as the correct format. Use d3.csv or d3.tsv accordingly.
 data = d3.csv("assets/data/prov.csv");
-let id=0
+let id = 0
+// let recipeClicked = 4;
 // Select the container where we will put our HTML elements
 let container = d3.select(".container");
 
@@ -34,6 +35,8 @@ container.select('.col-md-auto')
 let cards = d3.select("#all-cards")
 
 
+
+
 // Load data
 data.then(function (data) {
     // Join your data to the creation of div elements to the same number of items in your dataset.
@@ -57,22 +60,22 @@ data.then(function (data) {
     card.append("p")
         .attr("class", "card-content")
         .text(function (d) {
-           return d.Context
+            return d.Context
         })
-     
-        .attr('onload', function (d){
-            var cardContext=card.selectAll('.card-content').nodes()[id]
+
+        .attr('onload', function (d) {
+            var cardContext = card.selectAll('.card-content').nodes()[id]
             var instance = new Mark(cardContext)
-            instance.mark(d.Keyword, {'accuracy':'complementary'})
+            instance.mark(d.Keyword, { 'accuracy': 'complementary' })
             id++
         })
-       
-       
+
+
 
     card.append("div")
         .attr("class", "flex-row cardFooter")
     //tags
-    var allBtns = ['Keyword', 'TagAnimal', 'TagDistribution', 'TagEnergy', 'TagFood', 'TagManagement', 'TagWaste', 'Actions', 'Data', 'SentenceAim'];
+    var allBtns = ['Keyword', 'TagAnimal', 'TagDistribution', 'TagEnergy', 'TagFood', 'TagManagement', 'TagWaste', 'Actions', 'ToV', 'SentenceAim'];
 
     for (let i = 0; i < allBtns.length; i++) {
 
@@ -91,7 +94,19 @@ data.then(function (data) {
                 }
             })
             .style('background-color', function (d) {
-                if (i == 0) { return "var(--primary-color)" }
+                if (i == 0) {return "var(--primary-color)"
+                    // if (d[allBtns[i]] == recipes[recipeClicked][allBtns[i]]) { return "var(--primary-color)" }
+                }
+                 if (i > 0 && i < 8) {return "var(--secondary-color)"
+                    // if (d[allBtns[i]] == recipes[recipeClicked][allBtns[i]]) { return "var(--secondary-color)" }
+                }
+            })
+            .style('opacity', function (d) {
+                if (i >= 8) {
+                    if ((d[allBtns[i]] == 'FALSE') || (d[allBtns[i]] == 'dissemination')) {
+                        return "0.4"
+                    }
+                }
             })
         tag.append('img')
             .attr('src', function () {
@@ -116,6 +131,8 @@ data.then(function (data) {
     }
 
 })
+
+
 
 //filter
 let filterDiv = d3.select("#all-filters")
@@ -195,7 +212,7 @@ for (let i = 0; i < recipeIngredientTitle.length; i++) {
                     else { return recipeTopicArray[1] }
                 }
                 else if (i == 2) { return d.SentenceAim }
-                else if (i == 3) { if (d.ToV == 'TRUE') { return 'Data' } else if (d.ToV == 'FALSE'){ return 'no data' } }
+                else if (i == 3) { if (d.ToV == 'TRUE') { return 'Data' } else if (d.ToV == 'FALSE') { return 'no data' } }
             })
     }
 }
@@ -222,38 +239,31 @@ filter
                 .style('width', '0')
             archiveOpen = false
         }
-
+        recipeClicked = btnId.srcElement.__data__.recipeId;
         let recipe = recipes[btnId.srcElement.__data__.recipeId];
-        d3.select("#all-cards").selectAll('.card')
+        let card=d3.select("#all-cards").selectAll('.card')
+        card
             .style('display', 'none')
             .filter(function (d) {
                 return (
                     ((d.SentenceAim == recipe.SentenceAim) || (recipe.SentenceAim == undefined)) &&
-                    ((d.Keyword == recipe.Keyword) || (recipe.Keyword == undefined)) &&
-                    ((d.ToV == recipe.ToV) || (recipe.ToV == undefined)) &&
-                    ((d.Actions == recipe.Actions) || (recipe.Actions == undefined)) &&
-                    ((d.TagAnimal == recipe.TagAnimal) || (recipe.TagAnimal == undefined)) &&
-                    ((d.TagDistribution == recipe.TagDistribution) || (recipe.TagDistribution == undefined)) &&
-                    ((d.TagEnergy == recipe.TagEnergy) || (recipe.TagEnergy == undefined)) &&
-                    ((d.TagFood == recipe.TagFood) || (recipe.TagFood == undefined)) &&
-                    ((d.TagManagement == recipe.TagManagement) || (recipe.TagManagement == undefined)) &&
-                    ((d.TagWaste == recipe.TagWaste) || (recipe.TagWaste == undefined))
+                    ((d.Keyword == recipe.Keyword) || (recipe.Keyword == undefined)) && 
+                    ((d.ToV == recipe.ToV) || (recipe.ToV == undefined)) &&(
+                    (d.Actions == recipe.Actions) ||
+                    (d.TagAnimal == recipe.TagAnimal) ||
+                    (d.TagDistribution == recipe.TagDistribution) ||
+                    (d.TagEnergy == recipe.TagEnergy) ||
+                    (d.TagFood == recipe.TagFood) ||
+                    (d.TagManagement == recipe.TagManagement) ||
+                    (d.TagWaste == recipe.TagWaste ) ||
+                    ((recipe.TagWaste == undefined) && (recipe.TagManagement == undefined) && (recipe.TagFood == undefined) && (recipe.TagEnergy == undefined) && (recipe.TagDistribution == undefined) && (recipe.TagAnimal == undefined) && (recipe.Actions == undefined)) )
                 )
             })
             .style('display', 'inline-flex');
 
+    });
 
 
-            
-        });
-        
-        // function kw(d, card){
-        //     var cardContext=card.select('.card-content').node()
-        //     var instance = new Mark(cardContext)
-        //     let kw=d.Keyword
-        //     instance.mark(kw)
-        //     console.log(d)
-        // }
 
 
 

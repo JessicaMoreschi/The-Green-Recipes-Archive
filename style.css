@@ -65,9 +65,11 @@
     --main-color: black;
     --primary-color: #85FF4D;
     --secondary-color: #E6BDFF;
+    /* --disabled-color: #cccccc; */
 }
 
-::selection, mark {
+/* ::selection */
+mark {
     color: var(--main-color);
     background: var(--primary-color);
     font-family: PPEditorial;
@@ -75,7 +77,7 @@
     font-style: normal;
     font-size: 14pt;
     line-height: auto;
-    padding: 0;
+    padding: 0px;
   }
 
 * {

@@ -55,6 +55,20 @@ const recipes = [
         ToV: 'TRUE',
         SentenceAim: 'take action'
     },
+    {  
+        recipeId: 4,
+        title: 'Sautéed globe warming bites',
+        Keyword: 'impact',
+        Actions: undefined,
+        TagAnimal: undefined,
+        TagDistribution: undefined,
+        TagEnergy: undefined,
+        TagFood: undefined,
+        TagManagement: undefined,
+        TagWaste: 'TRUE',
+        ToV: undefined,
+        SentenceAim: undefined
+    }
 
 ]
 
