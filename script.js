@@ -1,6 +1,6 @@
 // Interpret the data as the correct format. Use d3.csv or d3.tsv accordingly.
 data = d3.csv("assets/data/prov.csv");
-
+let id=0
 // Select the container where we will put our HTML elements
 let container = d3.select(".container");
 
@@ -51,14 +51,23 @@ data.then(function (data) {
         .attr('target', '_blank')
         .append('img')
         .attr('src', 'assets/icon/link.svg')
-    // .wrap("<a xlink:href \"http://example.com/\"></a>")
-    // .attr('href', function(d){return d.Url})
+
+
 
     card.append("p")
-        .attr("class", "flex-row card-content")
-        .text(function (data) {
-            return data.Context
+        .attr("class", "card-content")
+        .text(function (d) {
+           return d.Context
         })
+     
+        .attr('onload', function (d){
+            var cardContext=card.selectAll('.card-content').nodes()[id]
+            var instance = new Mark(cardContext)
+            instance.mark(d.Keyword, {'accuracy':'complementary'})
+            id++
+        })
+       
+       
 
     card.append("div")
         .attr("class", "flex-row cardFooter")
@@ -232,10 +241,19 @@ filter
                 )
             })
             .style('display', 'inline-flex');
-    });
 
 
 
+            
+        });
+        
+        // function kw(d, card){
+        //     var cardContext=card.select('.card-content').node()
+        //     var instance = new Mark(cardContext)
+        //     let kw=d.Keyword
+        //     instance.mark(kw)
+        //     console.log(d)
+        // }
 
 
 

@@ -15,7 +15,7 @@ const recipes = [
     },
     {  
         recipeId: 1,
-        title: 'Welfare tartare with commit syrup',
+        title: 'Cristpy welfare burger',
         Keyword: 'sustainability',
         Actions: undefined,
         TagAnimal: 'TRUE',
