@@ -139,6 +139,7 @@ data.then(function (data) {
             })
     }
 
+
 })
 
 
@@ -150,6 +151,7 @@ let filter = filterDiv.selectAll("div")
     .join("div")
     .attr("class", "flex-column recipe")
 // .style("max-width", "10rem")
+filter.attr('id', function(d){return 'recipe'+d.recipeId})
 filter.append("svg").attr("width", 50).attr("height", 50).style('background-color', 'white').style('border', '2px solid').style('margin-left', '198px').style('margin-top', '-1px').attr('class', 'orecchio')
 filter.append("svg").attr("width", 50).attr("height", 50).style('background-color', 'white').style('margin-left', '200px').style('margin-top', '-52px').attr('class', 'orecchio')
 filter.append("svg").attr("width", 50).attr("height", 50).style('background-color', 'transparent').style('margin-left', '198px').style('margin-top', '-49px').attr('class', 'orecchio')
@@ -290,9 +292,8 @@ function openRecipe(btnId) {
                 filter.selectAll('.orecchio')._groups[j][i].style.display = 'block'
             }
             filter.select('.card-body').select('.card-text')._groups[0][j].style.marginTop = "-50px"
-            filter._groups[0][j].style.order = '1';
+
             filter._groups[0][j].style.opacity = '0.3'
-            document.getElementById('all-filters').scrollTop = 0;
             filter.select('.recipe-row-T0').select('.roundTag')._groups[0][j].style.backgroundColor = 'white'
             for (let n = 0; n < filter.select('.recipe-row-T1').selectAll('.roundTag')._groups[j].length; n++) {
                 filter.select('.recipe-row-T1').selectAll('.roundTag')._groups[j][n].style.backgroundColor = 'white'
@@ -304,8 +305,17 @@ function openRecipe(btnId) {
                 filter.selectAll('.orecchio')._groups[j][i].style.display = 'none'
             }
             filter.select('.card-body').select('.card-text')._groups[0][j].style.marginTop = "0"
-            filter._groups[0][j].style.order = '0';
             filter._groups[0][j].style.opacity = '1'
+
+            let ricMarginTop = filter._groups[0][j].getBoundingClientRect().top
+            document.getElementById('all-filters').scrollBy({ 
+                top: ricMarginTop - 140,
+                left: 0, 
+                behavior: 'smooth' 
+              });
+
+
+
             filter.select('.recipe-row-T0').select('.roundTag')._groups[0][j].style.backgroundColor = 'var(--primary-color)'
             for (let n = 0; n < filter.select('.recipe-row-T1').selectAll('.roundTag')._groups[j].length; n++) {
                 filter.select('.recipe-row-T1').selectAll('.roundTag')._groups[j][n].style.backgroundColor = 'var(--secondary-color)'
@@ -345,3 +355,10 @@ function closeArchive() {
         .style('width', '0%')
     archiveOpen = false
 }
+
+
+
+
+
+
+

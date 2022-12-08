@@ -159,7 +159,7 @@ body{
 
 .head {
     flex: none;
-    border-bottom: 2px solid var(--main-color);
+    /* border-bottom: 2px solid var(--main-color); */
     width: -webkit-fill-available;
     height: auto;
     padding: 20px;
@@ -198,18 +198,19 @@ body{
 
 .card-columns,
 .filter {
-    padding: 70px 20px 20px 20px;
+    padding: 70px 20px 100px 20px;
     max-width: none;
 }
 
 .filter{
     flex-wrap: wrap;
-    overflow: hidden;
+    /* overflow: hidden; */
     gap: 20px;
     height: 100vh;
     overflow: scroll;
     padding-bottom: 100px;
     justify-content: flex-start;
+    scroll-behavior: smooth;
 }
 
 .card {
