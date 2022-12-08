@@ -100,16 +100,7 @@ data.then(function (data) {
                     } else { return 'flex' }
                 }
             })
-            .style('background-color', function (d) {
-                if (i == 0) {
-                    return "var(--primary-color)"
-                    // if (d[allBtns[i]] == recipes[recipeClicked][allBtns[i]]) { return "var(--primary-color)" }
-                }
-                if (i > 0 && i < 8) {
-                    return "var(--secondary-color)"
-                    // if (d[allBtns[i]] == recipes[recipeClicked][allBtns[i]]) { return "var(--secondary-color)" }
-                }
-            })
+
             .style('opacity', function (d) {
                 if (i >= 8) {
                     if ((d[allBtns[i]] == 'FALSE') || (d[allBtns[i]] == 'dissemination')) {
@@ -193,6 +184,7 @@ for (let i = 0; i < recipeIngredientTitle.length; i++) {
     //iterate
 
     let nOfTags = 1
+
     if (i == 1) { nOfTags = 2 } else { nOfTags = 1 }
     for (let j = 0; j < nOfTags; j++) {
         recipeRowT.append('div')
@@ -202,6 +194,7 @@ for (let i = 0; i < recipeIngredientTitle.length; i++) {
                 if (i < 2) { return "roundTag" }
                 else { return "squareTag" }
             })
+
         tag.append('img')
             .attr('src', function () {
                 if (i == 0) { return 'assets/icon/keyword.svg' }
@@ -213,9 +206,9 @@ for (let i = 0; i < recipeIngredientTitle.length; i++) {
 
         tag.append("p")
             .text(function (d) {
+                let recipeTopicArray = []
                 if (i == 0) { return d.Keyword }
                 else if (i == 1) {
-                    let recipeTopicArray = []
                     if (d.TagAnimal == 'TRUE') { recipeTopicArray.push('TagAnimal') }
                     if (d.TagDistribution == 'TRUE') { recipeTopicArray.push('TagDistribution') }
                     if (d.TagEnergy == 'TRUE') { recipeTopicArray.push('TagEnergy') }
@@ -246,6 +239,7 @@ filter
         let card = d3.select("#all-cards").selectAll('.card')
         card
             .style('display', 'none')
+        let cardSelected = card
             .filter(function (d) {
                 return (
                     ((d.SentenceAim == recipeIdN.SentenceAim) || (recipeIdN.SentenceAim == undefined)) &&
@@ -261,7 +255,29 @@ filter
                         ((recipeIdN.TagWaste == undefined) && (recipeIdN.TagManagement == undefined) && (recipeIdN.TagFood == undefined) && (recipeIdN.TagEnergy == undefined) && (recipeIdN.TagDistribution == undefined) && (recipeIdN.TagAnimal == undefined) && (recipeIdN.Actions == undefined)))
                 )
             })
-            .style('display', 'inline-flex');
+        cardSelected
+            .style('display', 'inline-flex')
+
+        let cardP = cardSelected.select('.cardFooter').selectAll('div').select('p');
+        let tagsActive = []
+
+        for (let j = 0; j < Object.keys(recipeIdN).length; j++) {
+            let key = Object.keys(recipeIdN)[j]
+            if (recipeIdN[key] == 'TRUE') {
+                tagsActive.push(key)
+            }
+        }
+        console.log(tagsActive)
+        for (let i = 0; i < cardSelected.select('.cardFooter').selectAll('div').nodes().length; i++) {
+            if ((cardP.nodes()[i].innerText.localeCompare(tagsActive[0], 'en', { sensitivity: 'base' }) == 0) || (cardP.nodes()[i].innerText.localeCompare(tagsActive[1], 'en', { sensitivity: 'base' }) == 0)) {
+                cardSelected.select('.cardFooter').selectAll('div').nodes()[i].style.backgroundColor = 'var(--secondary-color)'
+            }
+            else if (cardP.nodes()[i].innerText.localeCompare(recipeIdN.Keyword, 'en', { sensitivity: 'base' }) == 0) {
+                cardSelected.select('.cardFooter').selectAll('div').nodes()[i].style.backgroundColor = 'var(--primary-color)'
+            }
+            else { cardSelected.select('.cardFooter').selectAll('div').nodes()[i].style.backgroundColor = 'white' }
+        }
+
 
         openRecipe(btnId)
         if (archiveOpen == false) {
@@ -291,7 +307,7 @@ function openRecipe(btnId) {
     for (let j = 0; j < recipes.length; j++) {
         if (j != recipeClicked) {
             if (archiveOpen == false) {
-                filter._groups[0][j].style.order='1'
+                filter._groups[0][j].style.order = '1'
             }
 
             for (let i = 0; i < 4; i++) {
@@ -307,7 +323,7 @@ function openRecipe(btnId) {
         }
         else if (j == recipeClicked) {
             if (archiveOpen == false) {
-                filter._groups[0][j].style.order='0'
+                filter._groups[0][j].style.order = '0'
             }
 
             for (let i = 0; i < 4; i++) {
