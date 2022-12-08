@@ -59,7 +59,7 @@ const recipes = [
     {  
         recipeId: 4,
         title: 'Smoky forest burger',
-        Keyword: 'deforestation',
+        Keyword: 'natural',
         Actions: undefined,
         TagAnimal: undefined,
         TagDistribution: undefined,
@@ -115,7 +115,7 @@ const recipes = [
     {  
         recipeId: 8,
         title: 'Spicy planet-saver wrap',
-        Keyword: 'carbon footprint',
+        Keyword: 'deforestation',
         Actions: 'TRUE',
         TagAnimal: undefined,
         TagDistribution: undefined,
