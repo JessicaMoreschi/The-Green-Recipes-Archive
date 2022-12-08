@@ -195,6 +195,14 @@ for (let i = 0; i < recipeIngredientTitle.length; i++) {
                 else { return "squareTag" }
             })
 
+        // tag.style('opacity', function(d){
+        //     if (i == 2){
+        //         if (d.SentenceAim == 'dissemination'){return '0.3'}
+        //     }
+        //     else if (i == 3){
+        //         if (d.ToV == 'FALSE'){return '0.3'}
+        //     }
+        // })
         tag.append('img')
             .attr('src', function () {
                 if (i == 0) { return 'assets/icon/keyword.svg' }
@@ -267,7 +275,6 @@ filter
                 tagsActive.push(key)
             }
         }
-        console.log(tagsActive)
         for (let i = 0; i < cardSelected.select('.cardFooter').selectAll('div').nodes().length; i++) {
             if ((cardP.nodes()[i].innerText.localeCompare(tagsActive[0], 'en', { sensitivity: 'base' }) == 0) || (cardP.nodes()[i].innerText.localeCompare(tagsActive[1], 'en', { sensitivity: 'base' }) == 0)) {
                 cardSelected.select('.cardFooter').selectAll('div').nodes()[i].style.backgroundColor = 'var(--secondary-color)'
@@ -299,6 +306,9 @@ function closedRecipes() {
         for (let n = 0; n < filter.select('.recipe-row-T1').selectAll('.roundTag')._groups[j].length; n++) {
             filter.select('.recipe-row-T1').selectAll('.roundTag')._groups[j][n].style.backgroundColor = 'white'
         }
+        filter.select('.recipe-row-T2').select('.squareTag')._groups[0][j].style.opacity = '1'
+        filter.select('.recipe-row-T3').select('.squareTag')._groups[0][j].style.opacity = '1'
+
     }
 }
 
@@ -339,12 +349,17 @@ function openRecipe(btnId) {
                 behavior: 'smooth'
             });
 
+            if (filter.select('.recipe-row-T0').select('.roundTag').select('p')._groups[0][j].innerText != '') { filter.select('.recipe-row-T0').select('.roundTag')._groups[0][j].style.backgroundColor = 'var(--primary-color)' };
 
+            if (filter.select('.recipe-row-T1').select('.roundTag').select('p')._groups[0][j].innerText != '') {
+                for (let n = 0; n < filter.select('.recipe-row-T1').selectAll('.roundTag')._groups[j].length; n++) {
+                    filter.select('.recipe-row-T1').selectAll('.roundTag')._groups[j][n].style.backgroundColor = 'var(--secondary-color)'
+                }
+            };
 
-            filter.select('.recipe-row-T0').select('.roundTag')._groups[0][j].style.backgroundColor = 'var(--primary-color)'
-            for (let n = 0; n < filter.select('.recipe-row-T1').selectAll('.roundTag')._groups[j].length; n++) {
-                filter.select('.recipe-row-T1').selectAll('.roundTag')._groups[j][n].style.backgroundColor = 'var(--secondary-color)'
-            }
+            if (filter.select('.recipe-row-T2').select('.squareTag').select('p')._groups[0][j].innerText.localeCompare('dissemination', 'en', { sensitivity: 'base' }) == 0) { filter.select('.recipe-row-T2').select('.squareTag')._groups[0][j].style.opacity = '0.3' };
+
+            if (filter.select('.recipe-row-T3').select('.squareTag').select('p')._groups[0][j].innerText.localeCompare('no data', 'en', { sensitivity: 'base' }) == 0) { filter.select('.recipe-row-T3').select('.squareTag')._groups[0][j].style.opacity = '0.3' }
         }
     }
 
