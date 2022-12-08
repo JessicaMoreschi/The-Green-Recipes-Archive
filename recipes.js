@@ -1,22 +1,9 @@
 const recipes = [
+
     {  
         recipeId: 0,
-        title: 'All mappazzone',
-        Keyword: undefined,
-        Actions: undefined,
-        TagAnimal: undefined,
-        TagDistribution: undefined,
-        TagEnergy: undefined,
-        TagFood: undefined,
-        TagManagement: undefined,
-        TagWaste: undefined,
-        ToV: undefined,
-        SentenceAim: undefined
-    },
-    {  
-        recipeId: 1,
         title: 'Cristpy welfare burger',
-        Keyword: 'sustainability',
+        Keyword: 'commitment',
         Actions: undefined,
         TagAnimal: 'TRUE',
         TagDistribution: undefined,
@@ -28,8 +15,8 @@ const recipes = [
         SentenceAim: 'dissemination'
     },
     {  
-        recipeId: 2,
-        title: 'Zero CO2 strips stir fry',
+        recipeId: 1,
+        title: 'Zero CO2 wrap',
         Keyword: 'emissions',
         Actions: undefined,
         TagAnimal: undefined,
@@ -42,9 +29,9 @@ const recipes = [
         SentenceAim: 'take action'
     },
     {  
-        recipeId: 3,
-        title: 'Sautéed globe warming bites',
-        Keyword: 'greenhouse',
+        recipeId: 2,
+        title: 'double globe warming burger',
+        Keyword: 'climate change',
         Actions: undefined,
         TagAnimal: undefined,
         TagDistribution: undefined,
@@ -56,32 +43,88 @@ const recipes = [
         SentenceAim: 'take action'
     },
     {  
-        recipeId: 4,
-        title: 'Sautéed globe warming bites',
-        Keyword: 'impact',
-        Actions: undefined,
+        recipeId: 3,
+        title: 'quarter earth pounder',
+        Keyword: 'planet',
+        Actions: 'TRUE',
         TagAnimal: undefined,
         TagDistribution: undefined,
         TagEnergy: undefined,
         TagFood: undefined,
-        TagManagement: undefined,
-        TagWaste: 'TRUE',
-        ToV: undefined,
+        TagManagement: 'TRUE',
+        TagWaste: undefined,
+        ToV: 'FALSE',
         SentenceAim: undefined
     },
     {  
-        recipeId: 5,
-        title: 'Prova di nome prova',
-        Keyword: 'recycle',
+        recipeId: 4,
+        title: 'Smoky forest burger',
+        Keyword: 'deforestation',
         Actions: undefined,
+        TagAnimal: undefined,
+        TagDistribution: undefined,
+        TagEnergy: undefined,
+        TagFood: 'TRUE',
+        TagManagement: 'TRUE',
+        TagWaste: 'TRUE',
+        ToV: 'FALSE',
+        SentenceAim: 'dissemination'
+    },
+    {  
+        recipeId: 5,
+        title: 'Filet-o-green sandwich',
+        Keyword: 'emissions',
+        Actions: 'TRUE',
+        TagAnimal: undefined,
+        TagDistribution: undefined,
+        TagEnergy: 'TRUE',
+        TagFood: undefined,
+        TagManagement: undefined,
+        TagWaste: undefined,
+        ToV: 'TRUE',
+        SentenceAim: 'dissemination'
+    },
+    {  
+        recipeId: 6,
+        title: 'Bio-scatter nugget burger',
+        Keyword: 'sustainability',
+        Actions: undefined,
+        TagAnimal: undefined,
+        TagDistribution: 'TRUE',
+        TagEnergy: undefined,
+        TagFood: 'TRUE',
+        TagManagement: undefined,
+        TagWaste: undefined,
+        ToV: 'FALSE',
+        SentenceAim: 'take action'
+    },
+    {  
+        recipeId: 7,
+        title: 'Deluxe recy-pounder',
+        Keyword: 'recycle',
+        Actions: 'TRUE',
         TagAnimal: undefined,
         TagDistribution: undefined,
         TagEnergy: undefined,
         TagFood: undefined,
         TagManagement: undefined,
         TagWaste: 'TRUE',
-        ToV: undefined,
-        SentenceAim: undefined
+        ToV: 'TRUE',
+        SentenceAim: 'take action'
+    },
+    {  
+        recipeId: 8,
+        title: 'Spicy planet-saver wrap',
+        Keyword: 'carbon footprint',
+        Actions: 'TRUE',
+        TagAnimal: undefined,
+        TagDistribution: undefined,
+        TagEnergy: undefined,
+        TagFood: 'TRUE',
+        TagManagement: undefined,
+        TagWaste: undefined,
+        ToV: 'FALSE',
+        SentenceAim: 'dissemination'
     }
 
 ]

@@ -1,5 +1,5 @@
 // Interpret the data as the correct format. Use d3.csv or d3.tsv accordingly.
-data = d3.csv("assets/data/prov.csv");
+data = d3.csv("assets/data/dataset.csv");
 let id = 0
 // let recipeClicked = 4;
 // Select the container where we will put our HTML elements
