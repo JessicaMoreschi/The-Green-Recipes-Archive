@@ -151,7 +151,7 @@ let filter = filterDiv.selectAll("div")
     .join("div")
     .attr("class", "flex-column recipe")
 // .style("max-width", "10rem")
-filter.attr('id', function(d){return 'recipe'+d.recipeId})
+filter.attr('id', function (d) { return 'recipe' + d.recipeId })
 filter.append("svg").attr("width", 50).attr("height", 50).style('background-color', 'white').style('border', '2px solid').style('margin-left', '198px').style('margin-top', '-1px').attr('class', 'orecchio')
 filter.append("svg").attr("width", 50).attr("height", 50).style('background-color', 'white').style('margin-left', '200px').style('margin-top', '-52px').attr('class', 'orecchio')
 filter.append("svg").attr("width", 50).attr("height", 50).style('background-color', 'transparent').style('margin-left', '198px').style('margin-top', '-49px').attr('class', 'orecchio')
@@ -238,9 +238,7 @@ var archiveOpen = false
 filter
     .style('cursor', 'pointer')
     .on('click', function (btnId) {
-        if (archiveOpen == false) {
-            openArchive()
-        }
+
         recipeClicked = btnId.srcElement.__data__.recipeId;
         let recipeIdN = recipes[btnId.srcElement.__data__.recipeId];
 
@@ -264,7 +262,11 @@ filter
                 )
             })
             .style('display', 'inline-flex');
+
         openRecipe(btnId)
+        if (archiveOpen == false) {
+            openArchive()
+        }
     });
 
 
@@ -288,6 +290,10 @@ function openRecipe(btnId) {
     recipeClicked = btnId.srcElement.__data__.recipeId;
     for (let j = 0; j < recipes.length; j++) {
         if (j != recipeClicked) {
+            if (archiveOpen == false) {
+                filter._groups[0][j].style.order='1'
+            }
+
             for (let i = 0; i < 4; i++) {
                 filter.selectAll('.orecchio')._groups[j][i].style.display = 'block'
             }
@@ -300,7 +306,10 @@ function openRecipe(btnId) {
             }
         }
         else if (j == recipeClicked) {
-            
+            if (archiveOpen == false) {
+                filter._groups[0][j].style.order='0'
+            }
+
             for (let i = 0; i < 4; i++) {
                 filter.selectAll('.orecchio')._groups[j][i].style.display = 'none'
             }
@@ -308,11 +317,11 @@ function openRecipe(btnId) {
             filter._groups[0][j].style.opacity = '1'
 
             let ricMarginTop = filter._groups[0][j].getBoundingClientRect().top
-            document.getElementById('all-filters').scrollBy({ 
+            document.getElementById('all-filters').scrollBy({
                 top: ricMarginTop - 140,
-                left: 0, 
-                behavior: 'smooth' 
-              });
+                left: 0,
+                behavior: 'smooth'
+            });
 
 
 
@@ -329,31 +338,35 @@ function openRecipe(btnId) {
 
 
 function openArchive() {
+    archiveOpen = true
     d3.select('.container').selectAll('.col')
-    .style('max-width', 'auto')
-    .transition()
-    .duration(2000)
+        .style('max-width', 'auto')
+        .transition()
+        .delay(0)
+        .duration(2000)
         .style('width', '300px')
     d3.select('.container').selectAll('.col-md-auto')
-    .style('max-width', 'calc(100% - 300px)')
-    .transition()
-  .duration(2000)
+        .style('max-width', 'calc(100% - 300px)')
+        .transition()
+        .delay(0)
+        .duration(2000)
         .style('width', '100%')
-    archiveOpen = true
 }
 
 function closeArchive() {
+    archiveOpen = false
     d3.select('.container').selectAll('.col')
         .style('max-width', '100%')
         .transition()
+        .delay(0)
         .duration(2000)
         .style('width', ' width: 100%;')
     d3.select('.container').selectAll('.col-md-auto')
         .style('max-width', 'calc(100% - 300px)')
         .transition()
+        .delay(0)
         .duration(2000)
         .style('width', '0%')
-    archiveOpen = false
 }
 
 

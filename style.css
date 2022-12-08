@@ -161,7 +161,7 @@ body{
     flex: none;
     /* border-bottom: 2px solid var(--main-color); */
     width: -webkit-fill-available;
-    height: auto;
+    height: 60px;
     padding: 20px;
     justify-content: space-between;
     align-items: center;
@@ -188,6 +188,7 @@ body{
 }
 
 .sub {
+    height: 40px;
     border-bottom: none;
     padding: 10px 20px;
     position: fixed;
