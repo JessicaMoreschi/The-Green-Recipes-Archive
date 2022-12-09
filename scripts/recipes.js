@@ -30,7 +30,7 @@ const recipes = [
     },
     {  
         recipeId: 2,
-        title: 'Zero CO2 wrap',
+        title: 'Zero CO2 big wrap',
         Keyword: 'emissions',
         Actions: undefined,
         TagAnimal: undefined,
@@ -44,7 +44,7 @@ const recipes = [
     },
     {  
         recipeId: 3,
-        title: 'double globe warming burger',
+        title: 'Double globe warming burger',
         Keyword: 'climate change',
         Actions: undefined,
         TagAnimal: undefined,
@@ -58,7 +58,7 @@ const recipes = [
     },
     {  
         recipeId: 4,
-        title: 'quarter earth pounder',
+        title: 'Quarter earth pounder',
         Keyword: 'planet',
         Actions: 'TRUE',
         TagAnimal: undefined,

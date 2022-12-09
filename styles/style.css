@@ -2,63 +2,63 @@
     font-family: PPEditorial;
     font-weight: normal;
     font-style: normal;
-    src: url("assets/font/PPEditorialNew-Regular.otf") format("opentype");
+    src: url("../assets/font/PPEditorialNew-Regular.otf") format("opentype");
 }
 
 @font-face {
     font-family: PPEditorial;
     font-weight: normal;
     font-style: italic;
-    src: url("assets/font/PPEditorialNew-Italic.otf") format("opentype");
+    src: url("../assets/font/PPEditorialNew-Italic.otf") format("opentype");
 }
 
 @font-face {
     font-family: PPEditorial;
     font-weight: bold;
     font-style: normal;
-    src: url("assets/font/PPEditorialNew-Ultrabold.otf") format("opentype");
+    src: url("../assets/font/PPEditorialNew-Ultrabold.otf") format("opentype");
 }
 
 @font-face {
     font-family: PPEditorial;
     font-weight: bold;
     font-style: italic;
-    src: url("assets/font/PPEditorialNew-UltraboldItalic.otf") format("opentype");
+    src: url("../assets/font/PPEditorialNew-UltraboldItalic.otf") format("opentype");
 }
 
 @font-face {
     font-family: PPEditorial;
     font-weight: lighter;
     font-style: normal;
-    src: url("assets/font/PPEditorialNew-Ultralight.otf") format("opentype");
+    src: url("../assets/font/PPEditorialNew-Ultralight.otf") format("opentype");
 }
 
 @font-face {
     font-family: PPEditorial;
     font-weight: lighter;
     font-style: italic;
-    src: url("assets/font/PPEditorialNew-UltralightItalic.otf") format("opentype");
+    src: url("../assets/font/PPEditorialNew-UltralightItalic.otf") format("opentype");
 }
 
 @font-face {
     font-family: PPNeueMachina;
     font-weight: lighter;
     font-style: normal;
-    src: url("assets/font/PPNeueMachina-InktrapLight.otf") format("opentype");
+    src: url("../assets/font/PPNeueMachina-InktrapLight.otf") format("opentype");
 }
 
 @font-face {
     font-family: PPNeueMachina;
     font-weight: normal;
     font-style: normal;
-    src: url("assets/font/PPNeueMachina-InktrapRegular.otf") format("opentype");
+    src: url("../assets/font/PPNeueMachina-InktrapRegular.otf") format("opentype");
 }
 
 @font-face {
     font-family: PPNeueMachina;
     font-weight: bold;
     font-style: normal;
-    src: url("assets/font/PPNeueMachina-InktrapUltrabold.otf") format("opentype");
+    src: url("../assets/font/PPNeueMachina-InktrapUltrabold.otf") format("opentype");
 }
 
 :root {
@@ -90,6 +90,12 @@ mark {
     padding: 0;
     gap: 0;
     margin: 0;
+    color: var(--main-color);
+    text-decoration: none;
+}
+
+* :not(.nohover):hover, * :visited {
+    text-decoration: none;
     color: var(--main-color);
 }
 
@@ -159,7 +165,7 @@ body{
 
 .head {
     flex: none;
-    /* border-bottom: 2px solid var(--main-color); */
+    border-bottom: 2px solid var(--main-color);
     width: -webkit-fill-available;
     height: 60px;
     padding: 20px;

@@ -144,6 +144,10 @@ let filter = filterDiv.selectAll("div")
     .attr("class", "flex-column recipe")
 // .style("max-width", "10rem")
 filter.attr('id', function (d) { return 'recipe' + d.recipeId })
+filter.style('order', function (d) { 
+    if (d.recipeId==0)
+    {return '1'} else {return '0'}})
+
 filter.append("svg").attr("width", 50).attr("height", 50).style('background-color', 'white').style('border', '2px solid').style('margin-left', '198px').style('margin-top', '-1px').attr('class', 'orecchio')
 filter.append("svg").attr("width", 50).attr("height", 50).style('background-color', 'white').style('margin-left', '200px').style('margin-top', '-52px').attr('class', 'orecchio')
 filter.append("svg").attr("width", 50).attr("height", 50).style('background-color', 'transparent').style('margin-left', '198px').style('margin-top', '-49px').attr('class', 'orecchio')
@@ -336,7 +340,9 @@ function openRecipe(btnId) {
     for (let j = 0; j < recipes.length; j++) {
         if (j != recipeClicked) {
             if (archiveOpen == false) {
-                filter._groups[0][j].style.order = '1'
+                if(j!= 0)
+               { filter._groups[0][j].style.order = '0.5'}
+               else if(j == 0)  { filter._groups[0][j].style.order = '1'}
             }
 
             for (let i = 0; i < 4; i++) {
