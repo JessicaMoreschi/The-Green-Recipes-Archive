@@ -27,6 +27,7 @@ container.append('div')
     .attr('class', 'flex-row head sub')
     .append('p')
     .text('products')
+    .attr('id', 'productsSubhead')
 container.select('.col-md-auto').select('.sub')
     .append('p')
     .text('x')
@@ -195,14 +196,6 @@ for (let i = 0; i < recipeIngredientTitle.length; i++) {
                 else { return "squareTag" }
             })
 
-        // tag.style('opacity', function(d){
-        //     if (i == 2){
-        //         if (d.SentenceAim == 'dissemination'){return '0.3'}
-        //     }
-        //     else if (i == 3){
-        //         if (d.ToV == 'FALSE'){return '0.3'}
-        //     }
-        // })
         tag.append('img')
             .attr('src', function () {
                 if (i == 0) { return 'assets/icon/keyword.svg' }
@@ -243,52 +236,78 @@ filter
         recipeClicked = btnId.srcElement.__data__.recipeId;
         let recipeIdN = recipes[btnId.srcElement.__data__.recipeId];
 
-
         let card = d3.select("#all-cards").selectAll('.card')
-        card
-            .style('display', 'none')
-        let cardSelected = card
-            .filter(function (d) {
-                return (
-                    ((d.SentenceAim == recipeIdN.SentenceAim) || (recipeIdN.SentenceAim == undefined)) &&
-                    ((d.Keyword == recipeIdN.Keyword) || (recipeIdN.Keyword == undefined)) &&
-                    ((d.ToV == recipeIdN.ToV) || (recipeIdN.ToV == undefined)) && (
-                        (d.Actions == recipeIdN.Actions) ||
-                        (d.TagAnimal == recipeIdN.TagAnimal) ||
-                        (d.TagDistribution == recipeIdN.TagDistribution) ||
-                        (d.TagEnergy == recipeIdN.TagEnergy) ||
-                        (d.TagFood == recipeIdN.TagFood) ||
-                        (d.TagManagement == recipeIdN.TagManagement) ||
-                        (d.TagWaste == recipeIdN.TagWaste) ||
-                        ((recipeIdN.TagWaste == undefined) && (recipeIdN.TagManagement == undefined) && (recipeIdN.TagFood == undefined) && (recipeIdN.TagEnergy == undefined) && (recipeIdN.TagDistribution == undefined) && (recipeIdN.TagAnimal == undefined) && (recipeIdN.Actions == undefined)))
-                )
+
+        if (recipeIdN.recipeId != 0) {
+            card
+                .style('display', 'none')
+            let cardSelected = card
+                .filter(function (d) {
+                    return (
+                        (((d.SentenceAim == recipeIdN.SentenceAim) || (recipeIdN.SentenceAim == undefined)) &&
+                            ((d.Keyword == recipeIdN.Keyword) || (recipeIdN.Keyword == undefined)) &&
+                            ((d.ToV == recipeIdN.ToV) || (recipeIdN.ToV == undefined)) && (
+                                (d.Actions == recipeIdN.Actions) ||
+                                (d.TagAnimal == recipeIdN.TagAnimal) ||
+                                (d.TagDistribution == recipeIdN.TagDistribution) ||
+                                (d.TagEnergy == recipeIdN.TagEnergy) ||
+                                (d.TagFood == recipeIdN.TagFood) ||
+                                (d.TagManagement == recipeIdN.TagManagement) ||
+                                (d.TagWaste == recipeIdN.TagWaste)))
+                    )
+                })
+            cardSelected
+                .style('display', 'inline-flex')
+
+            let cardP = cardSelected.select('.cardFooter').selectAll('div').select('p');
+
+            let tagsActive = []
+
+            for (let j = 0; j < Object.keys(recipeIdN).length; j++) {
+                let key = Object.keys(recipeIdN)[j]
+                if (recipeIdN[key] == 'TRUE') {
+                    tagsActive.push(key)
+                }
+            }
+            for (let i = 0; i < cardSelected.select('.cardFooter').selectAll('div').nodes().length; i++) {
+                if ((cardP.nodes()[i].innerText.localeCompare(tagsActive[0], 'en', { sensitivity: 'base' }) == 0) || (cardP.nodes()[i].innerText.localeCompare(tagsActive[1], 'en', { sensitivity: 'base' }) == 0)) {
+                    cardSelected.select('.cardFooter').selectAll('div').nodes()[i].style.backgroundColor = 'var(--secondary-color)'
+                }
+                else if (cardP.nodes()[i].innerText.localeCompare(recipeIdN.Keyword, 'en', { sensitivity: 'base' }) == 0) {
+                    cardSelected.select('.cardFooter').selectAll('div').nodes()[i].style.backgroundColor = 'var(--primary-color)'
+                }
+                else { cardSelected.select('.cardFooter').selectAll('div').nodes()[i].style.backgroundColor = 'white' }
+            }
+
+
+            openRecipe(btnId)
+            if (archiveOpen == false) {
+                openArchive()
+            }
+
+            let productsSubhead = d3.select("#productsSubhead")
+            let totResults = cardSelected.size()
+            productsSubhead.text(function () {
+                return 'products (' + totResults + ')'
             })
-        cardSelected
-            .style('display', 'inline-flex')
-
-        let cardP = cardSelected.select('.cardFooter').selectAll('div').select('p');
-        let tagsActive = []
-
-        for (let j = 0; j < Object.keys(recipeIdN).length; j++) {
-            let key = Object.keys(recipeIdN)[j]
-            if (recipeIdN[key] == 'TRUE') {
-                tagsActive.push(key)
-            }
-        }
-        for (let i = 0; i < cardSelected.select('.cardFooter').selectAll('div').nodes().length; i++) {
-            if ((cardP.nodes()[i].innerText.localeCompare(tagsActive[0], 'en', { sensitivity: 'base' }) == 0) || (cardP.nodes()[i].innerText.localeCompare(tagsActive[1], 'en', { sensitivity: 'base' }) == 0)) {
-                cardSelected.select('.cardFooter').selectAll('div').nodes()[i].style.backgroundColor = 'var(--secondary-color)'
-            }
-            else if (cardP.nodes()[i].innerText.localeCompare(recipeIdN.Keyword, 'en', { sensitivity: 'base' }) == 0) {
-                cardSelected.select('.cardFooter').selectAll('div').nodes()[i].style.backgroundColor = 'var(--primary-color)'
-            }
-            else { cardSelected.select('.cardFooter').selectAll('div').nodes()[i].style.backgroundColor = 'white' }
         }
 
+        else if (recipeIdN.recipeId == 0) {
+            card
+                .style('display', 'inline-flex')
+            openRecipe(btnId)
+            if (archiveOpen == false) {
+                openArchive()
+            }
 
-        openRecipe(btnId)
-        if (archiveOpen == false) {
-            openArchive()
+            card.selectAll('div')
+                .style('background-color', 'white')
+
+            let productsSubhead = d3.select("#productsSubhead")
+            let totResults = card.size()
+            productsSubhead.text(function () {
+                return 'products (' + totResults + ')'
+            })
         }
     });
 
