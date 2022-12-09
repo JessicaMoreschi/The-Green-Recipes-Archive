@@ -103,6 +103,16 @@ body{
     overflow: hidden;
 }
 
+p .pageSelected {
+    font-family: PPEditorial;
+    font-weight: normal;
+    font-style: italic;
+    font-size: 18pt;
+    line-height: 20pt;
+    /* height: auto; */
+    text-transform: capitalize;
+}
+
 .flex-row,
 .flex-column {
     display: flex;
@@ -157,9 +167,7 @@ body{
     font-weight: normal;
     font-style: normal;
     font-size: 14pt;
-    line-height: auto;
     text-transform: uppercase;
-    height: 0px;
 }
 
 
