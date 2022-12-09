@@ -68,7 +68,7 @@ const recipes = [
         TagManagement: 'TRUE',
         TagWaste: undefined,
         ToV: 'FALSE',
-        SentenceAim: undefined
+        SentenceAim:  'dissemination'
     },
     {  
         recipeId: 5,
