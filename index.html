@@ -16,15 +16,18 @@
       crossorigin="anonymous"
     />
     <link rel="stylesheet" href="styles/style.css" />
+    <link rel="stylesheet" href="styles/index.css" />
 
     <title>Green Recipe</title>
   </head>
   <body>
     <div class="flex-row head">
-      <a href="index.html"><p>the green recipes archive</p></a>
+      <div class="flex-row">
+        <a href="index.html"><p class="pageSelected">the green recipes archive</p></a>
+      </div>
       <div class="flex-row" style="gap: 20px">
-        <a href="pages/archive.html"><p>archive</p></a>
-        <a href="pages/about.html"><p>disclosure</p></a>
+        <a href="pages/archive.html"><p class="pageNotSelected">archive</p></a>
+        <a href="pages/about.html"><p class="pageNotSelected">disclosure</p></a>
       </div>
     </div>
     <div class="container"></div>
@@ -52,16 +55,13 @@
       crossorigin="anonymous"
     ></script>
     <!-- Mark js -->
-    <script 
-    src="node_modules/mark.js/dist/mark.min.js" 
-    charset="UTF-8">
-    </script>
-    <script 
-    src="node_modules/mark.js/dist/mark.js" 
-    charset="UTF-8">
-    </script>
+    <script
+      src="node_modules/mark.js/dist/mark.min.js"
+      charset="UTF-8"
+    ></script>
+    <script src="node_modules/mark.js/dist/mark.js" charset="UTF-8"></script>
 
     <!-- Your js file -->
-  
+    <script src="scripts/index.js"></script>
   </body>
 </html>

@@ -28,21 +28,21 @@
 
 @font-face {
     font-family: PPEditorial;
-    font-weight: lighter;
+    font-weight: light;
     font-style: normal;
     src: url("../assets/font/PPEditorialNew-Ultralight.otf") format("opentype");
 }
 
 @font-face {
     font-family: PPEditorial;
-    font-weight: lighter;
+    font-weight: light;
     font-style: italic;
     src: url("../assets/font/PPEditorialNew-UltralightItalic.otf") format("opentype");
 }
 
 @font-face {
     font-family: PPNeueMachina;
-    font-weight: lighter;
+    font-weight: light;
     font-style: normal;
     src: url("../assets/font/PPNeueMachina-InktrapLight.otf") format("opentype");
 }
@@ -73,7 +73,7 @@ mark {
     color: var(--main-color);
     background: var(--primary-color);
     font-family: PPEditorial;
-    font-weight: lighter;
+    font-weight: light;
     font-style: normal;
     font-size: 14pt;
     line-height: auto;
@@ -103,14 +103,23 @@ body{
     overflow: hidden;
 }
 
-p .pageSelected {
+p.pageSelected, p.pageNotSelected:hover {
     font-family: PPEditorial;
     font-weight: normal;
     font-style: italic;
     font-size: 18pt;
-    line-height: 20pt;
-    /* height: auto; */
+    line-height: 17pt;
     text-transform: capitalize;
+    text-decoration: none;
+}
+
+p.pageNotSelected {
+    font-family: PPNeueMachina;
+    font-weight: normal;
+    font-style: normal;
+    font-size: 14pt;
+    text-transform: uppercase;
+    text-decoration: none;
 }
 
 .flex-row,
@@ -209,128 +218,4 @@ p .pageSelected {
     z-index: 1;
     background-color: white;
     outline: 2px solid var(--main-color);
-}
-
-.card-columns,
-.filter {
-    padding: 70px 20px 100px 20px;
-    max-width: none;
-}
-
-.filter{
-    flex-wrap: wrap;
-    /* overflow: hidden; */
-    gap: 20px;
-    height: 100vh;
-    overflow: scroll;
-    padding-bottom: 100px;
-    justify-content: flex-start;
-    scroll-behavior: smooth;
-}
-
-.card {
-    padding: 20px;
-    gap: 15px;
-    isolation: isolate;
-    min-width: 250px;
-    height: auto;
-    border: 2px solid var(--main-color);
-    border-radius: 15px;
-
-}
-
-.cardHeader {
-    align-items: flex-end;
-    gap: 4.5px;
-    width: 100%;
-    height: 20px;
-}
-
-.card-content {
-    font-family: PPEditorial;
-    font-weight: lighter;
-    font-style: normal;
-    font-size: 14pt;
-    line-height: auto;
-}
-
-.cardFooter {
-    padding: 10px 0px 0px;
-    gap: 5px;
-    width: 100%;
-    height: auto;
-}
-
-
-.recipe {
-    border: 2px solid var(--main-color);
-    max-width: 250px;
-    width: 250px;
-}
-
-.recipe:hover {
-    transform: rotate(2deg);
-    opacity: 1 !important;
-}
-
-.card-text{
-    font-family: PPEditorial;
-    font-weight: normal;
-    font-style: normal;
-    font-size: 20pt;
-    line-height: 20pt;
-    text-transform: normal;
-    height: auto;
-    margin-top: -50px;
-    max-width: 160px;
-}
-
-.card-body h5{
-    font-family: PPNeueMachina;
-    font-weight: normal;
-    font-style: normal;
-    font-size: 8pt;
-    line-height: 8pt;
-    text-transform:uppercase;
-    color: var(--main-color);
-    height: auto;
-    padding: 10px 0;
-}
-
-.recipe-ingredient-title *{
-    width: 60px;
-    font-family: PPEditorial;
-    font-weight: normal;
-    font-style: italic;
-    font-size: 10pt;
-    line-height: 10pt;
-    text-transform: normal;
-    height: 0;
-}
-.recipe-ingredient-title{
-display: flex;
-justify-content: center;
-flex-direction: column;
-height: 100%}
-
-.recipe-row0, .recipe-row1, .recipe-row2, .recipe-row3{
-    height: auto;
-    padding: 10px 0;
-    border-top: 0.5px solid var(--main-color);
-}
-
-.recipe-row0 *, .recipe-row1 *, .recipe-row2 *, .recipe-row3 *{
-   gap: 5px;
-}
-
-@media (max-width: 1200px) {
-    .card-columns {
-        column-count: 2;
-    }
-}
-
-@media (max-width: 880px) {
-    .card-columns {
-        column-count: 1;
-    }
 }

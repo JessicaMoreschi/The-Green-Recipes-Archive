@@ -142,7 +142,6 @@ let filter = filterDiv.selectAll("div")
     .data(recipes)
     .join("div")
     .attr("class", "flex-column recipe")
-// .style("max-width", "10rem")
 filter.attr('id', function (d) { return 'recipe' + d.recipeId })
 filter.style('order', function (d) { 
     if (d.recipeId==0)
