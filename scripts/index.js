@@ -4,7 +4,7 @@ var cont3 = 0;
 
 var myFullpage = new fullpage('#fullpage', {
     // Navigation
-    lockAnchors: false,
+    lockAnchors: true,
     anchors: ['1', '2', '3', '4', '5', '6', '7', '8', '9'],
     sectionsColor: ['#fff', '#fff', '#fff', '#fff', '#fff', '#fff', '#85FF4D'],
     navigation: true,
@@ -149,3 +149,6 @@ var myFullpage = new fullpage('#fullpage', {
 });
 
 
+function move(){
+    fullpage_api.moveSectionDown()
+}
