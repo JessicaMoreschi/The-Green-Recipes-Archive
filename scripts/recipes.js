@@ -1,7 +1,7 @@
 const recipes = [
     {  
         recipeId: 0,
-        title: 'Desidera? Lo compro!',
+        title: 'Everything all at once',
         Keyword: undefined,
         Actions: undefined,
         TagAnimal: undefined,

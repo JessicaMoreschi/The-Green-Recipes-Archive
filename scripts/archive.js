@@ -72,6 +72,13 @@ data.then(function (data) {
         .text(function (d) {
             return d.Context
         })
+        .style('text-transform', function(d){
+            if (d.Typology == 'title'){return 'uppercase'}
+            else if (d.Typology == 'subtitle'){return 'uppercase'}
+        })
+        .style('font-style', function(d){
+            if ((d.Typology == 'statement')||(d.Typology == 'subtitle')){return 'italic'}
+        })
 
         .attr('onload', function (d) {
             var cardContext = card.selectAll('.card-content').nodes()[id]
