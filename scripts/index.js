@@ -1,225 +1,97 @@
+var cont = 0;
 
-let container = d3.select(".container");
+var myFullpage = new fullpage('#fullpage', {
+    // Navigation
+    lockAnchors: false,
+    anchors: ['1', '2', '3', '4', '5', '6', '7'],
+    navigation: true,
+    navigationPosition: 'right',
+    slidesNavigation: true,
+    slidesNavPosition: 'bottom',
 
-container.append('div')
-    .attr('class', 'flex-column landingText')
-let landingText = container.select('.landingText')
-let page = 0
+    // Scrolling
+    css3: true,
+    scrollingSpeed: 700,
+    autoScrolling: true,
+    fitToSection: true,
+    fitToSectionDelay: 600,
+    scrollBar: false,
+    easing: 'easeInOutCubic',
+    easingcss3: 'ease',
+    loopBottom: false,
+    loopTop: false,
+    loopHorizontal: false,
+    continuousVertical: false,
+    continuousHorizontal: false,
+    scrollHorizontally: false,
+    interlockedSlides: false,
+    dragAndMove: false,
+    offsetSections: false,
+    resetSliders: false,
+    fadingEffect: false,
+    normalScrollElements: '#element1, .element2',
+    scrollOverflow: false,
+    scrollOverflowMacStyle: false,
+    scrollOverflowReset: false,
+    touchSensitivity: 15,
+    bigSectionsDestination: null,
 
-page0()
-function page0() {
-    landingText.selectAll('*').remove()
-    landingText
-        .append('h1')
-        .text('The')
-        .style('font-style', 'italic')
+    // Accessibility
+    keyboardScrolling: true,
+    animateAnchor: true,
+    recordHistory: true,
 
-        .append('div')
-        .attr('class', 'roundTag center')
-        .append('p')
-        .text('how fast foods')
+    // Design
+    controlArrows: false,
+    controlArrowsHTML: [
+        '<div class="fp-arrow"></div>',
+        '<div class="fp-arrow"></div>'
+    ],
+    verticalCentered: true,
+    sectionsColor: ['#fff'],
+    paddingTop: '0',
+    paddingBottom: '0',
+    fixedElements: '#header, .footer',
+    responsiveWidth: 0,
+    responsiveHeight: 0,
+    responsiveSlides: false,
+    parallax: false,
+    parallaxOptions: { type: 'reveal', percentage: 62, property: 'translate' },
+    // dropEffect: false,
+    // dropEffectOptions: { speed: 2300, color: '#F82F4D', zIndex: 9999},
+    // waterEffect: false,
+    // waterEffectOptions: { animateContent: true, animateOnMouseMove: true},
+    // cards: false,
+    // cardsOptions: {perspective: 100, fadeContent: true, fadeBackground: true},
 
-    landingText
-        .append('h1')
-        .text('GREEN')
+    // Custom selectors
+    sectionSelector: '.section',
+    slideSelector: '.slide',
 
-        .append('div')
-        .attr('class', 'roundTag center')
-        .style('left', '250px')
-        .append('p')
-        .text('are talking about')
+    lazyLoading: true,
+    observer: true,
+    credits: { enabled: false, label: '', position: 'right' },
 
-    landingText
-        .append('h1')
-        .text('RECIPE')
+    // Events
+    beforeLeave: function (origin, destination, direction, trigger) {
+        if (cont < 2)
+        {if (origin.anchor == 5 && destination.anchor == 6) {
+            cont++;
+            document.getElementById('imgToMove').style.left = 80 + '%';
+            return cont === 2;
+        }}
+    },
+    onLeave: function (origin, destination, direction, trigger) { },
+    afterLoad: function (origin, destination, direction, trigger) { },
+    afterRender: function () { },
+    afterResize: function (width, height) { },
+    afterReBuild: function () { },
+    afterResponsive: function (isResponsive) { },
+    afterSlideLoad: function (section, origin, destination, direction, trigger) { },
+    onSlideLeave: function (section, origin, destination, direction, trigger) { },
+    onScrollOverflow: function (section, slide, position, direction) { }
+});
 
-        .append('div')
-        .attr('class', 'roundTag center')
-        .style('left', '-180px')
-        .append('p')
-        .text('Environment')
-
-    landingText
-        .append('h1')
-        .text('Archive')
-        .style('font-style', 'italic')
-
-        .append('div')
-        .attr('class', 'roundTag center')
-        .style('left', '250px')
-        .append('p')
-        .text('& sustainability')
-
-    container.append('img')
-        .attr('src', 'assets/imgs/landingHands.png')
-        .attr('id', 'landingImage')
-    img = container.select('#landingImage')
-    img.style('margin-top', '90%')
-
-    landingText
-        .append('h1')
-        .text('↓')
-        .attr('id', 'landingArrow')
-        .on('click', page1)
-
-    page = 1
-}
-
-function page1() {
-    img
-        .transition()
-        .duration(2000)
-        .style('margin-top', '-10%')
-        .transition()
-        .duration(1000)
-        .style('margin-top', '100%')
-        .delay(500)
-        .remove()
-
-    let timer = d3.timer(function () {
-        landingText.selectAll('*').remove()
-        landingText.style('align-items', 'flex-start')
-        landingText.append('p')
-            .attr('class', 'mainText')
-            .text('34% of all man-made CO2 emissions are generated by the food industry, particularly fast food companies.')
-        landingText.append('div')
-            .attr('class', 'roundTag')
-            .append('p')
-            .text('ipcc annual report 2022')
-
-        container.append('div')
-            .attr('id', 'rect')
-            .append('img')
-            .attr('src', 'assets/imgs/mano che tira su dati.png')
-        container.select('#rect')
-            .on('click', page2)
-            .style('height', '0vh')
-            .transition()
-            .duration(2000)
-            .delay(1000)
-            .style('height', '34vh')
-
-
-        timer.stop()
-    }, 1700)
-}
-
-function page2() {
-    container.select('#rect')
-        .style('height', '34vh')
-        .transition()
-        .duration(1000)
-        .style('height', '100vh')
-        .transition()
-        .duration(1000)
-        .style('bottom', '100vh')
-        .delay(500)
-        .remove()
-
-    let timer = d3.timer(function () {
-        landingText.selectAll('*').remove()
-        landingText.style('align-items', 'center')
-        landingText.append('p')
-            .attr('class', 'mainText')
-            .text('Fast food companies, feeling involved, have therefore decided to give space to the environmental issue on their websites.')
-
-        container.append('img')
-            .on('click', page3)
-            .attr('src', 'assets/imgs/Sustainability page.png')
-            .attr('class', 'bigCenterImg')
-
-        timer.stop()
-    }, 2000)
-}
-
-function page3() {
-    landingText.selectAll('*')
-        .transition()
-        .duration(1000)
-        .style('transform', 'translateY(-500px)')
-      
-    container.select('.bigCenterImg')
-        .transition()
-        .duration(1000)
-        .style('bottom', '100vh')
-       
-
-    let timer = d3.timer(function () {
-        landingText.selectAll('*').remove()
-        landingText.append('p')
-            .style('transform', 'translateY(600px)')
-            .attr('class', 'mainText')
-            .text('However, are companies really doing something for the environment or...')
-            .transition()
-            .duration(1000)
-            .style('transform', 'translateY(0px)')
-
-        container.append('img')
-            .attr('src', 'assets/imgs/another recipe2.png')
-            .attr('class', 'bigCenterImg')
-            .attr('id', 'imgDontMove')
-            .style('bottom', '-500px')
-            .style('height', '60%')
-            .transition()
-            .duration(1000)
-            .style('bottom', '0px')
-        container.append('img')
-            .attr('src', 'assets/imgs/another recipe1.png')
-            .attr('id', 'imgPlateToMove')
-            .on('click', page4)
-            .attr('class', 'bigCenterImg')
-            .style('height', '60%')
-            .style('bottom', '-400px')
-            .transition()
-            .duration(1000)
-            .style('bottom', '0px')
-
-        timer.stop()
-    }, 500)
-}
-
-function page4() {
-    container.select('#imgPlateToMove')
-        .transition()
-        .duration(1000)
-        .style('transform', 'translateX(+50px)')
-        container.select('#imgDontMove')
-        .on('click', page5)
-}
-
-function page5() {
-    console.log('here')
-    landingText.selectAll('*')
-    .transition()
-    .duration(1000)
-    .style('transform', 'translateY(-500px)')
-  
-container.selectAll('.bigCenterImg')
-    .transition()
-    .duration(1000)
-    .style('bottom', '100vh')
-   
-    let timer = d3.timer(function () {
-        landingText.selectAll('*').remove()
-        landingText.append('p')
-            .style('transform', 'translateY(600px)')
-            .attr('class', 'mainText')
-            .text("Let's take a look at the websites of the top 8 fast food companies in the world.")
-            .transition()
-            .duration(1000)
-            .style('transform', 'translateY(0px)')
-
-        container.append('img')
-            .attr('src', 'assets/imgs/loghi.png')
-            .attr('class', 'bigCenterImg')
-            .style('bottom', '-500px')
-            .style('height', '100vh')
-            .transition()
-            .duration(1000)
-            .style('bottom', '50px')
-            
-        timer.stop()
-    }, 500)
-
-}
-
+// $(document).on('click', function(){
+//     fullpage_api.silentMoveTo(6);
+//   })
