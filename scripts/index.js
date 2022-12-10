@@ -1,5 +1,6 @@
 var cont = 0;
 var cont2 = 0;
+var cont3 = 0;
 
 var myFullpage = new fullpage('#fullpage', {
     // Navigation
@@ -16,7 +17,7 @@ var myFullpage = new fullpage('#fullpage', {
     scrollingSpeed: 700,
     autoScrolling: true,
     fitToSection: true,
-    fitToSectionDelay: 600,
+    fitToSectionDelay: 0,
     scrollBar: false,
     easing: 'easeInOutCubic',
     easingcss3: 'ease',
@@ -75,6 +76,7 @@ var myFullpage = new fullpage('#fullpage', {
 
     // Events
     beforeLeave: function (origin, destination, direction, trigger) {
+
         if (cont < 2) {
             if (origin.anchor == 5 && destination.anchor == 6) {
                 cont++;
@@ -88,13 +90,29 @@ var myFullpage = new fullpage('#fullpage', {
                 document.getElementById('clip-circle').style.transition = 'all 1000ms ease'
                 document.getElementById('clip-circle').style.clipPath = 'circle(' + 100 + '% at 50% 70%)'
                 document.getElementById('textToChange').innerHTML = '...and the sentence in which they appear has been extracted to understand its context'
-                return cont2 === 2;
             }
         }
     },
-    onLeave: function (origin, destination, direction, trigger) { },
+    onLeave: function (origin, destination, direction, trigger) {
+        if (origin.anchor == 1 && destination.anchor == 2) {
+            document.getElementById('landingImg').style.transform = 'translate(-50%, 0%)'
+            document.getElementById('landingContainer').style.transitionDelay= '500ms !important'
+            document.getElementById('landingContainer').style.opacity='0'
+        }
+        if (destination.anchor == 1) {
+            document.getElementById('landingContainer').style.transitionDelay= '0ms !important'
+            document.getElementById('landingContainer').style.opacity='1'
+        }
+    },
     afterLoad: function (origin, destination, direction, trigger) {
+        if (destination.anchor == 1) {
+            document.getElementById('tag1').style.transform = 'translate(-210px, -160px)';
+            document.getElementById('tag2').style.transform = 'translate(50px, -75px)';
+            document.getElementById('tag3').style.transform = 'translate(-315px, 15px)';
+            document.getElementById('tag4').style.transform = 'translate(75px, 120px)';
+        }
         if (destination.anchor == 2) {
+            document.getElementById('landingImg').style.transform = 'translate(-50%, +100%)'
             document.getElementById('rect').style.bottom = 0 + 'vh';
         }
         if (destination.anchor == 6) {
@@ -109,10 +127,13 @@ var myFullpage = new fullpage('#fullpage', {
                     cursX = event.clientX;
                     cursY = event.clientY;
                     document.getElementById('clip-circle').style.clipPath = 'circle(6% at ' + cursX + 'px ' + cursY + 'px)'
-                    document.getElementById('imgLens').style.transform = 'translate('+ cursX +'px, '+cursY+'px)'
-                    
+                    document.getElementById('imgLens').style.transform = 'translate(' + cursX + 'px, ' + cursY + 'px)'
                 }
             }
+        }
+
+        if (destination.anchor == 9) {
+            document.getElementById('allRecipesImg').style.transform = 'translate(-50%, 40%)';
         }
     },
     afterRender: function () { },
@@ -123,4 +144,5 @@ var myFullpage = new fullpage('#fullpage', {
     onSlideLeave: function (section, origin, destination, direction, trigger) { },
     onScrollOverflow: function (section, slide, position, direction) { }
 });
+
 

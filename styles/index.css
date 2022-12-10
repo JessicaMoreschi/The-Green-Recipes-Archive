@@ -1,10 +1,19 @@
-
-
 .head {
     position: fixed;
     top: 0px;
     background-color: white;
     z-index: 1;
+}
+
+#landingContainer {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-52%, -50%);
+    z-index: 1;
+    opacity: 1;
+    transition: all 0ms ease;
+    transition-delay: 500ms !important;
 }
 
 .section {
@@ -22,7 +31,8 @@ h1 {
     -webkit-text-stroke-color: black;
 }
 
-h2, h2 b  {
+h2,
+h2 b {
     font-family: PPEditorial;
     font-weight: normal;
     font-style: normal;
@@ -53,7 +63,7 @@ h2 b {
     position: absolute;
     left: 50%;
     transform: translate(-50%);
-    bottom: 80px;
+    bottom: -45vh;
     animation-name: landingArrow;
     animation-duration: 2s;
     animation-iteration-count: infinite;
@@ -65,19 +75,19 @@ h2 b {
 
 @keyframes landingArrow {
     0% {
-        bottom: 80px;
+        bottom: -45vh;
     }
 
     20% {
-        bottom: 60px;
+        bottom: -40vh;
     }
 
     60% {
-        bottom: 80px;
+        bottom: -45vh;
     }
 
     100% {
-        bottom: 80px;
+        bottom: -45vh;
     }
 }
 
@@ -85,11 +95,13 @@ p {
     font-size: 18pt;
     line-height: 17pt;
     width: fit-content;
-
 }
+
 
 .roundTag {
     width: fit-content;
+    transition: all 1000ms ease;
+    -webkit-transition: all 1000ms ease;
 }
 
 .center {
@@ -107,13 +119,16 @@ p {
     left: 0;
     overflow: hidden;
     transition: all 500ms ease;
+    -webkit-transition: all 500ms ease;
 }
 
 #rect {
     width: 100vw;
     height: 34vh;
     bottom: -34vh;
+    transition-delay: 1000ms !important;
     transition: all 1000ms ease;
+    -webkit-transition: all 1000ms ease;
 }
 
 
@@ -125,28 +140,58 @@ p {
     left: 50%;
     transform: translateX(-50%);
     transition: all 1000ms ease;
+    -webkit-transition: all 1000ms ease;
+}
+
+#landingImg {
+    height: 105vh;
+    transform: translate(-50%, +100%);
+    position: absolute;
+    z-index: 1;
+    bottom: 0;
+    transition: all 500ms ease;
 }
 
 #imgToAppear {
     height: 100vh;
     bottom: 50px;
+    left: 0;
     opacity: 0;
-    transition: all 1000ms ease;
+    transition: all 500ms ease;
+    -webkit-transition: all 500ms ease;
+    transform-origin: center;
+    animation-name: rotateLoghi;
+    animation-duration: 1s;
+    animation-iteration-count: infinite;
+    animation-timing-function: ease-in-out;
+    animation-direction: alternate-reverse;
+}
+
+@keyframes rotateLoghi {
+    0% {
+        transform: rotateZ(0deg)
+    }
+
+    100% {
+        transform: rotateZ(3deg)
+    }
 }
 
 #clip-circle {
     clip-path: circle(6% at 50% 70%);
     transition: all 200ms ease-out;
-  }
+    -webkit-transition: all 200ms ease-out;
+}
 
-  #imgLens {
+#imgLens {
     left: -110px;
     top: -95px;
     transform: translate(242%, 127%);
     transition: all 200ms ease-out;
-  }
+    -webkit-transition: all 200ms ease-out;
+}
 
-  #allCardImg {
+#allCardImg {
     height: 80%;
     bottom: auto;
     top: 50%;
@@ -155,15 +200,29 @@ p {
     animation-iteration-count: infinite;
     animation-timing-function: ease-in-out;
     animation-direction: alternate-reverse;
-  }
+}
 
+#allRecipesImg {
+    height: 60%;
+    bottom: -70px;
+    transform: translate(-50%, 100%);
+    transition: all 1000ms ease-in-out;
+    -webkit-transition: all 1000ms ease-in-out;
+    cursor: pointer;
+}
+
+#allRecipesImg:hover {
+    transition: all 500ms ease-in-out;
+    -webkit-transition: all 500ms ease-in-out;
+    transform: translate(-50%, 0%) !important;
+}
 
 @keyframes allCardImgT {
     0% {
-   left: 50vh;
+        left: 50vh;
     }
 
     100% {
-     left: 120vh;
+        left: 120vh;
     }
 }
