@@ -147,8 +147,3 @@ var myFullpage = new fullpage('#fullpage', {
     onSlideLeave: function (section, origin, destination, direction, trigger) { },
     onScrollOverflow: function (section, slide, position, direction) { }
 });
-
-
-function move(){
-    fullpage_api.moveSectionDown()
-}

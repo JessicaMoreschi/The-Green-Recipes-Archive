@@ -105,10 +105,12 @@ height: 100%}
     height: auto;
     padding: 10px 0;
     border-top: 0.5px solid var(--main-color);
+    flex-wrap: wrap;
 }
 
 .recipe-row0 *, .recipe-row1 *, .recipe-row2 *, .recipe-row3 *{
    gap: 5px;
+   flex-wrap: nowrap;
 }
 
 @media (max-width: 1200px) {

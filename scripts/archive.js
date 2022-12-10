@@ -7,6 +7,7 @@ let container = d3.select(".container");
 
 container.append('div')
     .attr('class', 'col')
+    .attr('id', 'colSx')
     .append('div')
     .attr('class', 'flex-row head sub')
     .append('p')
@@ -14,7 +15,7 @@ container.append('div')
     .on('click', function () { closeArchive(); closedRecipes() })
     .style('cursor', 'pointer')
     .append('div')
-container.select('.col')
+container.select('#colSx')
     .append('div')
     .attr('id', 'all-filters')
     .attr('class', 'flex-row filter')
@@ -23,18 +24,19 @@ container.select('.col')
 
 container.append('div')
     .attr('class', 'col-md-auto')
+    .attr('id', 'colDx')
     .append('div')
     .attr('class', 'flex-row head sub')
     .append('p')
     .text('products')
     .attr('id', 'productsSubhead')
-container.select('.col-md-auto').select('.sub')
+container.select('#colDx').select('.sub')
     .append('p')
     .text('x')
     .on('click', function () { closeArchive(); closedRecipes() })
     .style('cursor', 'pointer')
 
-container.select('.col-md-auto')
+container.select('#colDx')
     .append('div')
     .attr('id', 'all-cards')
     .attr('class', 'card-columns')
@@ -372,6 +374,12 @@ function openRecipe(btnId) {
                 left: 0,
                 behavior: 'smooth'
             });
+            document.getElementById('colDx').scrollTo({
+                top: 0,
+                left: 0,
+                behavior: 'smooth'
+            });
+            
 
             if (filter.select('.recipe-row-T0').select('.roundTag').select('p')._groups[0][j].innerText != '') { filter.select('.recipe-row-T0').select('.roundTag')._groups[0][j].style.backgroundColor = 'var(--primary-color)' };
 
@@ -422,6 +430,12 @@ function closeArchive() {
         .delay(0)
         .duration(2000)
         .style('width', '0%')
+
+        document.getElementById('all-filters').scrollTo({
+            top: 0,
+            left: 0,
+            behavior: 'smooth'
+        });
 }
 
 

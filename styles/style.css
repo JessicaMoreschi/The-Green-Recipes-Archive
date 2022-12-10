@@ -142,18 +142,19 @@ p.pageNotSelected {
     text-transform: uppercase;
     justify-content: center;
     align-items: center;
-    flex-wrap: nowrap;
+    flex-wrap: nowrap !important;
     padding: 5px 10px;
     gap: 5px;
     background: white;
     border: 1px solid var(--main-color);
     border-radius: 60px;
+    min-width: -webkit-fit-content;
     width: auto;
     height: auto;
     align-self: auto;
     font-size: 8pt;
     flex-wrap: nowrap;
-    display: flex;
+    display: inline-flex;
 }
 
 .squareTag {
