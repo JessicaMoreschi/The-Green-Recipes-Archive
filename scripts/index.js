@@ -3,7 +3,7 @@ var cont = 0;
 var myFullpage = new fullpage('#fullpage', {
     // Navigation
     lockAnchors: false,
-    anchors: ['1', '2', '3', '4', '5', '6', '7'],
+    anchors: ['1', '2', '3', '4', '5', '6', '7', '8', '9'],
     navigation: true,
     navigationPosition: 'right',
     slidesNavigation: true,
@@ -29,7 +29,7 @@ var myFullpage = new fullpage('#fullpage', {
     offsetSections: false,
     resetSliders: false,
     fadingEffect: false,
-    normalScrollElements: '#element1, .element2',
+    // normalScrollElements: '#element1, .element2',
     scrollOverflow: false,
     scrollOverflowMacStyle: false,
     scrollOverflowReset: false,
@@ -82,7 +82,14 @@ var myFullpage = new fullpage('#fullpage', {
         }}
     },
     onLeave: function (origin, destination, direction, trigger) { },
-    afterLoad: function (origin, destination, direction, trigger) { },
+    afterLoad: function (origin, destination, direction, trigger) {
+        if (destination.anchor == 2) {
+            document.getElementById('rect').style.bottom = 0 + 'vh';
+        }
+        if (destination.anchor == 6) {
+            document.getElementById('imgToAppear').style.opacity = 1;
+        }
+     },
     afterRender: function () { },
     afterResize: function (width, height) { },
     afterReBuild: function () { },

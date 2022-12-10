@@ -5,6 +5,10 @@
     z-index: 1;
 }
 
+.section {
+    overflow: hidden;
+}
+
 h1 {
     font-family: PPEditorial;
     font-weight: normal;
@@ -16,7 +20,7 @@ h1 {
     -webkit-text-stroke-color: black;
 }
 
-h2{
+h2 {
     font-family: PPEditorial;
     font-weight: normal;
     font-style: normal;
@@ -24,9 +28,10 @@ h2{
     line-height: normal;
     text-align: left;
     margin: 140px 40px;
+    z-index: 1;
 }
 
-.alTop{
+.alTop {
     justify-content: flex-start;
 }
 
@@ -75,7 +80,7 @@ p {
 }
 
 .center {
-    position: absolute ;
+    position: absolute;
     top: 50%;
     left: 50%;
 }
@@ -85,17 +90,26 @@ p {
     height: 34vh;
     background-color: var(--primary-color);
     position: absolute;
-    bottom: 0;
+    bottom: -34vh;
     left: 0;
     overflow: hidden;
+    transition: all 2000ms ease;
 }
 
 
 .bigCenterImg {
     position: absolute;
+    z-index: 0;
     bottom: 0;
     height: 50%;
     left: 50%;
     transform: translateX(-50%);
-    transition: all 600ms ease;
+    transition: all 1000ms ease;
+}
+
+#imgToAppear {
+    height: 100vh;
+    bottom: 50px;
+    opacity: 0;
+    transition: all 1000ms ease;
 }
