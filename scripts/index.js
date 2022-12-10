@@ -1,9 +1,11 @@
 var cont = 0;
+var cont2 = 0;
 
 var myFullpage = new fullpage('#fullpage', {
     // Navigation
     lockAnchors: false,
     anchors: ['1', '2', '3', '4', '5', '6', '7', '8', '9'],
+    sectionsColor: ['#fff', '#fff', '#fff', '#fff', '#fff', '#fff', '#85FF4D'],
     navigation: true,
     navigationPosition: 'right',
     slidesNavigation: true,
@@ -48,7 +50,6 @@ var myFullpage = new fullpage('#fullpage', {
         '<div class="fp-arrow"></div>'
     ],
     verticalCentered: true,
-    sectionsColor: ['#fff'],
     paddingTop: '0',
     paddingBottom: '0',
     fixedElements: '#header, .footer',
@@ -74,12 +75,22 @@ var myFullpage = new fullpage('#fullpage', {
 
     // Events
     beforeLeave: function (origin, destination, direction, trigger) {
-        if (cont < 2)
-        {if (origin.anchor == 5 && destination.anchor == 6) {
-            cont++;
-            document.getElementById('imgToMove').style.left = 80 + '%';
-            return cont === 2;
-        }}
+        if (cont < 2) {
+            if (origin.anchor == 5 && destination.anchor == 6) {
+                cont++;
+                document.getElementById('imgToMove').style.left = 80 + '%';
+                return cont === 2;
+            }
+        }
+        if (cont2 < 2) {
+            if (origin.anchor == 7 && destination.anchor == 8) {
+                cont2++;
+                document.getElementById('clip-circle').style.transition = 'all 1000ms ease'
+                document.getElementById('clip-circle').style.clipPath = 'circle(' + 100 + '% at 50% 70%)'
+                document.getElementById('textToChange').innerHTML = '...and the sentence in which they appear has been extracted to understand its context'
+                return cont2 === 2;
+            }
+        }
     },
     onLeave: function (origin, destination, direction, trigger) { },
     afterLoad: function (origin, destination, direction, trigger) {
@@ -89,7 +100,21 @@ var myFullpage = new fullpage('#fullpage', {
         if (destination.anchor == 6) {
             document.getElementById('imgToAppear').style.opacity = 1;
         }
-     },
+
+        if (destination.anchor == 7) {
+            let cursX
+            let cursY
+            document.getElementById('fullpage').onmousemove = function (event) {
+                if (destination.anchor == 7 && cont2 < 1) {
+                    cursX = event.clientX;
+                    cursY = event.clientY;
+                    document.getElementById('clip-circle').style.clipPath = 'circle(6% at ' + cursX + 'px ' + cursY + 'px)'
+                    document.getElementById('imgLens').style.transform = 'translate('+ cursX +'px, '+cursY+'px)'
+                    
+                }
+            }
+        }
+    },
     afterRender: function () { },
     afterResize: function (width, height) { },
     afterReBuild: function () { },
@@ -99,6 +124,3 @@ var myFullpage = new fullpage('#fullpage', {
     onScrollOverflow: function (section, slide, position, direction) { }
 });
 
-// $(document).on('click', function(){
-//     fullpage_api.silentMoveTo(6);
-//   })

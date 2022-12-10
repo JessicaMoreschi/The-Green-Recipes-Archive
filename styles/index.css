@@ -1,3 +1,5 @@
+
+
 .head {
     position: fixed;
     top: 0px;
@@ -20,16 +22,27 @@ h1 {
     -webkit-text-stroke-color: black;
 }
 
-h2 {
+h2, h2 b  {
     font-family: PPEditorial;
     font-weight: normal;
     font-style: normal;
     font-size: 60px;
-    line-height: normal;
+    line-height: 120%;
     text-align: left;
-    margin: 140px 40px;
+    margin: 120px 40px;
     z-index: 1;
 }
+
+h2 b {
+    font-weight: normal;
+    font-style: italic;
+    /* text-transform: lowercase; */
+    margin: 0;
+    /* text-decoration: underline var(--primary-color) 4px; */
+    -webkit-text-stroke-width: 2px;
+    -webkit-text-stroke-color: black;
+}
+
 
 .alTop {
     justify-content: flex-start;
@@ -85,15 +98,22 @@ p {
     left: 50%;
 }
 
+.rect {
+    width: 100vw;
+    height: 100vh;
+    background-color: var(--primary-color);
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    overflow: hidden;
+    transition: all 500ms ease;
+}
+
 #rect {
     width: 100vw;
     height: 34vh;
-    background-color: var(--primary-color);
-    position: absolute;
     bottom: -34vh;
-    left: 0;
-    overflow: hidden;
-    transition: all 2000ms ease;
+    transition: all 1000ms ease;
 }
 
 
@@ -101,7 +121,7 @@ p {
     position: absolute;
     z-index: 0;
     bottom: 0;
-    height: 50%;
+    height: 55%;
     left: 50%;
     transform: translateX(-50%);
     transition: all 1000ms ease;
@@ -112,4 +132,38 @@ p {
     bottom: 50px;
     opacity: 0;
     transition: all 1000ms ease;
+}
+
+#clip-circle {
+    clip-path: circle(6% at 50% 70%);
+    transition: all 200ms ease-out;
+  }
+
+  #imgLens {
+    left: -110px;
+    top: -95px;
+    transform: translate(242%, 127%);
+    transition: all 200ms ease-out;
+  }
+
+  #allCardImg {
+    height: 80%;
+    bottom: auto;
+    top: 50%;
+    animation-name: allCardImgT;
+    animation-duration: 5s;
+    animation-iteration-count: infinite;
+    animation-timing-function: ease-in-out;
+    animation-direction: alternate-reverse;
+  }
+
+
+@keyframes allCardImgT {
+    0% {
+   left: 50vh;
+    }
+
+    100% {
+     left: 120vh;
+    }
 }
