@@ -90,6 +90,7 @@ var myFullpage = new fullpage('#fullpage', {
                 document.getElementById('clip-circle').style.transition = 'all 1000ms ease'
                 document.getElementById('clip-circle').style.clipPath = 'circle(' + 100 + '% at 50% 70%)'
                 document.getElementById('textToChange').innerHTML = '...and the sentence in which they appear has been extracted to understand its context'
+                 return cont2 === 2;
             }
         }
     },
@@ -98,10 +99,12 @@ var myFullpage = new fullpage('#fullpage', {
             document.getElementById('landingImg').style.transform = 'translate(-50%, 0%)'
             document.getElementById('landingContainer').style.transitionDelay= '500ms !important'
             document.getElementById('landingContainer').style.opacity='0'
+            document.getElementById('landingContainer').style.zIndex='0'
         }
         if (destination.anchor == 1) {
             document.getElementById('landingContainer').style.transitionDelay= '0ms !important'
             document.getElementById('landingContainer').style.opacity='1'
+            document.getElementById('landingContainer').style.zIndex='1'
         }
     },
     afterLoad: function (origin, destination, direction, trigger) {
