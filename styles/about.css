@@ -34,7 +34,7 @@
     border-bottom: 2px solid var(--main-color);
 
     width: 20vw;
-    justify-content: center;
+    justify-content: flex-start;
 }
 
 .slide .slideP, .slide b {

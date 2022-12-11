@@ -37,11 +37,11 @@
       </div>
       <div class="flex-row" style="gap: 20px">
         <a href="pages/archive.html"><p class="pageNotSelected">archive</p></a>
-        <a href="pages/about.html#1"><p class="pageSelected">disclosure</p></a>
+        <p class="pageSelected" onclick="goToSlide(0)" style="cursor: pointer;">disclosure</p>
       </div>
     </div>
    <a href="pages/about.html#1"><div class="flex-row subContainer">
-      <div class="flex-row subSection" onclick="removeBorder(0)" style="border-bottom: none;">
+      <div class="flex-row subSection" onclick="goToSlide(0)" style="border-bottom: none;">
         <p>GREENWASHING</p>
       </div></a>
       <div class="flex-row subSection" onclick="goToSlide(1)">
@@ -183,6 +183,10 @@
     <script
       type="text/javascript"
       src="node_modules/fullpage.js/dist/fullpage.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="node_modules/fullpage.js/dist/fullpage.extensions.min.js"
     ></script>
 
     <!-- Your js file -->

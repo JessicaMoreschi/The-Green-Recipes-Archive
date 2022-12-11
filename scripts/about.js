@@ -2,7 +2,7 @@
 var myFullpage = new fullpage('#fullpage', {
     // Navigation
     lockAnchors: false,
-    anchors: ['1', '2', '3', '4', '5', '6', '7', '8', '9'],
+    anchors: ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'],
     // sectionsColor: ['#85FF4D', '#fff', '#fff', '#fff', '#fff', '#fff', '#85FF4D'],
     navigation: false,
     navigationPosition: 'right',
@@ -27,19 +27,19 @@ var myFullpage = new fullpage('#fullpage', {
     interlockedSlides: false,
     dragAndMove: false,
     offsetSections: false,
-    resetSliders: false,
+    resetSliders: true,
     fadingEffect: false,
     // normalScrollElements: '#element1, .element2',
     scrollOverflow: true,
     scrollOverflowMacStyle: false,
-    scrollOverflowReset: false,
+    scrollOverflowReset: true,
     touchSensitivity: 15,
     bigSectionsDestination: null,
 
     // Accessibility
     keyboardScrolling: true,
     animateAnchor: true,
-    recordHistory: true,
+    recordHistory: false,
 
     // Design
     controlArrows: false,
@@ -82,18 +82,23 @@ var myFullpage = new fullpage('#fullpage', {
     afterResize: function (width, height) { },
     afterReBuild: function () { },
     afterResponsive: function (isResponsive) { },
-    afterSlideLoad: function (section, origin, destination, direction, trigger) { },
-    onSlideLeave: function (section, origin, destination, direction, trigger) { },
+    afterSlideLoad: function (section, origin, destination, direction, trigger) {},
+    onSlideLeave: function (section, origin, destination, direction, trigger) { changeBorder(destination.index)},
     onScrollOverflow: function (section, slide, position, direction) { }
 });
 
 function goToSlide(b = '') {
-    fullpage_api.moveTo('1', b);
-    d3.selectAll('.subSection').style('border-bottom', '2px solid var(--main-color)')
-    d3.selectAll('.subSection').nodes()[b].style.borderBottom = 'none' 
+    fullpage_api.moveTo('0', b);
+   
 }
 
-function removeBorder(a){
+function changeBorder(d){
     d3.selectAll('.subSection').style('border-bottom', '2px solid var(--main-color)')
-    d3.selectAll('.subSection').nodes()[a].style.borderBottom = 'none' 
+    d3.selectAll('.subSection').nodes()[d].style.borderBottom = 'none' 
+
+    document.getElementsByClassName('fp-overflow')[d].scrollTo({
+        top: 0,
+        left: 0,
+        behavior: 'smooth'
+    })
 }
