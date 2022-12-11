@@ -30,7 +30,9 @@
     padding: 10px 20px;
     z-index: 1;
     background-color: white;
-    outline: 2px solid var(--main-color);
+    border-right: 2px solid var(--main-color);
+    border-bottom: 2px solid var(--main-color);
+
     width: 20vw;
     justify-content: center;
 }

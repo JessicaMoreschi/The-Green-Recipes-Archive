@@ -87,6 +87,13 @@ var myFullpage = new fullpage('#fullpage', {
     onScrollOverflow: function (section, slide, position, direction) { }
 });
 
-function goToSlide(b=''){
+function goToSlide(b = '') {
     fullpage_api.moveTo('1', b);
+    d3.selectAll('.subSection').style('border-bottom', '2px solid var(--main-color)')
+    d3.selectAll('.subSection').nodes()[b].style.borderBottom = 'none' 
+}
+
+function removeBorder(a){
+    d3.selectAll('.subSection').style('border-bottom', '2px solid var(--main-color)')
+    d3.selectAll('.subSection').nodes()[a].style.borderBottom = 'none' 
 }
