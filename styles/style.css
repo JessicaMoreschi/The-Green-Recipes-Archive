@@ -206,7 +206,7 @@ p.pageNotSelected {
     overflow: scroll;
 }
 
-.sub * {
+.sub *{
     font-size: 10pt;
     top: 20px;
 }

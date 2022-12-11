@@ -1,0 +1,68 @@
+.head {
+    position: fixed;
+    top: 0px;
+    background-color: white;
+    z-index: 1;
+}
+
+.section {
+    overflow: hidden;
+}
+
+.subContainer {
+    position: absolute;
+    top: 60px;
+    position: fixed;
+    width: 100vw;
+    z-index: 1;
+}
+
+.subSection * {
+    font-size: 10pt;
+    top: 20px;
+    text-transform: uppercase;
+}
+
+.subSection {
+    cursor: pointer;
+    height: 40px;
+    border-bottom: none;
+    padding: 10px 20px;
+    z-index: 1;
+    background-color: white;
+    outline: 2px solid var(--main-color);
+    width: 20vw;
+    justify-content: center;
+}
+
+.slide .slideP, .slide b {
+    font-family: PPEditorial;
+    font-weight: normal;
+    font-style: normal;
+    font-size: 18pt;
+    line-height: 25pt;
+    /* text-transform: capitalize; */
+    text-decoration: none;
+    margin-top: 40px;
+    
+}
+
+.roundTag {
+    background-color: var(--primary-color);
+}
+
+.slide b{
+    font-weight: bold; 
+}
+
+
+.fp-table {
+    padding: 100px 20vw 0 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+::-webkit-scrollbar{
+    display: none;
+}
