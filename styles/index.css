@@ -48,9 +48,9 @@ h2 b {
     font-style: italic;
     /* text-transform: lowercase; */
     margin: 0;
-    /* text-decoration: underline var(--primary-color) 4px; */
     -webkit-text-stroke-width: 2px;
     -webkit-text-stroke-color: black;
+    /* text-decoration: underline 3px solid var(--primary-color); */
 }
 
 
@@ -155,29 +155,15 @@ p {
 #imgToAppear {
     height: 100vh;
     bottom: 50px;
-    left: 0;
+    left: 50%;
+    transform: translate(-50%);
     opacity: 0;
     transition: all 500ms ease;
-    -webkit-transition: all 500ms ease;
-    transform-origin: center;
-    animation-name: rotateLoghi;
-    animation-duration: 1s;
-    animation-iteration-count: infinite;
-    animation-timing-function: ease-in-out;
-    animation-direction: alternate-reverse;
 }
 
-@keyframes rotateLoghi {
-    0% {
-        transform: rotateZ(0deg)
-    }
-
-    100% {
-        transform: rotateZ(3deg)
-    }
-}
 
 #clip-circle {
+    background-color: white;
     clip-path: circle(6% at 50% 70%);
     transition: all 200ms ease-out;
     -webkit-transition: all 200ms ease-out;

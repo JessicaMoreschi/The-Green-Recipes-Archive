@@ -147,6 +147,9 @@ data.then(function (data) {
 
 //filter
 let filterDiv = d3.select("#all-filters")
+filterDiv.append('img')
+.attr('id', 'archiveImgSide')
+.attr('src', 'assets/imgs/ArchiveSide.png')
 let filter = filterDiv.selectAll("div")
     .data(recipes)
     .join("div")
@@ -409,6 +412,7 @@ function openRecipe(btnId) {
 
 function openArchive() {
     archiveOpen = true
+
     d3.select('.container').selectAll('.col')
         .style('max-width', 'auto')
         .transition()
@@ -421,6 +425,9 @@ function openArchive() {
         .delay(0)
         .duration(2000)
         .style('width', '100%')
+
+        d3.select('#archiveImgSide')
+        .style('display', 'none')
 }
 
 function closeArchive() {
@@ -443,8 +450,12 @@ function closeArchive() {
             left: 0,
             behavior: 'smooth'
         });
-}
 
+        d3.select('#archiveImgSide')
+        .transition()
+        .delay(1500)
+        .style('display', 'initial')
+}
 
 
 
