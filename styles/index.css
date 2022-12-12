@@ -110,6 +110,10 @@ p {
     left: 50%;
 }
 
+.normal {
+    left: 0;
+}
+
 .rect {
     width: 100vw;
     height: 100vh;
@@ -170,6 +174,7 @@ p {
 }
 
 #imgLens {
+    height: 55%;
     left: -110px;
     top: -95px;
     transform: translate(242%, 127%);

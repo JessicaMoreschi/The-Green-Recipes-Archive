@@ -72,12 +72,11 @@ data.then(function (data) {
         .text(function (d) {
             return d.Context
         })
-        .style('text-transform', function(d){
-            if (d.Typology == 'title'){return 'uppercase'}
-            else if (d.Typology == 'subtitle'){return 'uppercase'}
+        .style('text-transform', function (d) {
+            if ((d.Typology == 'title')||(d.Typology == 'subtitle')) { return 'uppercase' }
         })
-        .style('font-style', function(d){
-            if ((d.Typology == 'statement')||(d.Typology == 'subtitle')){return 'italic'}
+        .style('font-style', function (d) {
+            if (d.Typology == 'statement') { return 'italic' }
         })
 
         .attr('onload', function (d) {
@@ -92,7 +91,7 @@ data.then(function (data) {
     card.append("div")
         .attr("class", "flex-row cardFooter")
     //tags
-    var allBtns = ['Keyword', 'TagAnimal', 'TagDistribution', 'TagEnergy', 'TagFood', 'TagManagement', 'TagWaste', 'Actions', 'ToV', 'SentenceAim'];
+    var allBtns = ['Keyword', 'Animal', 'Distribution', 'Energy', 'Food', 'Management', 'Waste', 'Actions', 'ToV', 'SentenceAim'];
 
     for (let i = 0; i < allBtns.length; i++) {
 
@@ -114,7 +113,7 @@ data.then(function (data) {
             .style('opacity', function (d) {
                 if (i >= 8) {
                     if ((d[allBtns[i]] == 'FALSE') || (d[allBtns[i]] == 'dissemination')) {
-                        return "0.4"
+                        return "0.3"
                     }
                 }
             })
@@ -131,12 +130,21 @@ data.then(function (data) {
                     return d.Keyword
                 }
                 else if (i <= 7) { return allBtns[i] }
-                else if (i == 8) {
+                else if (i == 8) {return 'data'}
+                else if (i == 9) { return 'take action' }
+            })
+
+            tag.style('opacity', function(d){
+                if (i == 8){
                     if (d[allBtns[i]] == 'TRUE') {
-                        return 'data'
-                    } else { return 'no data' }
+                        return '1'
+                    } else { return '0.3' }
                 }
-                else if (i == 9) { return d[allBtns[i]] }
+                else if (i == 9){
+                    if (d[allBtns[i]] == 'take action') {
+                        return '1'
+                    } else { return '0.3' }
+                }
             })
     }
 
@@ -148,16 +156,16 @@ data.then(function (data) {
 //filter
 let filterDiv = d3.select("#all-filters")
 filterDiv.append('img')
-.attr('id', 'archiveImgSide')
-.attr('src', 'assets/imgs/ArchiveSide.png')
+    .attr('id', 'archiveImgSide')
+    .attr('src', 'assets/imgs/ArchiveSide.png')
 let filter = filterDiv.selectAll("div")
     .data(recipes)
     .join("div")
     .attr("class", "flex-column recipe")
 filter.attr('id', function (d) { return 'recipe' + d.recipeId })
-filter.style('order', function (d) { 
-    if (d.recipeId==0)
-    {return '1'} else {return '0'}})
+filter.style('order', function (d) {
+    if (d.recipeId == 0) { return '1' } else { return '0' }
+})
 
 filter.append("svg").attr("width", 50).attr("height", 50).style('background-color', 'white').style('border', '2px solid').style('margin-left', '198px').style('margin-top', '-1px').attr('class', 'orecchio')
 filter.append("svg").attr("width", 50).attr("height", 50).style('background-color', 'white').style('margin-left', '200px').style('margin-top', '-52px').attr('class', 'orecchio')
@@ -211,6 +219,8 @@ for (let i = 0; i < recipeIngredientTitle.length; i++) {
                 else { return "squareTag" }
             })
 
+
+
         tag.append('img')
             .attr('src', function () {
                 if (i == 0) { return 'assets/icon/keyword.svg' }
@@ -225,20 +235,36 @@ for (let i = 0; i < recipeIngredientTitle.length; i++) {
                 let recipeTopicArray = []
                 if (i == 0) { return d.Keyword }
                 else if (i == 1) {
-                    if (d.TagAnimal == 'TRUE') { recipeTopicArray.push('TagAnimal') }
-                    if (d.TagDistribution == 'TRUE') { recipeTopicArray.push('TagDistribution') }
-                    if (d.TagEnergy == 'TRUE') { recipeTopicArray.push('TagEnergy') }
-                    if (d.TagFood == 'TRUE') { recipeTopicArray.push('TagFood') }
-                    if (d.TagManagement == 'TRUE') { recipeTopicArray.push('TagManagement') }
-                    if (d.TagWaste == 'TRUE') { recipeTopicArray.push('TagWaste') }
+                    if (d.Animal == 'TRUE') { recipeTopicArray.push('Animal') }
+                    if (d.Distribution == 'TRUE') { recipeTopicArray.push('Distribution') }
+                    if (d.Energy == 'TRUE') { recipeTopicArray.push('Energy') }
+                    if (d.Food == 'TRUE') { recipeTopicArray.push('Food') }
+                    if (d.Management == 'TRUE') { recipeTopicArray.push('Management') }
+                    if (d.Waste == 'TRUE') { recipeTopicArray.push('Waste') }
                     if (d.Actions == 'TRUE') { recipeTopicArray.push('Actions') }
 
                     if (j == 0) { return recipeTopicArray[0] }
                     else { return recipeTopicArray[1] }
                 }
-                else if (i == 2) { return d.SentenceAim }
-                else if (i == 3) { if (d.ToV == 'TRUE') { return 'Data' } else if (d.ToV == 'FALSE') { return 'no data' } }
+                else if (i == 2) { 
+                    if (d.SentenceAim != undefined) {
+                    return 'Take action'} }
+                else if (i == 3) { 
+                    if (d.ToV != undefined){return 'Data' }}
             })
+
+        tag.style('opacity', function (d) {
+            if (i == 2) {
+                if (d.SentenceAim == 'dissemination') {
+                    return '0.3'
+                } else {return '1'}
+            }
+            if (i == 3) {
+                if (d.ToV == 'FALSE') {
+                    return '0.3'
+                } else {return '1'}
+            }
+        })
     }
 }
 
@@ -263,12 +289,12 @@ filter
                             ((d.Keyword == recipeIdN.Keyword) || (recipeIdN.Keyword == undefined)) &&
                             ((d.ToV == recipeIdN.ToV) || (recipeIdN.ToV == undefined)) && (
                                 (d.Actions == recipeIdN.Actions) ||
-                                (d.TagAnimal == recipeIdN.TagAnimal) ||
-                                (d.TagDistribution == recipeIdN.TagDistribution) ||
-                                (d.TagEnergy == recipeIdN.TagEnergy) ||
-                                (d.TagFood == recipeIdN.TagFood) ||
-                                (d.TagManagement == recipeIdN.TagManagement) ||
-                                (d.TagWaste == recipeIdN.TagWaste)))
+                                (d.Animal == recipeIdN.Animal) ||
+                                (d.Distribution == recipeIdN.Distribution) ||
+                                (d.Energy == recipeIdN.Energy) ||
+                                (d.Food == recipeIdN.Food) ||
+                                (d.Management == recipeIdN.Management) ||
+                                (d.Waste == recipeIdN.Waste)))
                     )
                 })
             cardSelected
@@ -340,8 +366,8 @@ function closedRecipes() {
         for (let n = 0; n < filter.select('.recipe-row-T1').selectAll('.roundTag')._groups[j].length; n++) {
             filter.select('.recipe-row-T1').selectAll('.roundTag')._groups[j][n].style.backgroundColor = 'white'
         }
-        filter.select('.recipe-row-T2').select('.squareTag')._groups[0][j].style.opacity = '1'
-        filter.select('.recipe-row-T3').select('.squareTag')._groups[0][j].style.opacity = '1'
+        // filter.select('.recipe-row-T2').select('.squareTag')._groups[0][j].style.opacity = '1'
+        // filter.select('.recipe-row-T3').select('.squareTag')._groups[0][j].style.opacity = '1'
 
     }
 }
@@ -351,9 +377,8 @@ function openRecipe(btnId) {
     for (let j = 0; j < recipes.length; j++) {
         if (j != recipeClicked) {
             if (archiveOpen == false) {
-                if(j!= 0)
-               { filter._groups[0][j].style.order = '0.5'}
-               else if(j == 0)  { filter._groups[0][j].style.order = '1'}
+                if (j != 0) { filter._groups[0][j].style.order = '0.5' }
+                else if (j == 0) { filter._groups[0][j].style.order = '1' }
             }
 
             for (let i = 0; i < 4; i++) {
@@ -389,7 +414,7 @@ function openRecipe(btnId) {
                 left: 0,
                 behavior: 'smooth'
             });
-            
+
 
             if (filter.select('.recipe-row-T0').select('.roundTag').select('p')._groups[0][j].innerText != '') { filter.select('.recipe-row-T0').select('.roundTag')._groups[0][j].style.backgroundColor = 'var(--primary-color)' };
 
@@ -399,9 +424,9 @@ function openRecipe(btnId) {
                 }
             };
 
-            if (filter.select('.recipe-row-T2').select('.squareTag').select('p')._groups[0][j].innerText.localeCompare('dissemination', 'en', { sensitivity: 'base' }) == 0) { filter.select('.recipe-row-T2').select('.squareTag')._groups[0][j].style.opacity = '0.3' };
+            // if (filter.select('.recipe-row-T2').select('.squareTag').select('p')._groups[0][j].innerText.localeCompare('dissemination', 'en', { sensitivity: 'base' }) == 0) { filter.select('.recipe-row-T2').select('.squareTag')._groups[0][j].style.opacity = '0.3' };
 
-            if (filter.select('.recipe-row-T3').select('.squareTag').select('p')._groups[0][j].innerText.localeCompare('no data', 'en', { sensitivity: 'base' }) == 0) { filter.select('.recipe-row-T3').select('.squareTag')._groups[0][j].style.opacity = '0.3' }
+            // if (filter.select('.recipe-row-T3').select('.squareTag').select('p')._groups[0][j].innerText == 'Data') { filter.select('.recipe-row-T3').select('.squareTag')._groups[0][j].style.opacity = '0.3' }
         }
     }
 
@@ -426,7 +451,7 @@ function openArchive() {
         .duration(2000)
         .style('width', '100%')
 
-        d3.select('#archiveImgSide')
+    d3.select('#archiveImgSide')
         .style('display', 'none')
 }
 
@@ -445,13 +470,13 @@ function closeArchive() {
         .duration(2000)
         .style('width', '0%')
 
-        document.getElementById('all-filters').scrollTo({
-            top: 0,
-            left: 0,
-            behavior: 'smooth'
-        });
+    document.getElementById('all-filters').scrollTo({
+        top: 0,
+        left: 0,
+        behavior: 'smooth'
+    });
 
-        d3.select('#archiveImgSide')
+    d3.select('#archiveImgSide')
         .transition()
         .delay(1500)
         .style('display', 'initial')
