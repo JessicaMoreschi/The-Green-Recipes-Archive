@@ -1,7 +1,6 @@
 {
   "dependencies": {
-    "fullpage.js": "^4.0.15",
-    "i": "^0.3.7"
+    "fullpage.js": "^4.0.15"
   },
   "devDependencies": {
     "mark.js": "^8.11.1"
