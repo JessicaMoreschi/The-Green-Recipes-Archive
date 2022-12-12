@@ -143,12 +143,12 @@ p.pageNotSelected {
     justify-content: center;
     align-items: center;
     flex-wrap: nowrap !important;
-    padding: 5px 10px;
+    padding: 5px 10px !important;
     gap: 5px;
     background: white;
-    border: 1px solid var(--main-color);
+    border: 1px solid var(--main-color) !important;
     border-radius: 60px;
-    min-width: -webkit-fit-content;
+    min-width: -webkit-fit-content !important;
     width: auto;
     height: auto;
     align-self: auto;
@@ -220,5 +220,11 @@ p.pageNotSelected {
     background-color: white;
     outline: 1px solid var(--main-color);
 }
+
+
+
+
+
+
 
 

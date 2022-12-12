@@ -1,21 +1,7 @@
 const recipes = [
-    {  
-        recipeId: 0,
-        title: 'Everything all at once',
-        Keyword: undefined,
-        Actions: undefined,
-        Animal: undefined,
-        Distribution: undefined,
-        Energy: undefined,
-        Food: undefined,
-        Management: undefined,
-        Waste: undefined,
-        ToV: undefined,
-        SentenceAim:undefined
-    },
 
     {  
-        recipeId: 1,
+        recipeId: 0,
         title: 'Cristpy welfare burger',
         Keyword: 'commitment',
         Actions: undefined,
@@ -29,7 +15,7 @@ const recipes = [
         SentenceAim: 'dissemination'
     },
     {  
-        recipeId: 2,
+        recipeId: 1,
         title: 'Zero CO2 big wrap',
         Keyword: 'emissions',
         Actions: undefined,
@@ -43,7 +29,7 @@ const recipes = [
         SentenceAim: 'take action'
     },
     {  
-        recipeId: 3,
+        recipeId: 2,
         title: 'Double globe warming burger',
         Keyword: 'climate change',
         Actions: undefined,
@@ -57,7 +43,7 @@ const recipes = [
         SentenceAim: 'take action'
     },
     {  
-        recipeId: 4,
+        recipeId: 3,
         title: 'Quarter earth pounder',
         Keyword: 'planet',
         Actions: 'TRUE',
@@ -71,7 +57,7 @@ const recipes = [
         SentenceAim:  'dissemination'
     },
     {  
-        recipeId: 5,
+        recipeId: 4,
         title: 'Smoky forest burger',
         Keyword: 'natural',
         Actions: undefined,
@@ -85,7 +71,7 @@ const recipes = [
         SentenceAim: 'dissemination'
     },
     {  
-        recipeId: 6,
+        recipeId: 5,
         title: 'Filet-o-green sandwich',
         Keyword: 'emissions',
         Actions: 'TRUE',
@@ -99,7 +85,7 @@ const recipes = [
         SentenceAim: 'dissemination'
     },
     {  
-        recipeId: 7,
+        recipeId: 6,
         title: 'Bio-scatter nugget burger',
         Keyword: 'sustainability',
         Actions: undefined,
@@ -113,7 +99,7 @@ const recipes = [
         SentenceAim: 'take action'
     },
     {  
-        recipeId: 8,
+        recipeId: 7,
         title: 'Deluxe recy-pounder',
         Keyword: 'recycle',
         Actions: 'TRUE',
@@ -127,7 +113,7 @@ const recipes = [
         SentenceAim: 'take action'
     },
     {  
-        recipeId: 9,
+        recipeId: 8,
         title: 'Spicy planet-saver wrap',
         Keyword: 'deforestation',
         Actions: 'TRUE',
@@ -140,6 +126,7 @@ const recipes = [
         ToV: 'FALSE',
         SentenceAim: 'dissemination'
     }
+    
    
 
 ]

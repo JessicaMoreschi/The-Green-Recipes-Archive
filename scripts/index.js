@@ -75,12 +75,21 @@ var myFullpage = new fullpage('#fullpage', {
 
     // Events
     beforeLeave: function (origin, destination, direction, trigger) {
-
+       let cont=0 //all'inizio metti variabile cont=0
         if (cont < 2) {
-            if (origin.anchor == 5 && destination.anchor == 6) {
-                cont++;
-                document.getElementById('imgToMove').style.left = 80 + '%';
-                return cont === 2;
+            if (origin.anchor == 5 && destination.anchor == 6) { //pagina su cui sono e pagina su cui vado
+                cont++; //incremento 
+                document.getElementById('imgToMove').style.left = 80 + '%'; //azione mia
+                
+                if (cont<2){return false}
+                else if (cont===2){return true}
+                
+                
+                
+                
+                
+                
+                // return cont === 2; //quante volte devo scroll prima che cambi
             }
         }
         if (cont2 < 2) {

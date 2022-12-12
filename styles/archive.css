@@ -5,6 +5,10 @@
     max-width: none;
 }
 
+.card-columns{
+    transition-delay: 500ms !important;
+}
+
 .filter{
     padding-right: 10vw;
     flex-wrap: wrap;
@@ -15,6 +19,7 @@
     padding-bottom: 100px;
     justify-content: flex-start;
     scroll-behavior: smooth;
+    transition: all 500ms ease;
 }
 
 .card {
@@ -86,7 +91,7 @@
     padding: 10px 0;
 }
 
-.recipe-ingredient-title *{
+.recipe-ingredient-title *, form label{
     width: 60px;
     font-family: PPEditorial;
     font-weight: normal;
@@ -132,4 +137,9 @@ height: 100%}
     top: 50%;
     transform: translateY(-50%);
     right: 20px;
+}
+
+#filtriCustom{
+    display: none;
+    align-content: flex-start;
 }
