@@ -30,8 +30,8 @@
     padding: 10px 20px;
     z-index: 1;
     background-color: white;
-    border-right: 2px solid var(--main-color);
-    border-bottom: 2px solid var(--main-color);
+    border-right: 1px solid var(--main-color);
+    border-bottom: 1px solid var(--main-color);
 
     width: 20vw;
     justify-content: flex-start;

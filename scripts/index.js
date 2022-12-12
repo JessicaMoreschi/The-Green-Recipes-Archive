@@ -1,12 +1,11 @@
 var cont = 0;
 var cont2 = 0;
-var cont3 = 0;
 
 var myFullpage = new fullpage('#fullpage', {
     // Navigation
     lockAnchors: true,
-    anchors: ['1', '2', '3', '4', '5', '6', '7', '8', '9'],
-    sectionsColor: ['#fff', '#fff', '#fff', '#fff', '#fff', '#fff', '#85FF4D',  '#fff'],
+    anchors: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10'],
+    sectionsColor: ['#fff', '#fff', '#fff', '#fff', '#fff', '#fff', '#85FF4D',  '#fff', '#fff', '#fff'],
     navigation: true,
     navigationPosition: 'right',
     slidesNavigation: true,
@@ -17,7 +16,7 @@ var myFullpage = new fullpage('#fullpage', {
     scrollingSpeed: 700,
     autoScrolling: true,
     fitToSection: true,
-    fitToSectionDelay: 0,
+    fitToSectionDelay: 1,
     scrollBar: false,
     easing: 'easeInOutCubic',
     easingcss3: 'ease',
@@ -93,6 +92,9 @@ var myFullpage = new fullpage('#fullpage', {
                  return cont2 === 2;
             }
         }
+        if (origin.anchor == 9 && destination.anchor == 10) {
+            window.open('pages/archive.html', '_self')
+         }
     },
     onLeave: function (origin, destination, direction, trigger) {
         if (origin.anchor == 1 && destination.anchor == 2) {
@@ -105,7 +107,12 @@ var myFullpage = new fullpage('#fullpage', {
             document.getElementById('landingContainer').style.transitionDelay= '0ms !important'
             document.getElementById('landingContainer').style.opacity='1'
             document.getElementById('landingContainer').style.zIndex='1'
+        } else {
+            document.getElementById('landingContainer').style.transitionDelay= '500ms !important'
+            document.getElementById('landingContainer').style.opacity='0'
+            document.getElementById('landingContainer').style.zIndex='0'
         }
+       
     },
     afterLoad: function (origin, destination, direction, trigger) {
         if (destination.anchor == 1) {
@@ -147,3 +154,6 @@ var myFullpage = new fullpage('#fullpage', {
     onSlideLeave: function (section, origin, destination, direction, trigger) { },
     onScrollOverflow: function (section, slide, position, direction) { }
 });
+
+
+d3.select('#fp-nav').select('ul').selectAll('li').nodes()[d3.select('#fp-nav').select('ul').selectAll('li').nodes().length - 1].style.display='none'

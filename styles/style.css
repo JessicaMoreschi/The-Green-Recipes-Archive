@@ -183,7 +183,7 @@ p.pageNotSelected {
 
 .head {
     flex: none;
-    border-bottom: 2px solid var(--main-color);
+    border-bottom: 1px solid var(--main-color);
     width: -webkit-fill-available;
     height: 60px;
     padding: 20px;
@@ -200,7 +200,7 @@ p.pageNotSelected {
 
 .col-md-auto {
     max-width: calc(100% - 300px);
-    border-left: 2px solid var(--main-color);
+    border-left: 1px solid var(--main-color);
     width: 0;
     height: 100vh;
     overflow: scroll;
@@ -218,7 +218,7 @@ p.pageNotSelected {
     position: fixed;
     z-index: 1;
     background-color: white;
-    outline: 2px solid var(--main-color);
+    outline: 1px solid var(--main-color);
 }
 
 

@@ -93,7 +93,7 @@ function goToSlide(b = '') {
 }
 
 function changeBorder(d){
-    d3.selectAll('.subSection').style('border-bottom', '2px solid var(--main-color)')
+    d3.selectAll('.subSection').style('border-bottom', '1px solid var(--main-color)')
     d3.selectAll('.subSection').nodes()[d].style.borderBottom = 'none' 
 
     document.getElementsByClassName('fp-overflow')[d].scrollTo({
