@@ -173,14 +173,6 @@ p {
     -webkit-transition: all 200ms ease-out;
 }
 
-#imgLens {
-    height: 55%;
-    left: -110px;
-    top: -95px;
-    transform: translate(242%, 127%);
-    transition: all 200ms ease-out;
-    -webkit-transition: all 200ms ease-out;
-}
 
 #allCardImg {
     height: 80%;

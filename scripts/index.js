@@ -5,7 +5,7 @@ var myFullpage = new fullpage('#fullpage', {
     // Navigation
     lockAnchors: true,
     anchors: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10'],
-    sectionsColor: ['#fff', '#fff', '#fff', '#fff', '#fff', '#fff', '#85FF4D',  '#fff', '#fff', '#fff'],
+    sectionsColor: ['#fff', '#fff', '#fff', '#fff', '#fff', '#fff', '#85FF4D', '#fff', '#fff', '#fff'],
     navigation: true,
     navigationPosition: 'right',
     slidesNavigation: true,
@@ -84,35 +84,48 @@ var myFullpage = new fullpage('#fullpage', {
             }
         }
         if (cont2 < 2) {
-            if (origin.anchor == 7 && destination.anchor == 8) {
+            if ((origin.anchor == 7 && destination.anchor == 8)) {
                 cont2++;
                 document.getElementById('clip-circle').style.transition = 'all 1000ms ease'
                 document.getElementById('clip-circle').style.clipPath = 'circle(' + 100 + '% at 50% 70%)'
                 document.getElementById('textToChange').innerHTML = '...and the sentence in which they appear has been extracted to understand its context'
-                 return cont2 === 2;
+                return cont2 === 2;
             }
         }
+
         if (origin.anchor == 9 && destination.anchor == 10) {
             window.open('pages/archive.html', '_self')
-         }
+        }
     },
     onLeave: function (origin, destination, direction, trigger) {
         if (origin.anchor == 1 && destination.anchor == 2) {
             document.getElementById('landingImg').style.transform = 'translate(-50%, 0%)'
-            document.getElementById('landingContainer').style.transitionDelay= '500ms !important'
-            document.getElementById('landingContainer').style.opacity='0'
-            document.getElementById('landingContainer').style.zIndex='0'
+            document.getElementById('landingContainer').style.transitionDelay = '500ms !important'
+            document.getElementById('landingContainer').style.opacity = '0'
+            document.getElementById('landingContainer').style.zIndex = '0'
         }
+        if (origin.anchor == 2) {
+            document.getElementById('rect').style.bottom = -34 + 'vh';
+        }
+        if (origin.anchor == 7) {
+            cont2 = 0
+            document.getElementById('clip-circle').style.transition = 'all 200ms ease'
+            document.getElementById('clip-circle').style.clipPath = 'circle(' + 6 + '% at 50% 70%)'
+            document.getElementById('textToChange').innerHTML = 'To better understand their green communication, several environment-related <b>keywords</b> were chosen to be looked for in each website...'
+        }
+
         if (destination.anchor == 1) {
-            document.getElementById('landingContainer').style.transitionDelay= '0ms !important'
-            document.getElementById('landingContainer').style.opacity='1'
-            document.getElementById('landingContainer').style.zIndex='1'
+            document.getElementById('landingContainer').style.transitionDelay = '0ms !important'
+            document.getElementById('landingContainer').style.opacity = '1'
+            document.getElementById('landingContainer').style.zIndex = '1'
         } else {
-            document.getElementById('landingContainer').style.transitionDelay= '500ms !important'
-            document.getElementById('landingContainer').style.opacity='0'
-            document.getElementById('landingContainer').style.zIndex='0'
+            document.getElementById('landingContainer').style.transitionDelay = '500ms !important'
+            document.getElementById('landingContainer').style.opacity = '0'
+            document.getElementById('landingContainer').style.zIndex = '0'
         }
-       
+
+
+
     },
     afterLoad: function (origin, destination, direction, trigger) {
         if (destination.anchor == 1) {
@@ -123,7 +136,9 @@ var myFullpage = new fullpage('#fullpage', {
         }
         if (destination.anchor == 2) {
             document.getElementById('landingImg').style.transform = 'translate(-50%, +100%)'
-            document.getElementById('rect').style.bottom = 0 + 'vh';
+   
+                document.getElementById('rect').style.bottom = 0 + 'vh';
+            
         }
         if (destination.anchor == 6) {
             document.getElementById('imgToAppear').style.opacity = 1;
@@ -137,7 +152,6 @@ var myFullpage = new fullpage('#fullpage', {
                     cursX = event.clientX;
                     cursY = event.clientY;
                     document.getElementById('clip-circle').style.clipPath = 'circle(6% at ' + cursX + 'px ' + cursY + 'px)'
-                    document.getElementById('imgLens').style.transform = 'translate(' + cursX + 'px, ' + cursY + 'px)'
                 }
             }
         }
@@ -156,4 +170,4 @@ var myFullpage = new fullpage('#fullpage', {
 });
 
 
-d3.select('#fp-nav').select('ul').selectAll('li').nodes()[d3.select('#fp-nav').select('ul').selectAll('li').nodes().length - 1].style.display='none'
+d3.select('#fp-nav').select('ul').selectAll('li').nodes()[d3.select('#fp-nav').select('ul').selectAll('li').nodes().length - 1].style.display = 'none'
