@@ -349,7 +349,7 @@ filter
 // filtri personalizzabili
 let formArrayTitles = ['Keyword', 'Topic', 'Aim', 'Evidence']
 let formArray = {
-    Keyword: ['emissions', 'planet', 'natural', 'recycle'],
+    Keyword: ['greenhouse gas','impact', 'sustainability', 'commitment', 'energy', 'responsibility', 'environmental', 'planet', 'recycle', 'emissions', 'natural', 'deforestation', 'green', 'climate change', 'carbon footprint', 'renewable energy', 'single-use', 'organic', 'eco-friendly', 'biodegradable', 'net-zero', 'zero-waste', 'preservation', 'reforestation'],
     Topic: ['Actions', 'Animal', 'Distribution', 'Energy', 'Food', 'Management', 'Waste'],
     Aim: ['take action', 'dissemination'],
     Evidence: ['TRUE', 'FALSE']
@@ -378,9 +378,7 @@ for (let f = 0; f < formArrayTitles.length; f++) {
 
             if (this.name == 'Topic') {
                 for (let v = 0; v < formArray.Topic.length; v++) {
-
                     if (formArray.Topic[v] == this.value) {
-
                         ghostRecipe[formArray.Topic[v]] = 'TRUE'
                     }
                     else { ghostRecipe[formArray.Topic[v]] = 'undefined' }
@@ -428,7 +426,6 @@ for (let f = 0; f < formArrayTitles.length; f++) {
                 left: 0,
                 behavior: 'smooth'
             });
-/////////////////////JJJJJJJJJ
 
 let cardP = cardSelected.select('.cardFooter').selectAll('div').select('p');
 
@@ -454,6 +451,10 @@ for (let j = 0; j < Object.keys(ghostRecipe).length; j++) {
         .attr('id', 'formK' + f)
         .attr('name', function () { return formArrayTitles[f] })
         .attr('class', function () { if (f < 2) { return 'roundTag' } else { return 'squareTag' } })
+        .style('background-color', function(){
+            if (f == 0) { return 'var(--primary-color)' }
+            else if (f == 1) { return 'var(--secondary-color)' }
+        })
 
     let formK = d3.select('#formK' + f)
 
