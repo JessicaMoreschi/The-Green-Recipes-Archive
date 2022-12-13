@@ -131,4 +131,15 @@ const recipes = [
 
 ]
 
-
+let ghostRecipe={
+    Keyword: 'undefined',
+    Actions: 'undefined',
+    Animal: 'undefined',
+    Distribution: 'undefined',
+    Energy: 'undefined',
+    Food: 'undefined',
+    Management: 'undefined',
+    Waste: 'undefined',
+    ToV: 'undefined',
+    SentenceAim: 'undefined'
+}

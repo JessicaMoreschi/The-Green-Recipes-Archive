@@ -338,40 +338,16 @@ filter
         productsSubhead.text(function () {
             return 'products (' + totResults + ')'
         })
-        // }
-
-        // else if (recipeIdN.recipeId == 0) {
-        //     card
-        //         .style('display', 'inline-flex')
-        //     openRecipe(btnId)
-        //     if (archiveOpen == false) {
-        //         openArchive()
-        //     }
-
-        //     card.selectAll('div')
-        //         .style('background-color', 'white')
-
-        //     let productsSubhead = d3.select("#productsSubhead")
-        //     let totResults = card.size()
-        //     productsSubhead.text(function () {
-        //         return 'products (' + totResults + ')'
-        //     })
-        // }
-
-
-
-
 
     });
 
 // filtri personalizzabili
-// let kwArray = ['emissions', 'planet', 'natural', 'recycle']
-let formArrayTitles = ['Keyword', 'Topic', 'Aim', 'Evidence']
+let formArrayTitles = ['Keyword', 'Topic', 'SentenceAim', 'ToV']
 let formArray = {
     Keyword: ['emissions', 'planet', 'natural', 'recycle'],
-    Topic: ['management', 'energy', 'actions'],
-    Aim:['take action', 'no action'],
-    Evidence:['data', 'no data']
+    Topic: ['Actions', 'Animal', 'Distribution', 'Energy', 'Food', 'Management', 'Waste'],
+    SentenceAim: ['take action', 'dissemination'],
+    ToV: ['TRUE', 'FALSE']
 }
 d3.select('#colSx')
     .append('div')
@@ -379,7 +355,7 @@ d3.select('#colSx')
     .attr('id', 'filtriCustom')
 let filtriCustom = d3.select('#colSx').select('#filtriCustom')
 
-console.log(formArray[formArrayTitles[0]])
+
 for (let f = 0; f < formArrayTitles.length; f++) {
     filtriCustom
         .append('form')
@@ -389,28 +365,102 @@ for (let f = 0; f < formArrayTitles.length; f++) {
         .append('label')
         .attr('for', function () { return formArrayTitles[f] })
         .text(function () { return formArrayTitles[f] })
+
     divFormK
         .append('select')
+        .on('change', function () {
+            if (this.name == 'Topic') {
+                for (let v = 0; v < formArray.Topic.length; v++) {
+
+                    if(formArray.Topic[v]== this.value) {
+
+                        ghostRecipe[formArray.Topic[v]] = 'TRUE'
+                    }
+                    else { ghostRecipe[formArray.Topic[v]] = 'undefined'}
+                }
+
+            } else { ghostRecipe[this.name] = this.value }
+            let card = d3.select("#all-cards").selectAll('.card')
+
+            card
+                .style('display', 'none')
+            let cardSelected = card
+                .filter(function (d) {
+                    return (
+                        (((d.SentenceAim == ghostRecipe.SentenceAim) || (ghostRecipe.SentenceAim == 'undefined')) &&
+                            ((d.Keyword == ghostRecipe.Keyword) || (ghostRecipe.Keyword == 'undefined')) &&
+                            ((d.ToV == ghostRecipe.ToV) || (ghostRecipe.ToV == 'undefined'))
+                            && (
+                                (d.Actions == ghostRecipe.Actions) ||
+                                (d.Animal == ghostRecipe.Animal) ||
+                                (d.Distribution == ghostRecipe.Distribution) ||
+                                (d.Energy == ghostRecipe.Energy) ||
+                                (d.Food == ghostRecipe.Food) ||
+                                (d.Management == ghostRecipe.Management) ||
+                                (d.Waste == ghostRecipe.Waste) ||
+                                ((ghostRecipe.Actions == 'undefined') &&
+                                    (ghostRecipe.Animal == 'undefined') &&
+                                    (ghostRecipe.Distribution == 'undefined') &&
+                                    (ghostRecipe.Energy == 'undefined') &&
+                                    (ghostRecipe.Food == 'undefined') &&
+                                    (ghostRecipe.Management == 'undefined') &&
+                                    (ghostRecipe.Waste == 'undefined')))
+                        )
+                    )
+
+
+
+                })
+            cardSelected
+                .style('display', 'inline-flex')
+
+                console.log(ghostRecipe)
+        })
+        // .on('change', function(){ 
+        //     let filterCat = this.name
+        //     let filterSel = this.value
+        //          let card = d3.select("#all-cards").selectAll('.card')
+
+        //         card
+        //             .style('display', 'none')
+        //         let cardSelected = card
+        //             .filter(function (d) {
+        //                 return (
+        //                     (d[filterCat] == filterSel) || (filterSel=='undefined')
+        //                 )
+        //             })
+        //         cardSelected
+        //             .style('display', 'inline-flex')
+        // })
         .attr('id', 'formK' + f)
         .attr('name', function () { return formArrayTitles[f] })
         .attr('class', function () { if (f < 3) { return 'roundTag' } else { return 'squareTag' } })
-   
-        let formK = d3.select('#formK' + f)
+
+    let formK = d3.select('#formK' + f)
 
     formK
-    .append('option')
-    .attr('value', undefined)
-    .text('--Select')
-    .attr('disabled','')
-    .attr('selected','')
-    
+        .append('option')
+        .attr('value', 'undefined')
+        .text('--Select')
+    // formK.selectAll('option')
+    // .attr('disabled','')
+    // .attr('selected','')
 
+
+    // console.log(document.getElementById('formK' + f).value)
     for (let k = 0; k < formArray[formArrayTitles[f]].length; k++) {
         formK
             .append('option')
-            .attr('value', 'formArray[formArrayTitles[f]][k]')
+            .attr('value', formArray[formArrayTitles[f]][k])
             .text(formArray[formArrayTitles[f]][k])
     }
+
+
+
+
+
+
+
 
 }
 
