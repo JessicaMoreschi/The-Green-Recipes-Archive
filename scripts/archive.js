@@ -414,6 +414,12 @@ for (let f = 0; f < formArrayTitles.length; f++) {
             productsSubhead2.text(function () {
                 return 'products (' + totResults2 + ')'
             })
+
+            document.getElementById('colDx').scrollTo({
+                top: 0,
+                left: 0,
+                behavior: 'smooth'
+            });
         })
 
         .attr('id', 'formK' + f)
@@ -473,6 +479,12 @@ filtriCustom
         productsSubhead3.text(function () {
             return 'products (' + totResults3 + ')'
         })
+
+        document.getElementById('colDx').scrollTo({
+            top: 0,
+            left: 0,
+            behavior: 'smooth'
+        });
     })
 
 
