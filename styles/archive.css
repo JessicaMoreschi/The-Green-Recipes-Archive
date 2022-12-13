@@ -139,7 +139,25 @@ height: 100%}
     right: 20px;
 }
 
+
+#archiveImgSide2{
+    position: absolute;
+    width: 12vw;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 50%;
+}
+
 #filtriCustom{
     display: none;
     align-content: flex-start;
+}
+
+#resetBtn{
+    font-family: PPEditorial;
+    font-weight: normal;
+    font-style: italic;
+    font-size: 10pt;
+    text-transform: capitalize;
+    cursor: pointer;
 }

@@ -11,8 +11,8 @@ const recipes = [
         Food: 'TRUE',
         Management: undefined,
         Waste: undefined,
-        ToV: 'FALSE',
-        SentenceAim: 'dissemination'
+        Evidence: 'FALSE',
+        Aim: 'dissemination'
     },
     {  
         recipeId: 1,
@@ -25,8 +25,8 @@ const recipes = [
         Food: undefined,
         Management: 'TRUE',
         Waste: undefined,
-        ToV: 'FALSE',
-        SentenceAim: 'take action'
+        Evidence: 'FALSE',
+        Aim: 'take action'
     },
     {  
         recipeId: 2,
@@ -39,8 +39,8 @@ const recipes = [
         Food: undefined,
         Management: 'TRUE',
         Waste: 'TRUE',
-        ToV: 'TRUE',
-        SentenceAim: 'take action'
+        Evidence: 'TRUE',
+        Aim: 'take action'
     },
     {  
         recipeId: 3,
@@ -53,8 +53,8 @@ const recipes = [
         Food: undefined,
         Management: 'TRUE',
         Waste: undefined,
-        ToV: 'FALSE',
-        SentenceAim:  'dissemination'
+        Evidence: 'FALSE',
+        Aim:  'dissemination'
     },
     {  
         recipeId: 4,
@@ -67,8 +67,8 @@ const recipes = [
         Food: 'TRUE',
         Management: 'TRUE',
         Waste: 'TRUE',
-        ToV: 'FALSE',
-        SentenceAim: 'dissemination'
+        Evidence: 'FALSE',
+        Aim: 'dissemination'
     },
     {  
         recipeId: 5,
@@ -81,8 +81,8 @@ const recipes = [
         Food: undefined,
         Management: undefined,
         Waste: undefined,
-        ToV: 'TRUE',
-        SentenceAim: 'dissemination'
+        Evidence: 'TRUE',
+        Aim: 'dissemination'
     },
     {  
         recipeId: 6,
@@ -95,8 +95,8 @@ const recipes = [
         Food: 'TRUE',
         Management: undefined,
         Waste: undefined,
-        ToV: 'FALSE',
-        SentenceAim: 'take action'
+        Evidence: 'FALSE',
+        Aim: 'take action'
     },
     {  
         recipeId: 7,
@@ -109,8 +109,8 @@ const recipes = [
         Food: undefined,
         Management: undefined,
         Waste: 'TRUE',
-        ToV: 'TRUE',
-        SentenceAim: 'take action'
+        Evidence: 'TRUE',
+        Aim: 'take action'
     },
     {  
         recipeId: 8,
@@ -123,8 +123,8 @@ const recipes = [
         Food: 'TRUE',
         Management: undefined,
         Waste: undefined,
-        ToV: 'FALSE',
-        SentenceAim: 'dissemination'
+        Evidence: 'FALSE',
+        Aim: 'dissemination'
     }
     
    
@@ -140,6 +140,6 @@ let ghostRecipe={
     Food: 'undefined',
     Management: 'undefined',
     Waste: 'undefined',
-    ToV: 'undefined',
-    SentenceAim: 'undefined'
+    Evidence: 'undefined',
+    Aim: 'undefined'
 }

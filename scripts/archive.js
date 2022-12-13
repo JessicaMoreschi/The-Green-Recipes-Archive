@@ -94,7 +94,7 @@ data.then(function (data) {
     card.append("div")
         .attr("class", "flex-row cardFooter")
     //tags
-    var allBtns = ['Keyword', 'Animal', 'Distribution', 'Energy', 'Food', 'Management', 'Waste', 'Actions', 'ToV', 'SentenceAim'];
+    var allBtns = ['Keyword', 'Animal', 'Distribution', 'Energy', 'Food', 'Management', 'Waste', 'Actions', 'Evidence', 'Aim'];
 
     for (let i = 0; i < allBtns.length; i++) {
 
@@ -113,13 +113,13 @@ data.then(function (data) {
                 }
             })
 
-            .style('opacity', function (d) {
-                if (i >= 8) {
-                    if ((d[allBtns[i]] == 'FALSE') || (d[allBtns[i]] == 'dissemination')) {
-                        return "0.3"
-                    }
-                }
-            })
+            // .style('opacity', function (d) {
+            //     if (i >= 8) {
+            //         if ((d[allBtns[i]] == 'FALSE') || (d[allBtns[i]] == 'dissemination')) {
+            //             return "0.3"
+            //         }
+            //     }
+            // })
         tag.append('img')
             .attr('src', function () {
                 if (i == 0) { return 'assets/icon/keyword.svg' }
@@ -133,22 +133,22 @@ data.then(function (data) {
                     return d.Keyword
                 }
                 else if (i <= 7) { return allBtns[i] }
-                else if (i == 8) { return 'data' }
-                else if (i == 9) { return 'take action' }
+                else if (i == 8) {if(d.Evidence=='TRUE'){ return 'statistics' }else if(d.Evidence=='FALSE'){ return 'speculation' }}
+                else if (i == 9) {  return d.Aim}
             })
 
-        tag.style('opacity', function (d) {
-            if (i == 8) {
-                if (d[allBtns[i]] == 'TRUE') {
-                    return '1'
-                } else { return '0.3' }
-            }
-            else if (i == 9) {
-                if (d[allBtns[i]] == 'take action') {
-                    return '1'
-                } else { return '0.3' }
-            }
-        })
+        // tag.style('opacity', function (d) {
+        //     if (i == 8) {
+        //         if (d[allBtns[i]] == 'TRUE') {
+        //             return '1'
+        //         } else { return '0.3' }
+        //     }
+        //     else if (i == 9) {
+        //         if (d[allBtns[i]] == 'take action') {
+        //             return '1'
+        //         } else { return '0.3' }
+        //     }
+        // })
     }
 })
 
@@ -221,8 +221,6 @@ for (let i = 0; i < recipeIngredientTitle.length; i++) {
                 else { return "squareTag" }
             })
 
-
-
         tag.append('img')
             .attr('src', function () {
                 if (i == 0) { return 'assets/icon/keyword.svg' }
@@ -230,7 +228,6 @@ for (let i = 0; i < recipeIngredientTitle.length; i++) {
                 else if (i == 2) { return 'assets/icon/action.svg' }
                 else { return 'assets/icon/data.svg' }
             })
-
 
         tag.append("p")
             .text(function (d) {
@@ -249,29 +246,31 @@ for (let i = 0; i < recipeIngredientTitle.length; i++) {
                     else { return recipeTopicArray[1] }
                 }
                 else if (i == 2) {
-                    if (d.SentenceAim != undefined) {
-                        return 'Take action'
-                    }
+                    // if (d.Aim != undefined) {
+                    //     return 'Take action'
+                    // } 
+                    return d.Aim
                 }
                 else if (i == 3) {
-                    if (d.ToV != undefined) { return 'Data' }
+                    if(d.Evidence=='TRUE'){ return 'statistics' }else if(d.Evidence=='FALSE'){ return 'speculation' }
                 }
             })
 
-        tag.style('opacity', function (d) {
-            if (i == 2) {
-                if (d.SentenceAim == 'dissemination') {
-                    return '0.3'
-                } else { return '1' }
-            }
-            if (i == 3) {
-                if (d.ToV == 'FALSE') {
-                    return '0.3'
-                } else { return '1' }
-            }
-        })
+        // tag.style('opacity', function (d) {
+        //     if (i == 2) {
+        //         if (d.Aim == 'dissemination') {
+        //             return '0.3'
+        //         } else { return '1' }
+        //     }
+        //     if (i == 3) {
+        //         if (d.Evidence == 'FALSE') {
+        //             return '0.3'
+        //         } else { return '1' }
+        //     }
+        // })
     }
 }
+
 
 var archiveOpen = false
 //fine iterazione
@@ -281,20 +280,16 @@ filter
 
 
         recipeClicked = btnId.srcElement.__data__.recipeId;
-
         let recipeIdN = recipes[btnId.srcElement.__data__.recipeId];
-
         let card = d3.select("#all-cards").selectAll('.card')
-
-        // if (recipeIdN.recipeId != 0) {
         card
             .style('display', 'none')
         let cardSelected = card
             .filter(function (d) {
                 return (
-                    (((d.SentenceAim == recipeIdN.SentenceAim) || (recipeIdN.SentenceAim == undefined)) &&
+                    (((d.Aim == recipeIdN.Aim) || (recipeIdN.Aim == undefined)) &&
                         ((d.Keyword == recipeIdN.Keyword) || (recipeIdN.Keyword == undefined)) &&
-                        ((d.ToV == recipeIdN.ToV) || (recipeIdN.ToV == undefined)) && (
+                        ((d.Evidence == recipeIdN.Evidence) || (recipeIdN.Evidence == undefined)) && (
                             (d.Actions == recipeIdN.Actions) ||
                             (d.Animal == recipeIdN.Animal) ||
                             (d.Distribution == recipeIdN.Distribution) ||
@@ -342,12 +337,12 @@ filter
     });
 
 // filtri personalizzabili
-let formArrayTitles = ['Keyword', 'Topic', 'SentenceAim', 'ToV']
+let formArrayTitles = ['Keyword', 'Topic', 'Aim', 'Evidence']
 let formArray = {
     Keyword: ['emissions', 'planet', 'natural', 'recycle'],
     Topic: ['Actions', 'Animal', 'Distribution', 'Energy', 'Food', 'Management', 'Waste'],
-    SentenceAim: ['take action', 'dissemination'],
-    ToV: ['TRUE', 'FALSE']
+    Aim: ['take action', 'dissemination'],
+    Evidence: ['TRUE', 'FALSE']
 }
 d3.select('#colSx')
     .append('div')
@@ -369,6 +364,13 @@ for (let f = 0; f < formArrayTitles.length; f++) {
     divFormK
         .append('select')
         .on('change', function () {
+            let card = d3.select("#all-cards").selectAll('.card')
+            let productsSubhead = d3.select("#productsSubhead")
+            let totResults = card.size()
+            productsSubhead.text(function () {
+                return 'products (' + totResults + ')'
+            })
+
             if (this.name == 'Topic') {
                 for (let v = 0; v < formArray.Topic.length; v++) {
 
@@ -380,16 +382,15 @@ for (let f = 0; f < formArrayTitles.length; f++) {
                 }
 
             } else { ghostRecipe[this.name] = this.value }
-            let card = d3.select("#all-cards").selectAll('.card')
 
             card
                 .style('display', 'none')
             let cardSelected = card
                 .filter(function (d) {
                     return (
-                        (((d.SentenceAim == ghostRecipe.SentenceAim) || (ghostRecipe.SentenceAim == 'undefined')) &&
+                        (((d.Aim == ghostRecipe.Aim) || (ghostRecipe.Aim == 'undefined')) &&
                             ((d.Keyword == ghostRecipe.Keyword) || (ghostRecipe.Keyword == 'undefined')) &&
-                            ((d.ToV == ghostRecipe.ToV) || (ghostRecipe.ToV == 'undefined'))
+                            ((d.Evidence == ghostRecipe.Evidence) || (ghostRecipe.Evidence == 'undefined'))
                             && (
                                 (d.Actions == ghostRecipe.Actions) ||
                                 (d.Animal == ghostRecipe.Animal) ||
@@ -413,28 +414,11 @@ for (let f = 0; f < formArrayTitles.length; f++) {
                 })
             cardSelected
                 .style('display', 'inline-flex')
-
-                console.log(ghostRecipe)
         })
-        // .on('change', function(){ 
-        //     let filterCat = this.name
-        //     let filterSel = this.value
-        //          let card = d3.select("#all-cards").selectAll('.card')
-
-        //         card
-        //             .style('display', 'none')
-        //         let cardSelected = card
-        //             .filter(function (d) {
-        //                 return (
-        //                     (d[filterCat] == filterSel) || (filterSel=='undefined')
-        //                 )
-        //             })
-        //         cardSelected
-        //             .style('display', 'inline-flex')
-        // })
+    
         .attr('id', 'formK' + f)
         .attr('name', function () { return formArrayTitles[f] })
-        .attr('class', function () { if (f < 3) { return 'roundTag' } else { return 'squareTag' } })
+        .attr('class', function () { if (f < 2) { return 'roundTag' } else { return 'squareTag' } })
 
     let formK = d3.select('#formK' + f)
 
@@ -442,27 +426,38 @@ for (let f = 0; f < formArrayTitles.length; f++) {
         .append('option')
         .attr('value', 'undefined')
         .text('--Select')
-    // formK.selectAll('option')
-    // .attr('disabled','')
-    // .attr('selected','')
 
-
-    // console.log(document.getElementById('formK' + f).value)
     for (let k = 0; k < formArray[formArrayTitles[f]].length; k++) {
         formK
             .append('option')
             .attr('value', formArray[formArrayTitles[f]][k])
-            .text(formArray[formArrayTitles[f]][k])
+            // .text(formArray[formArrayTitles[f]][k])
+
+           
+            .text(function () {
+                if (f == 3) {
+                    if (formArray[formArrayTitles[f]][k] == 'TRUE') {
+                        return 'statistics'
+                    } else if (formArray[formArrayTitles[f]][k] == 'FALSE') {
+                        return 'speculation'
+                    }
+                } else if (f != 3){return formArray[formArrayTitles[f]][k]}
+            })
     }
-
-
-
-
-
-
-
-
 }
+filtriCustom
+.append('div')
+.attr('class', 'roundTag')
+.append('p')
+.attr('id', 'resetBtn')
+.text('reset')
+.on('click', function(){
+    document.getElementById('divFormK0').reset()
+    document.getElementById('divFormK1').reset()
+    document.getElementById('divFormK2').reset()
+    document.getElementById('divFormK3').reset()
+    d3.select("#all-cards").selectAll('.card').style('display', 'inline-flex')
+})
 
 
 
@@ -553,7 +548,6 @@ function openRecipe(btnId) {
                 };
 
                 // if (filter.select('.recipe-row-T2').select('.squareTag').select('p')._groups[0][j].innerText.localeCompare('dissemination', 'en', { sensitivity: 'base' }) == 0) { filter.select('.recipe-row-T2').select('.squareTag')._groups[0][j].style.opacity = '0.3' };
-
                 // if (filter.select('.recipe-row-T3').select('.squareTag').select('p')._groups[0][j].innerText == 'Data') { filter.select('.recipe-row-T3').select('.squareTag')._groups[0][j].style.opacity = '0.3' }
             }
         }
@@ -636,9 +630,9 @@ function openAllArchive() {
         .transition()
         .delay(0)
         .duration(2000)
-        .style('width', '150px')
+        .style('width', '170px')
     d3.select('.container').selectAll('.col-md-auto')
-        .style('max-width', 'calc(100% - 150px)')
+        .style('max-width', 'calc(100% - 170px)')
         .transition()
         .delay(0)
         .duration(2000)
