@@ -113,13 +113,13 @@ data.then(function (data) {
                 }
             })
 
-            // .style('opacity', function (d) {
-            //     if (i >= 8) {
-            //         if ((d[allBtns[i]] == 'FALSE') || (d[allBtns[i]] == 'dissemination')) {
-            //             return "0.3"
-            //         }
-            //     }
-            // })
+        // .style('opacity', function (d) {
+        //     if (i >= 8) {
+        //         if ((d[allBtns[i]] == 'FALSE') || (d[allBtns[i]] == 'dissemination')) {
+        //             return "0.3"
+        //         }
+        //     }
+        // })
         tag.append('img')
             .attr('src', function () {
                 if (i == 0) { return 'assets/icon/keyword.svg' }
@@ -133,8 +133,8 @@ data.then(function (data) {
                     return d.Keyword
                 }
                 else if (i <= 7) { return allBtns[i] }
-                else if (i == 8) {if(d.Evidence=='TRUE'){ return 'statistics' }else if(d.Evidence=='FALSE'){ return 'speculation' }}
-                else if (i == 9) {  return d.Aim}
+                else if (i == 8) { if (d.Evidence == 'TRUE') { return 'statistics' } else if (d.Evidence == 'FALSE') { return 'speculation' } }
+                else if (i == 9) { return d.Aim }
             })
 
         // tag.style('opacity', function (d) {
@@ -252,7 +252,7 @@ for (let i = 0; i < recipeIngredientTitle.length; i++) {
                     return d.Aim
                 }
                 else if (i == 3) {
-                    if(d.Evidence=='TRUE'){ return 'statistics' }else if(d.Evidence=='FALSE'){ return 'speculation' }
+                    if (d.Evidence == 'TRUE') { return 'statistics' } else if (d.Evidence == 'FALSE') { return 'speculation' }
                 }
             })
 
@@ -336,6 +336,8 @@ filter
 
     });
 
+
+
 // filtri personalizzabili
 let formArrayTitles = ['Keyword', 'Topic', 'Aim', 'Evidence']
 let formArray = {
@@ -365,20 +367,15 @@ for (let f = 0; f < formArrayTitles.length; f++) {
         .append('select')
         .on('change', function () {
             let card = d3.select("#all-cards").selectAll('.card')
-            let productsSubhead = d3.select("#productsSubhead")
-            let totResults = card.size()
-            productsSubhead.text(function () {
-                return 'products (' + totResults + ')'
-            })
 
             if (this.name == 'Topic') {
                 for (let v = 0; v < formArray.Topic.length; v++) {
 
-                    if(formArray.Topic[v]== this.value) {
+                    if (formArray.Topic[v] == this.value) {
 
                         ghostRecipe[formArray.Topic[v]] = 'TRUE'
                     }
-                    else { ghostRecipe[formArray.Topic[v]] = 'undefined'}
+                    else { ghostRecipe[formArray.Topic[v]] = 'undefined' }
                 }
 
             } else { ghostRecipe[this.name] = this.value }
@@ -408,14 +405,17 @@ for (let f = 0; f < formArrayTitles.length; f++) {
                                     (ghostRecipe.Waste == 'undefined')))
                         )
                     )
-
-
-
                 })
             cardSelected
                 .style('display', 'inline-flex')
+
+            let productsSubhead2 = d3.select("#productsSubhead")
+            let totResults2 = cardSelected.size()
+            productsSubhead2.text(function () {
+                return 'products (' + totResults2 + ')'
+            })
         })
-    
+
         .attr('id', 'formK' + f)
         .attr('name', function () { return formArrayTitles[f] })
         .attr('class', function () { if (f < 2) { return 'roundTag' } else { return 'squareTag' } })
@@ -433,7 +433,7 @@ for (let f = 0; f < formArrayTitles.length; f++) {
             .attr('value', formArray[formArrayTitles[f]][k])
             // .text(formArray[formArrayTitles[f]][k])
 
-           
+
             .text(function () {
                 if (f == 3) {
                     if (formArray[formArrayTitles[f]][k] == 'TRUE') {
@@ -441,23 +441,39 @@ for (let f = 0; f < formArrayTitles.length; f++) {
                     } else if (formArray[formArrayTitles[f]][k] == 'FALSE') {
                         return 'speculation'
                     }
-                } else if (f != 3){return formArray[formArrayTitles[f]][k]}
+                } else if (f != 3) { return formArray[formArrayTitles[f]][k] }
             })
     }
 }
 filtriCustom
-.append('div')
-.attr('class', 'roundTag')
-.append('p')
-.attr('id', 'resetBtn')
-.text('reset')
-.on('click', function(){
-    document.getElementById('divFormK0').reset()
-    document.getElementById('divFormK1').reset()
-    document.getElementById('divFormK2').reset()
-    document.getElementById('divFormK3').reset()
-    d3.select("#all-cards").selectAll('.card').style('display', 'inline-flex')
-})
+    .append('div')
+    .attr('class', 'roundTag')
+    .append('p')
+    .attr('id', 'resetBtn')
+    .text('reset')
+    .on('click', function () {
+        document.getElementById('divFormK0').reset()
+        document.getElementById('divFormK1').reset()
+        document.getElementById('divFormK2').reset()
+        document.getElementById('divFormK3').reset()
+        let card = d3.select("#all-cards").selectAll('.card')
+        card.style('display', 'inline-flex')
+        let arrayReset = ['Keyword', 'Topic', 'Aim', 'Evidence', 'Actions', 'Animal', 'Distribution', 'Energy', 'Food', 'Management', 'Waste']
+
+        for (let ar = 0; ar < arrayReset.length; ar++) {
+            ghostRecipe[arrayReset[ar]] = 'undefined'
+        }
+        for (let r = 0; r < 10; r++) {
+            ghostRecipe;
+
+        }
+
+        let productsSubhead3 = d3.select("#productsSubhead")
+        let totResults3 = card.size()
+        productsSubhead3.text(function () {
+            return 'products (' + totResults3 + ')'
+        })
+    })
 
 
 
@@ -640,8 +656,8 @@ function openAllArchive() {
 
     d3.select('.card-columns').style('column-count', '4')
 
-    d3.selectAll('#all-filters')
-        .style('opacity', '0')
+    // d3.selectAll('#all-filters')
+    //     .style('opacity', '0')
 
     const t = d3.timer((elapsed) => {
         d3.selectAll('#all-filters')
