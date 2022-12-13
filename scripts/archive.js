@@ -31,13 +31,21 @@ container.append('div')
     .text('products')
     .attr('id', 'productsSubhead')
 
+let openAllArchiveBoulean = false;
 container.select('#colDx').select('.sub')
     .append('p')
+    .attr('id', 'openAllArchiveTitle')
     .text('explore all')
     .style('text-transform', 'capitalize')
     .style('cursor', 'pointer')
-    .on('click', function () { openAllArchive() })
-// .on('click', function () { closeArchive(); closedRecipes() })
+    .on('click', function () {
+        if (openAllArchiveBoulean == false) {
+            openAllArchive()
+        }
+        else { closeArchive(); closedRecipes() }
+    })
+
+
 
 container.select('#colDx')
     .append('div')
@@ -420,6 +428,27 @@ for (let f = 0; f < formArrayTitles.length; f++) {
                 left: 0,
                 behavior: 'smooth'
             });
+/////////////////////JJJJJJJJJ
+
+let cardP = cardSelected.select('.cardFooter').selectAll('div').select('p');
+
+let tagsActive = []
+
+for (let j = 0; j < Object.keys(ghostRecipe).length; j++) {
+    let key = Object.keys(ghostRecipe)[j]
+    if (ghostRecipe[key] == 'TRUE') {
+        tagsActive.push(key)
+    }
+}
+            for (let i = 0; i < cardSelected.select('.cardFooter').selectAll('div').nodes().length; i++) {
+                if ((cardP.nodes()[i].innerText.localeCompare(tagsActive[0], 'en', { sensitivity: 'base' }) == 0) ) {
+                    cardSelected.select('.cardFooter').selectAll('div').nodes()[i].style.backgroundColor = 'var(--secondary-color)'
+                }
+                else if (cardP.nodes()[i].innerText.localeCompare(ghostRecipe.Keyword, 'en', { sensitivity: 'base' }) == 0) {
+                    cardSelected.select('.cardFooter').selectAll('div').nodes()[i].style.backgroundColor = 'var(--primary-color)'
+                }
+                else { cardSelected.select('.cardFooter').selectAll('div').nodes()[i].style.backgroundColor = 'white' }
+            }
         })
 
         .attr('id', 'formK' + f)
@@ -607,7 +636,12 @@ function openArchive() {
 }
 
 function closeArchive() {
+    openAllArchiveBoulean = false;
     archiveOpen = false
+
+    d3.select('#openAllArchiveTitle')
+    .text('Explore all')
+
     d3.select('.container').selectAll('.col')
         .style('max-width', '100%')
         .transition()
@@ -643,14 +677,18 @@ function closeArchive() {
 
     d3.selectAll('#all-filters')
         .style('opacity', '1')
-    const t = d3.timer((elapsed) => {
-        t.stop();
-    }, 1500);
+    // const t = d3.timer((elapsed) => {
+    //     t.stop();
+    // }, 1500);
 
 
 }
 
 function openAllArchive() {
+    openAllArchiveBoulean = true;
+    d3.select('#openAllArchiveTitle')
+    .text('Close')
+    
     openRecipe(0)
 
     d3.select('.container').selectAll('.col')

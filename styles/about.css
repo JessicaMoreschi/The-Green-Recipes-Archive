@@ -76,7 +76,7 @@
     height: 200px;
     min-width: 0px;
     padding: 0;
-    border: none;
+    border: none !important;
     flex-wrap: wrap !important;
     align-content: flex-end;
 }
