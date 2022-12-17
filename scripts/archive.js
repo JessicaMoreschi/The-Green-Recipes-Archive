@@ -804,6 +804,9 @@ function openRecipe(btnId) {
 function openArchive() {
     archiveOpen = true
 
+    d3.select('#prepDiv').style('height', 'auto').style('min-height', 350 + 'px').style('padding', 70+'px '+0+'px '+30+'px '+0+'px')
+
+
     d3.select('.container').selectAll('.col')
         .style('max-width', 'auto')
         .transition()
@@ -859,7 +862,7 @@ function closeArchive() {
         .delay(1500)
         .style('display', 'initial')
 
-    d3.select('.card-columns').style('column-count', '3')
+    // d3.select('.card-columns').style('column-count', '3')
 
 
     d3.selectAll('#all-filters')
@@ -889,18 +892,18 @@ function openAllArchive() {
         .transition()
         .delay(0)
         .duration(2000)
-        .style('width', '170px')
+        .style('width', '190px')
     d3.select('.container').selectAll('.col-md-auto')
-        .style('max-width', 'calc(100% - 170px)')
+        .style('max-width', 'calc(100% - 190px)')
         .transition()
         .delay(0)
         .duration(2000)
         .style('width', '100%')
 
-    d3.select('.card-columns').style('column-count', '4')
+    // d3.select('.card-columns').style('column-count', '4')
 
-    // d3.selectAll('#all-filters')
-    //     .style('opacity', '0')
+    d3.select('#prepDiv').style('height', 0 + 'px').style('min-height', 0 + 'px').style('padding', 0+'px '+0+'px '+0+'px '+0+'px')
+
 
     const t = d3.timer((elapsed) => {
         d3.selectAll('#all-filters')
