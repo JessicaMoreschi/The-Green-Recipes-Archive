@@ -78,6 +78,11 @@ for (let st = 4; st <= 8; st++) {
             .attr('class', 'flex-row recipe-row' + st)
 
         for (let stt = 0; stt < 2; stt++) {
+            if(stt==0){d3.select('.recipe-row' + st).append('p')
+            .attr('class', 'preptitle')
+            .text('Selected tags :')}
+
+            
             d3.select('.recipe-row' + st)
                 .append('div')
                 .attr('class', 'roundTag t' + stt)
