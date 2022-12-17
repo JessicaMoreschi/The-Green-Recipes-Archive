@@ -19,7 +19,7 @@ const recipes = [
         StatisticText: '“Recycling Goals Burger is back Double”. For those who love environment and composting, the Double Globe Warming Burger is here for you. Created by taking in consideration both Waste and Management, it was possible to select the most nourishing keyword as its main ingredient: Environmental. It provides your daily dose of pro-active attitude (60% take action) but with a strong lack of evidence (just 11% of contexts is providing actual data). It’s like the classic, but greener.'
     },
     {  
-        recipeId: 1,
+        recipeId: 2,
         title: 'Deluxe recy-pounder',
         desc: '“If you thrive for recycling, this is the meal for you: it grants an unforgettable taste with a dynamic approach, supported by high levels of groundless data.”',
         Keyword: 'environmental',
