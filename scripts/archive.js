@@ -8,30 +8,34 @@ let container = d3.select(".container");
 container.append('div')
     .attr('class', 'col')
     .attr('id', 'colSx')
+
     .append('div')
     .attr('class', 'flex-row head sub')
     .append('p')
     .text('recipes')
     .on('click', function () { closeArchive(); closedRecipes() })
     .style('cursor', 'pointer')
-    .append('div')
 container.select('#colSx')
     .append('div')
     .attr('id', 'all-filters')
     .attr('class', 'flex-row filter')
 
+let openAllArchiveBoulean = false;
 
 
 container.append('div')
     .attr('class', 'col-md-auto')
     .attr('id', 'colDx')
+
+   
+container.select('#colDx') 
     .append('div')
     .attr('class', 'flex-row head sub')
     .append('p')
     .text('products')
     .attr('id', 'productsSubhead')
 
-let openAllArchiveBoulean = false;
+
 container.select('#colDx').select('.sub')
     .append('p')
     .attr('id', 'openAllArchiveTitle')
@@ -44,6 +48,147 @@ container.select('#colDx').select('.sub')
         }
         else { closeArchive(); closedRecipes() }
     })
+
+//////////qyaaaaaaa
+    // container.select('#colDx') 
+    // .append('div')
+    // .attr('class', 'flex-row head sub')
+    // .append('p')
+    // .text('preparation')
+    // .attr('id', 'productsSubhead')
+
+container.select('#colDx')
+    .append('div')
+    .attr('id', 'prepDiv')
+    .attr('class', 'flex-column')
+
+let prepDiv = d3.select('#prepDiv')
+// prepDiv.append('p')
+// .attr('class', 'preptitle')
+// .text('About Preparation')
+
+
+
+
+
+for (let st = 4; st <= 8; st++) {
+    if (st == 4) {
+        prepDiv
+            .append('div')
+            .attr('class', 'flex-row recipe-row' + st)
+
+        for (let stt = 0; stt < 2; stt++) {
+            d3.select('.recipe-row' + st)
+                .append('div')
+                .attr('class', 'roundTag t' + stt)
+            d3.select('.recipe-row' + st).select('.t' + stt)
+                .append('img')
+                .attr('src', 'assets/icon/topic.svg')
+            d3.select('.recipe-row' + st).select('.t' + stt).append('p')
+                .text('topic')
+        }
+    }
+    else if (st == 5) {
+        prepDiv.append('p')
+            .attr('class', 'prepText')
+            .style('height', 'auto')
+            .text('testo')
+    }
+    else if (st == 6) {
+        prepDiv
+            .append('div')
+            .attr('class', 'flex-row recipe-row' + st)
+
+        for (let stt = 0; stt < 1; stt++) {
+            d3.select('.recipe-row' + st).append('p')
+                .attr('class', 'preptitle')
+                .text('Most used Keyword :')
+
+            d3.select('.recipe-row' + st)
+                .append('div')
+                .attr('class', 'roundTag t' + stt)
+
+            d3.select('.recipe-row' + st).select('.t' + stt)
+                .append('img')
+                .attr('src', 'assets/icon/topic.svg')
+            d3.select('.recipe-row' + st).select('.t' + stt).append('p')
+                .text('topic')
+        }
+    }
+    else {
+        prepDiv
+            .append('div')
+            .attr('class', 'flex-row recipe-row' + st)
+
+        d3.select('.recipe-row' + st)
+            .append('p')
+            .text('15%')
+            .attr('class', 'nPercText')
+            .style('order', '1')
+
+        for (let stt = 0; stt < 2; stt++) {
+            d3.select('.recipe-row' + st)
+                .append('div')
+                .attr('class', 'squareTag t' + stt)
+                .style('order', function () {
+                    if (stt == 0) { return 0 }
+                    else { return 4 }
+                })
+            d3.select('.recipe-row' + st).select('.t' + stt)
+                .append('img')
+                .attr('src', 'assets/icon/topic.svg')
+            d3.select('.recipe-row' + st).select('.t' + stt).append('p')
+                .text(function () {
+                    if (st == 7) {
+                        if (stt == 0) {
+                            return 'take action'
+                        } else { return 'dissemination' }
+                    }
+                    else {
+                        if (stt == 0) {
+                            return 'statistics'
+                        } else { return 'groundless' }
+                    }
+                })
+                .style('width', function(){
+                    if (st == 7) {
+                        if (stt == 0) {
+                            return '75px'
+                        } else { return '95px' }
+                    }
+                    else {
+                        if (stt == 0) {
+                            return '75px'
+                        } else { return '95px' }
+                    } })
+        }
+
+        d3.select('.recipe-row' + st)
+            .append('div')
+            .attr('class', 'statRec')
+            .style('order', '2')
+            .append('div')
+            .attr('class', 'statRecActive')
+
+        d3.select('.recipe-row' + st)
+            .append('p')
+            .text('15%')
+            .attr('class', 'nPercText')
+            .style('order', '3')
+    }
+
+}
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -70,6 +215,9 @@ data.then(function (data) {
     // HEADER
     card.append("div")
         .attr("class", "flex-column cardHeader")
+        .append('p')
+        .text(function(d){return d.Company})
+        card.select('.cardHeader')
         .append('a')
         .attr('href', function (d) { return d.Url })
         .attr('target', '_blank')
@@ -173,9 +321,6 @@ let filter = filterDiv.selectAll("div")
     .join("div")
     .attr("class", "flex-column recipe")
 filter.attr('id', function (d) { return 'recipe' + d.recipeId })
-filter.style('order', function (d) {
-    if (d.recipeId == 0) { return '1' } else { return '0' }
-})
 
 filter.append("svg").attr("width", 50).attr("height", 50).style('background-color', 'white').style('border', '2px solid').style('margin-left', '198px').style('margin-top', '-1px').attr('class', 'orecchio')
 filter.append("svg").attr("width", 50).attr("height", 50).style('background-color', 'white').style('margin-left', '200px').style('margin-top', '-52px').attr('class', 'orecchio')
@@ -191,9 +336,13 @@ filterBody
     .text(function (a) {
         return a.title
     })
-filterBody
-    .append('h5')
-    .text('ingredients')
+    filterBody
+    .append('p')
+    .text(function(d){return d.desc})
+    .attr('class', 'quote')
+    filterBody
+        .append('h5')
+        .text('ingredients')
 
 
 //iterate
@@ -263,19 +412,6 @@ for (let i = 0; i < recipeIngredientTitle.length; i++) {
                     if (d.Evidence == 'TRUE') { return 'statistics' } else if (d.Evidence == 'FALSE') { return 'speculation' }
                 }
             })
-
-        // tag.style('opacity', function (d) {
-        //     if (i == 2) {
-        //         if (d.Aim == 'dissemination') {
-        //             return '0.3'
-        //         } else { return '1' }
-        //     }
-        //     if (i == 3) {
-        //         if (d.Evidence == 'FALSE') {
-        //             return '0.3'
-        //         } else { return '1' }
-        //     }
-        // })
     }
 }
 
@@ -342,6 +478,59 @@ filter
             return 'products (' + totResults + ')'
         })
 
+
+        //statistiche
+        d3.select('.recipe-row7').select('.t0')
+        .style('opacity', function(){
+            if (recipeIdN.TaPerc < 50){return 0.3}
+            else {return 1}
+        })
+        d3.select('.recipe-row7').select('.t1')
+        .style('opacity', function(){
+            if (recipeIdN.TaPerc > 50){return 0.3}
+            else {return 1}
+        })
+        d3.select('.recipe-row8').select('.t0')
+        .style('opacity', function(){
+            if (recipeIdN.GrPerc < 50){return 0.3}
+            else {return 1}
+        })
+        d3.select('.recipe-row8').select('.t1')
+        .style('opacity', function(){
+            if (recipeIdN.GrPerc > 50){return 0.3}
+            else {return 1}
+        })
+        d3.select('.recipe-row4').select('.t0').select('p')
+            .text(function () { return tagsActive[0] })
+        d3.select('.recipe-row4').select('.t1').select('p')
+            .text(function () { return tagsActive[1] })
+        d3.select('.recipe-row6').select('.t0').select('p')
+            .text(function () { return recipeIdN.Keyword })
+        d3.select('#prepDiv').select('.prepText')
+            .text(function () { return recipeIdN.StatisticText })
+        d3.select('.statRecActive')
+            .style('width', function () { return recipeIdN.TaPerc + '%' })
+        d3.select('.recipe-row7').selectAll('.nPercText')
+            .filter(function () {
+                return this.style.order == 1
+            })
+            .text(function () { return recipeIdN.TaPerc + '%' })
+        d3.select('.recipe-row7').selectAll('.nPercText')
+            .filter(function () {
+                return this.style.order == 3
+            })
+            .text(function () { return 100 - recipeIdN.TaPerc + '%' })
+        d3.select('.recipe-row8').select('.statRecActive').style('width', function () { return recipeIdN.GrPerc + '%' })
+        d3.select('.recipe-row8').selectAll('.nPercText')
+            .filter(function () {
+                return this.style.order == 1
+            })
+            .text(function () { return recipeIdN.GrPerc + '%' })
+        d3.select('.recipe-row8').selectAll('.nPercText')
+            .filter(function () {
+                return this.style.order == 3
+            })
+            .text(function () { return 100 - recipeIdN.GrPerc + '%' })
     });
 
 
@@ -349,7 +538,7 @@ filter
 // filtri personalizzabili
 let formArrayTitles = ['Keyword', 'Topic', 'Aim', 'Evidence']
 let formArray = {
-    Keyword: ['greenhouse gas','impact', 'sustainability', 'commitment', 'energy', 'responsibility', 'environmental', 'planet', 'recycle', 'emissions', 'natural', 'deforestation', 'green', 'climate change', 'carbon footprint', 'renewable energy', 'single-use', 'organic', 'eco-friendly', 'biodegradable', 'net-zero', 'zero-waste', 'preservation', 'reforestation'],
+    Keyword: ['greenhouse gas', 'impact', 'sustainability', 'commitment', 'energy', 'responsibility', 'environmental', 'planet', 'recycle', 'emissions', 'natural', 'deforestation', 'green', 'climate change', 'carbon footprint', 'renewable energy', 'single-use', 'organic', 'eco-friendly', 'biodegradable', 'net-zero', 'zero-waste', 'preservation', 'reforestation'],
     Topic: ['Actions', 'Animal', 'Distribution', 'Energy', 'Food', 'Management', 'Waste'],
     Aim: ['take action', 'dissemination'],
     Evidence: ['TRUE', 'FALSE']
@@ -427,18 +616,18 @@ for (let f = 0; f < formArrayTitles.length; f++) {
                 behavior: 'smooth'
             });
 
-let cardP = cardSelected.select('.cardFooter').selectAll('div').select('p');
+            let cardP = cardSelected.select('.cardFooter').selectAll('div').select('p');
 
-let tagsActive = []
+            let tagsActive = []
 
-for (let j = 0; j < Object.keys(ghostRecipe).length; j++) {
-    let key = Object.keys(ghostRecipe)[j]
-    if (ghostRecipe[key] == 'TRUE') {
-        tagsActive.push(key)
-    }
-}
+            for (let j = 0; j < Object.keys(ghostRecipe).length; j++) {
+                let key = Object.keys(ghostRecipe)[j]
+                if (ghostRecipe[key] == 'TRUE') {
+                    tagsActive.push(key)
+                }
+            }
             for (let i = 0; i < cardSelected.select('.cardFooter').selectAll('div').nodes().length; i++) {
-                if ((cardP.nodes()[i].innerText.localeCompare(tagsActive[0], 'en', { sensitivity: 'base' }) == 0) ) {
+                if ((cardP.nodes()[i].innerText.localeCompare(tagsActive[0], 'en', { sensitivity: 'base' }) == 0)) {
                     cardSelected.select('.cardFooter').selectAll('div').nodes()[i].style.backgroundColor = 'var(--secondary-color)'
                 }
                 else if (cardP.nodes()[i].innerText.localeCompare(ghostRecipe.Keyword, 'en', { sensitivity: 'base' }) == 0) {
@@ -451,7 +640,7 @@ for (let j = 0; j < Object.keys(ghostRecipe).length; j++) {
         .attr('id', 'formK' + f)
         .attr('name', function () { return formArrayTitles[f] })
         .attr('class', function () { if (f < 2) { return 'roundTag' } else { return 'squareTag' } })
-        .style('background-color', function(){
+        .style('background-color', function () {
             if (f == 0) { return 'var(--primary-color)' }
             else if (f == 1) { return 'var(--secondary-color)' }
         })
@@ -625,6 +814,7 @@ function openArchive() {
         .delay(0)
         .duration(2000)
         .style('width', '300px')
+
     d3.select('.container').selectAll('.col-md-auto')
         .style('max-width', 'calc(100% - 300px)')
         .transition()
@@ -641,7 +831,7 @@ function closeArchive() {
     archiveOpen = false
 
     d3.select('#openAllArchiveTitle')
-    .text('Explore all')
+        .text('Explore all')
 
     d3.select('.container').selectAll('.col')
         .style('max-width', '100%')
@@ -688,8 +878,8 @@ function closeArchive() {
 function openAllArchive() {
     openAllArchiveBoulean = true;
     d3.select('#openAllArchiveTitle')
-    .text('Close')
-    
+        .text('Close')
+
     openRecipe(0)
 
     d3.select('.container').selectAll('.col')

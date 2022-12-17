@@ -1,15 +1,14 @@
-
 .card-columns,
 .filter {
     padding: 70px 20px 100px 20px;
     max-width: none;
 }
 
-.card-columns{
+.card-columns {
     transition-delay: 500ms !important;
 }
 
-.filter{
+.filter {
     padding-right: 10vw;
     flex-wrap: wrap;
     /* overflow: hidden; */
@@ -34,13 +33,19 @@
 }
 
 .cardHeader {
-    align-items: flex-end;
-    gap: 4.5px;
+    align-content: space-between;
     width: 100%;
     height: 20px;
+    justify-content: end;
+}
+.cardHeader p{
+    text-transform: uppercase;
+    font-size: 8pt;
+    height: 0;
 }
 
-.card-content {
+.card-content,
+.prepText {
     font-family: PPEditorial;
     font-weight: lighter;
     font-style: normal;
@@ -67,7 +72,7 @@
     opacity: 1 !important;
 }
 
-.card-text{
+.card-text {
     font-family: PPEditorial;
     font-weight: normal;
     font-style: normal;
@@ -79,19 +84,20 @@
     max-width: 160px;
 }
 
-.card-body h5{
+.card-body h5 {
     font-family: PPNeueMachina;
     font-weight: normal;
     font-style: normal;
     font-size: 8pt;
     line-height: 8pt;
-    text-transform:uppercase;
+    text-transform: uppercase;
     color: var(--main-color);
     height: auto;
     padding: 10px 0;
 }
 
-.recipe-ingredient-title *, form label{
+.recipe-ingredient-title *, .preptitle, .nPercText, .quote,
+form label {
     width: 60px;
     font-family: PPEditorial;
     font-weight: normal;
@@ -101,23 +107,82 @@
     text-transform: normal;
     height: 0;
 }
-.recipe-ingredient-title{
-display: flex;
-justify-content: center;
-flex-direction: column;
-height: 100%}
 
-.recipe-row0, .recipe-row1, .recipe-row2, .recipe-row3{
+.quote{
+    height: auto;
+    font-weight: light;
+    font-style: normal;
+    width: auto;
+    line-height: 100%;
+}
+
+.nPercText{
+    width: auto;
+}
+
+.preptitle{
+    width: auto;
+}
+
+.recipe-ingredient-title {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    height: 100%
+}
+
+.recipe-row0,
+.recipe-row1,
+.recipe-row2,
+.recipe-row3,
+.recipe-row4,
+.recipe-row5,
+.recipe-row6,
+.recipe-row7,
+.recipe-row8 {
     height: auto;
     padding: 10px 0;
     border-top: 0.5px solid var(--main-color);
     flex-wrap: wrap;
 }
 
-.recipe-row0 *, .recipe-row1 *, .recipe-row2 *, .recipe-row3 *{
-   gap: 5px;
-   flex-wrap: nowrap;
+p.prepText,
+.recipe-row4,
+.recipe-row5,
+.recipe-row6,
+.recipe-row7,
+.recipe-row8 {
+    padding: 10px 20px;
+    column-gap: 5px;
+    align-items: center;
+    border:none;
+    height: 50px;
 }
+
+
+
+.recipe-row7,
+.recipe-row8 {
+    justify-content: space-between;
+}
+
+.recipe-row0 *,
+.recipe-row1 *,
+.recipe-row2 *,
+.recipe-row3 *,
+.recipe-row4 *,
+.recipe-row5 * {
+    gap: 5px;
+    flex-wrap: nowrap;
+}
+
+.recipe-row4 * {
+    background-color: var(--secondary-color);
+}
+.recipe-row6 * {
+    background-color: var(--primary-color);
+}
+
 
 @media (max-width: 1200px) {
     .card-columns {
@@ -131,7 +196,7 @@ height: 100%}
     }
 }
 
-#archiveImgSide{
+#archiveImgSide {
     position: absolute;
     width: 12vw;
     top: 50%;
@@ -140,7 +205,7 @@ height: 100%}
 }
 
 
-#archiveImgSide2{
+#archiveImgSide2 {
     position: absolute;
     width: 12vw;
     top: 50%;
@@ -148,16 +213,43 @@ height: 100%}
     right: 50%;
 }
 
-#filtriCustom{
+#filtriCustom {
     display: none;
     align-content: flex-start;
 }
 
-#resetBtn{
+#resetBtn {
     font-family: PPEditorial;
     font-weight: normal;
     font-style: italic;
     font-size: 10pt;
     text-transform: capitalize;
     cursor: pointer;
+}
+
+#prepDiv {
+    height: auto;
+    width: 100%;
+    order: 0;
+    /* background-color: red; */
+    padding-top: 70px;
+}
+
+.prepText{
+    width: 100%;
+}
+
+.statRec{
+    height: 10px;
+    width:65%;
+    background-color: white;
+    border-radius: 5px;
+    border: 1px solid black;
+    overflow: hidden;
+}
+.statRecActive{
+    height: 100%;
+    width:0%;
+    background-color: var(--primary-color);
+    transition: all 1000ms ease;
 }
