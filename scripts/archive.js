@@ -250,7 +250,7 @@ data.then(function (data) {
     card.append("div")
         .attr("class", "flex-row cardFooter")
     //tags
-    var allBtns = ['Keyword', 'Animal', 'Distribution', 'Energy', 'Food', 'Management', 'Waste', 'Actions', 'Evidence', 'Aim'];
+    var allBtns = ['Keyword', 'Animal', 'Distribution', 'Resources', 'Food', 'Management', 'Waste', 'Actions', 'Evidence', 'Aim'];
 
     for (let i = 0; i < allBtns.length; i++) {
 
@@ -289,7 +289,7 @@ data.then(function (data) {
                     return d.Keyword
                 }
                 else if (i <= 7) { return allBtns[i] }
-                else if (i == 8) { if (d.Evidence == 'TRUE') { return 'statistics' } else if (d.Evidence == 'FALSE') { return 'speculation' } }
+                else if (i == 8) { if (d.Evidence == 'TRUE') { return 'statistics' } else if (d.Evidence == 'FALSE') { return 'groundless' } }
                 else if (i == 9) { return d.Aim }
             })
 
@@ -393,7 +393,7 @@ for (let i = 0; i < recipeIngredientTitle.length; i++) {
                 else if (i == 1) {
                     if (d.Animal == 'TRUE') { recipeTopicArray.push('Animal') }
                     if (d.Distribution == 'TRUE') { recipeTopicArray.push('Distribution') }
-                    if (d.Energy == 'TRUE') { recipeTopicArray.push('Energy') }
+                    if (d.Resources == 'TRUE') { recipeTopicArray.push('Resources') }
                     if (d.Food == 'TRUE') { recipeTopicArray.push('Food') }
                     if (d.Management == 'TRUE') { recipeTopicArray.push('Management') }
                     if (d.Waste == 'TRUE') { recipeTopicArray.push('Waste') }
@@ -409,7 +409,7 @@ for (let i = 0; i < recipeIngredientTitle.length; i++) {
                     return d.Aim
                 }
                 else if (i == 3) {
-                    if (d.Evidence == 'TRUE') { return 'statistics' } else if (d.Evidence == 'FALSE') { return 'speculation' }
+                    if (d.Evidence == 'TRUE') { return 'statistics' } else if (d.Evidence == 'FALSE') { return 'groundless' }
                 }
             })
     }
@@ -437,7 +437,7 @@ filter
                             (d.Actions == recipeIdN.Actions) ||
                             (d.Animal == recipeIdN.Animal) ||
                             (d.Distribution == recipeIdN.Distribution) ||
-                            (d.Energy == recipeIdN.Energy) ||
+                            (d.Resources == recipeIdN.Resources) ||
                             (d.Food == recipeIdN.Food) ||
                             (d.Management == recipeIdN.Management) ||
                             (d.Waste == recipeIdN.Waste)))
@@ -466,10 +466,13 @@ filter
             else { cardSelected.select('.cardFooter').selectAll('div').nodes()[i].style.backgroundColor = 'white' }
         }
 
+        
+
 
         openRecipe(btnId)
         if (archiveOpen == false) {
             openArchive()
+
         }
 
         let productsSubhead = d3.select("#productsSubhead")
@@ -539,7 +542,7 @@ filter
 let formArrayTitles = ['Keyword', 'Topic', 'Aim', 'Evidence']
 let formArray = {
     Keyword: ['greenhouse gas', 'impact', 'sustainability', 'commitment', 'energy', 'responsibility', 'environmental', 'planet', 'recycle', 'emissions', 'natural', 'deforestation', 'green', 'climate change', 'carbon footprint', 'renewable energy', 'single-use', 'organic', 'eco-friendly', 'biodegradable', 'net-zero', 'zero-waste', 'preservation', 'reforestation'],
-    Topic: ['Actions', 'Animal', 'Distribution', 'Energy', 'Food', 'Management', 'Waste'],
+    Topic: ['Actions', 'Animal', 'Distribution', 'Resources', 'Food', 'Management', 'Waste'],
     Aim: ['take action', 'dissemination'],
     Evidence: ['TRUE', 'FALSE']
 }
@@ -587,14 +590,14 @@ for (let f = 0; f < formArrayTitles.length; f++) {
                                 (d.Actions == ghostRecipe.Actions) ||
                                 (d.Animal == ghostRecipe.Animal) ||
                                 (d.Distribution == ghostRecipe.Distribution) ||
-                                (d.Energy == ghostRecipe.Energy) ||
+                                (d.Resources == ghostRecipe.Resources) ||
                                 (d.Food == ghostRecipe.Food) ||
                                 (d.Management == ghostRecipe.Management) ||
                                 (d.Waste == ghostRecipe.Waste) ||
                                 ((ghostRecipe.Actions == 'undefined') &&
                                     (ghostRecipe.Animal == 'undefined') &&
                                     (ghostRecipe.Distribution == 'undefined') &&
-                                    (ghostRecipe.Energy == 'undefined') &&
+                                    (ghostRecipe.Resources == 'undefined') &&
                                     (ghostRecipe.Food == 'undefined') &&
                                     (ghostRecipe.Management == 'undefined') &&
                                     (ghostRecipe.Waste == 'undefined')))
@@ -664,7 +667,7 @@ for (let f = 0; f < formArrayTitles.length; f++) {
                     if (formArray[formArrayTitles[f]][k] == 'TRUE') {
                         return 'statistics'
                     } else if (formArray[formArrayTitles[f]][k] == 'FALSE') {
-                        return 'speculation'
+                        return 'groundless'
                     }
                 } else if (f != 3) { return formArray[formArrayTitles[f]][k] }
             })
@@ -683,7 +686,7 @@ filtriCustom
         document.getElementById('divFormK3').reset()
         let card = d3.select("#all-cards").selectAll('.card')
         card.style('display', 'inline-flex')
-        let arrayReset = ['Keyword', 'Topic', 'Aim', 'Evidence', 'Actions', 'Animal', 'Distribution', 'Energy', 'Food', 'Management', 'Waste']
+        let arrayReset = ['Keyword', 'Topic', 'Aim', 'Evidence', 'Actions', 'Animal', 'Distribution', 'Resources', 'Food', 'Management', 'Waste']
 
         for (let ar = 0; ar < arrayReset.length; ar++) {
             ghostRecipe[arrayReset[ar]] = 'undefined'
@@ -721,9 +724,6 @@ function closedRecipes() {
         for (let n = 0; n < filter.select('.recipe-row-T1').selectAll('.roundTag')._groups[j].length; n++) {
             filter.select('.recipe-row-T1').selectAll('.roundTag')._groups[j][n].style.backgroundColor = 'white'
         }
-        // filter.select('.recipe-row-T2').select('.squareTag')._groups[0][j].style.opacity = '1'
-        // filter.select('.recipe-row-T3').select('.squareTag')._groups[0][j].style.opacity = '1'
-
     }
 }
 
@@ -747,8 +747,7 @@ function openRecipe(btnId) {
         for (let j = 0; j < recipes.length; j++) {
             if (j != recipeClicked) {
                 if (archiveOpen == false) {
-                    if (j != 0) { filter._groups[0][j].style.order = '0.5' }
-                    else if (j == 0) { filter._groups[0][j].style.order = '1' }
+                    filter._groups[0][j].style.order = '1'
                 }
 
                 for (let i = 0; i < 4; i++) {
@@ -793,9 +792,6 @@ function openRecipe(btnId) {
                         filter.select('.recipe-row-T1').selectAll('.roundTag')._groups[j][n].style.backgroundColor = 'var(--secondary-color)'
                     }
                 };
-
-                // if (filter.select('.recipe-row-T2').select('.squareTag').select('p')._groups[0][j].innerText.localeCompare('dissemination', 'en', { sensitivity: 'base' }) == 0) { filter.select('.recipe-row-T2').select('.squareTag')._groups[0][j].style.opacity = '0.3' };
-                // if (filter.select('.recipe-row-T3').select('.squareTag').select('p')._groups[0][j].innerText == 'Data') { filter.select('.recipe-row-T3').select('.squareTag')._groups[0][j].style.opacity = '0.3' }
             }
         }
     }
@@ -829,6 +825,12 @@ function openArchive() {
 function closeArchive() {
     openAllArchiveBoulean = false;
     archiveOpen = false
+
+    if (archiveOpen == false) {
+        // if (j != 0) { filter._groups[0][j].style.order = '0.5' }
+        // else if (j == 0) { filter._groups[0][j].style.order = '1' }
+        filter.style('order', '1')
+    }
 
     d3.select('#openAllArchiveTitle')
         .text('Explore all')
