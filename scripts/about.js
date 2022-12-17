@@ -2,7 +2,7 @@
 var myFullpage = new fullpage('#fullpage', {
     // Navigation
     lockAnchors: false,
-    anchors: ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'],
+    anchors: ['0', '1', '2'],
     // sectionsColor: ['#85FF4D', '#fff', '#fff', '#fff', '#fff', '#fff', '#85FF4D'],
     navigation: false,
     navigationPosition: 'right',
