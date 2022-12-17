@@ -27,8 +27,8 @@ container.append('div')
     .attr('class', 'col-md-auto')
     .attr('id', 'colDx')
 
-   
-container.select('#colDx') 
+
+container.select('#colDx')
     .append('div')
     .attr('class', 'flex-row head sub')
     .append('p')
@@ -50,12 +50,12 @@ container.select('#colDx').select('.sub')
     })
 
 //////////qyaaaaaaa
-    // container.select('#colDx') 
-    // .append('div')
-    // .attr('class', 'flex-row head sub')
-    // .append('p')
-    // .text('preparation')
-    // .attr('id', 'productsSubhead')
+// container.select('#colDx') 
+// .append('div')
+// .attr('class', 'flex-row head sub')
+// .append('p')
+// .text('preparation')
+// .attr('id', 'productsSubhead')
 
 container.select('#colDx')
     .append('div')
@@ -78,11 +78,13 @@ for (let st = 4; st <= 8; st++) {
             .attr('class', 'flex-row recipe-row' + st)
 
         for (let stt = 0; stt < 2; stt++) {
-            if(stt==0){d3.select('.recipe-row' + st).append('p')
-            .attr('class', 'preptitle')
-            .text('Selected tags :')}
+            if (stt == 0) {
+                d3.select('.recipe-row' + st).append('p')
+                .attr('class', 'preptitle')
+                .text('Selected tags :')
+            }
 
-            
+
             d3.select('.recipe-row' + st)
                 .append('div')
                 .attr('class', 'roundTag t' + stt)
@@ -155,7 +157,7 @@ for (let st = 4; st <= 8; st++) {
                         } else { return 'groundless' }
                     }
                 })
-                .style('width', function(){
+                .style('width', function () {
                     if (st == 7) {
                         if (stt == 0) {
                             return '75px'
@@ -165,7 +167,8 @@ for (let st = 4; st <= 8; st++) {
                         if (stt == 0) {
                             return '75px'
                         } else { return '95px' }
-                    } })
+                    }
+                })
         }
 
         d3.select('.recipe-row' + st)
@@ -221,8 +224,8 @@ data.then(function (data) {
     card.append("div")
         .attr("class", "flex-column cardHeader")
         .append('p')
-        .text(function(d){return d.Company})
-        card.select('.cardHeader')
+        .text(function (d) { return d.Company })
+    card.select('.cardHeader')
         .append('a')
         .attr('href', function (d) { return d.Url })
         .attr('target', '_blank')
@@ -282,11 +285,15 @@ data.then(function (data) {
         //     }
         // })
         tag.append('img')
-            .attr('src', function () {
+            .attr('src', function (d) {
                 if (i == 0) { return 'assets/icon/keyword.svg' }
                 else if (i <= 7) { return 'assets/icon/topic.svg' }
-                else if (i == 8) { return 'assets/icon/data.svg' }
-                else { return 'assets/icon/action.svg' }
+                else if (i == 8) { 
+                    if (d.Evidence == 'TRUE') { return 'assets/icon/data.svg' } else { return 'assets/icon/groundless.svg' } 
+                }
+                else {
+                    if (d.Aim == 'take action') { return 'assets/icon/action.svg' } else { return 'assets/icon/dissemination.svg' }
+                }
             })
         tag.append("p")
             .text(function (d) {
@@ -341,13 +348,13 @@ filterBody
     .text(function (a) {
         return a.title
     })
-    filterBody
+filterBody
     .append('p')
-    .text(function(d){return d.desc})
+    .text(function (d) { return d.desc })
     .attr('class', 'quote')
-    filterBody
-        .append('h5')
-        .text('ingredients')
+filterBody
+    .append('h5')
+    .text('ingredients')
 
 
 //iterate
@@ -384,11 +391,17 @@ for (let i = 0; i < recipeIngredientTitle.length; i++) {
             })
 
         tag.append('img')
-            .attr('src', function () {
+            .attr('src', function (d) {
                 if (i == 0) { return 'assets/icon/keyword.svg' }
                 else if (i == 1) { return 'assets/icon/topic.svg' }
-                else if (i == 2) { return 'assets/icon/action.svg' }
-                else { return 'assets/icon/data.svg' }
+                else if (i == 2) {
+                   
+                     if (d.Aim == 'take action') { return 'assets/icon/action.svg' } else { return 'assets/icon/dissemination.svg' }
+                    }
+                else { 
+    
+                    if (d.Evidence == 'TRUE') { return 'assets/icon/data.svg' } else { return 'assets/icon/groundless.svg' } 
+                }
             })
 
         tag.append("p")
@@ -471,7 +484,7 @@ filter
             else { cardSelected.select('.cardFooter').selectAll('div').nodes()[i].style.backgroundColor = 'white' }
         }
 
-        
+
 
 
         openRecipe(btnId)
@@ -489,25 +502,25 @@ filter
 
         //statistiche
         d3.select('.recipe-row7').select('.t0')
-        .style('opacity', function(){
-            if (recipeIdN.TaPerc < 50){return 0.3}
-            else {return 1}
-        })
+            .style('opacity', function () {
+                if (recipeIdN.TaPerc < 50) { return 0.3 }
+                else { return 1 }
+            })
         d3.select('.recipe-row7').select('.t1')
-        .style('opacity', function(){
-            if (recipeIdN.TaPerc > 50){return 0.3}
-            else {return 1}
-        })
+            .style('opacity', function () {
+                if (recipeIdN.TaPerc > 50) { return 0.3 }
+                else { return 1 }
+            })
         d3.select('.recipe-row8').select('.t0')
-        .style('opacity', function(){
-            if (recipeIdN.GrPerc < 50){return 0.3}
-            else {return 1}
-        })
+            .style('opacity', function () {
+                if (recipeIdN.GrPerc < 50) { return 0.3 }
+                else { return 1 }
+            })
         d3.select('.recipe-row8').select('.t1')
-        .style('opacity', function(){
-            if (recipeIdN.GrPerc > 50){return 0.3}
-            else {return 1}
-        })
+            .style('opacity', function () {
+                if (recipeIdN.GrPerc > 50) { return 0.3 }
+                else { return 1 }
+            })
         d3.select('.recipe-row4').select('.t0').select('p')
             .text(function () { return tagsActive[0] })
         d3.select('.recipe-row4').select('.t1').select('p')
@@ -809,7 +822,7 @@ function openRecipe(btnId) {
 function openArchive() {
     archiveOpen = true
 
-    d3.select('#prepDiv').style('height', 'auto').style('min-height', 350 + 'px').style('padding', 70+'px '+0+'px '+30+'px '+0+'px')
+    d3.select('#prepDiv').style('height', 'auto').style('min-height', 350 + 'px').style('padding', 70 + 'px ' + 0 + 'px ' + 30 + 'px ' + 0 + 'px')
 
 
     d3.select('.container').selectAll('.col')
@@ -907,7 +920,7 @@ function openAllArchive() {
 
     // d3.select('.card-columns').style('column-count', '4')
 
-    d3.select('#prepDiv').style('height', 0 + 'px').style('min-height', 0 + 'px').style('padding', 0+'px '+0+'px '+0+'px '+0+'px')
+    d3.select('#prepDiv').style('height', 0 + 'px').style('min-height', 0 + 'px').style('padding', 0 + 'px ' + 0 + 'px ' + 0 + 'px ' + 0 + 'px')
 
 
     const t = d3.timer((elapsed) => {
