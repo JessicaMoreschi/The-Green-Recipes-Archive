@@ -74,6 +74,7 @@ sup {
 
 .slideP u{
     text-decoration: underline 2px solid var(--primary-color);
+    text-transform: normal;
 }
 
 
@@ -83,11 +84,25 @@ sup {
     justify-content: flex-start;
 }
 
-.fp-overflow {
-    padding: 100px 240px 0 140px;
+/* .fp-overflow {
+    padding: 100px 0;
     
+} */
+.aboutMain{
+    padding-left: 140px;
+    width: calc(100% - 260px);
+}
+.aboutSource{
+    width: 260px;
+    padding: 0 40px !important;
+}
+.ab{
+ padding-top: 100px;
 }
 
+.fp-watermark{
+    display: none;
+}
 .credits {
     width: 200px;
     height: 200px;
