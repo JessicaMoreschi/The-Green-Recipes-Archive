@@ -159,6 +159,15 @@ p.prepText,
     height: 50px;
 }
 
+.recipe-row4{
+    margin-top: -50px;
+}
+
+#statImg{
+        width: 55%;
+    margin-top: -16px;
+    margin-left: 25px;
+}
 
 
 .recipe-row7,
@@ -198,10 +207,10 @@ p.prepText,
 
 #archiveImgSide {
     position: absolute;
-    width: 12vw;
+    width: 13vw;
     top: 50%;
     transform: translateY(-50%);
-    right: 20px;
+    right: 0px;
 }
 
 
@@ -255,6 +264,10 @@ p.prepText,
     width:0%;
     background-color: var(--primary-color);
     transition: all 1000ms ease;
+}
+
+#all-cards{
+    padding-top: 40px;
 }
 
 

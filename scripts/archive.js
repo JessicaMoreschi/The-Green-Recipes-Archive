@@ -67,7 +67,9 @@ let prepDiv = d3.select('#prepDiv')
 // .attr('class', 'preptitle')
 // .text('About Preparation')
 
-
+prepDiv.append('img')
+.attr('src','assets/imgs/preparation.png')
+.attr('id', 'statImg')
 
 
 
@@ -850,6 +852,9 @@ function openArchive() {
 
     d3.select('#archiveImgSide')
         .style('display', 'none')
+
+        d3.select('#all-cards').style('padding-top', '40px')
+
 }
 
 function closeArchive() {
@@ -904,7 +909,6 @@ function closeArchive() {
     //     t.stop();
     // }, 1500);
 
-
 }
 
 function openAllArchive() {
@@ -914,6 +918,13 @@ function openAllArchive() {
 
     openRecipe(0)
 
+    document.getElementById('colDx').scrollTo({
+        top: 0,
+        left: 0,
+        behavior: 'smooth'
+    });
+
+    d3.select('#all-cards').style('padding-top', '70px')
     d3.select('.container').selectAll('.col')
         .style('max-width', 'auto')
         .transition()

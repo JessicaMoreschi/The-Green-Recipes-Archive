@@ -127,7 +127,7 @@ sup {
     border-radius: 15px;
 }
 
-.roundTag p
+.roundTag p, .squareTag p
 {
     font-size: 12pt;
     height: 5px;
