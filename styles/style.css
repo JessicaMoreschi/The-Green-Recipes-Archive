@@ -92,6 +92,7 @@ mark {
     margin: 0;
     color: var(--main-color);
     text-decoration: none;
+
 }
 
 * :not(.nohover):hover, * :visited {

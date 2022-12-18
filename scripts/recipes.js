@@ -34,7 +34,7 @@ const recipes = [
         Aim: 'take action',
         TaPerc: '60',
         GrPerc: '11',
-        StatisticText: '“Recycling Goals Burger is back Double”. For those who love environment and composting, the Double Globe Warming Burger is here for you. Created by taking in consideration both Waste and Management, it was possible to select the most nourishing keyword as its main ingredient: Environmental. It provides your daily dose of pro-active attitude (60% take action) but with a strong lack of evidence (just 11% of contexts is providing actual data). It’s like the classic, but greener.'
+        StatisticText: 'Reuse Goals Burger is back Double”. For those who love environment and composting, this burger is here for you. Created by taking in consideration both Waste and Management, it was possible to select the most nourishing keyword as its main ingredient: Environmental. It provides your daily dose of pro-active attitude (60% take action) but with a strong lack of evidence (just 11% of contexts is providing actual data). It’s like the classic, but greener.'
     },
     {  
         recipeId: 2,
@@ -75,7 +75,7 @@ const recipes = [
     {  
         recipeId: 4,
         title: 'Zero CO2 big Wrap',
-        desc: '“The freshness of the purest is what makes this wrap so unique! Its dissemination statements allow you to sustain a healthy and balanced diet without added evidence.”',
+        desc: '“The freshness of the purest Planet is what makes this wrap so unique! Its dissemination statements allow you to sustain a healthy and balanced diet without added evidence.”',
         Keyword: 'planet',
         Actions: undefined,
         Animal: undefined,
