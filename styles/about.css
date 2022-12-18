@@ -136,3 +136,17 @@ sup {
 #doc-title{
 display: none;
 }
+
+.newFooter {
+    position: absolute;
+    bottom: 0;
+    background-color: white;
+    transform: translateY(calc(100% - 35px));
+    transition: all 1000ms ease;
+    z-index: 1;
+}
+
+.newFooter:hover {
+    transform: translateY(0px);
+    z-index: 1;
+}
