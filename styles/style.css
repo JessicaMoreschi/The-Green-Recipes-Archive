@@ -68,6 +68,9 @@
     /* --disabled-color: #cccccc; */
 }
 
+/* html{
+    cursor: url('./assets/imgs/cursor.png'), auto;
+} */
 /* ::selection */
 mark {
     color: var(--main-color);

@@ -13,6 +13,7 @@ container.append('div')
     .attr('class', 'flex-row head sub')
     .append('p')
     .text('recipes')
+    .attr('id', 'recTextUx')
     .on('click', function () { closeArchive(); closedRecipes() })
     .style('cursor', 'pointer')
 container.select('#colSx')
@@ -31,8 +32,15 @@ container.append('div')
 container.select('#colDx')
     .append('div')
     .attr('class', 'flex-row head sub')
+    .append('div')
+    .attr('class', 'flex-row nOfR')
+    let nOfR = container.select('.nOfR')
+    nOfR
     .append('p')
     .text('products')
+    nOfR
+    .append('p')
+    .text('n')
     .attr('id', 'productsSubhead')
 
 
@@ -498,7 +506,7 @@ filter
         let productsSubhead = d3.select("#productsSubhead")
         let totResults = cardSelected.size()
         productsSubhead.text(function () {
-            return 'products (' + totResults + ')'
+            return '('+ totResults + ' results)'
         })
 
 
@@ -826,6 +834,7 @@ function openArchive() {
 
     d3.select('#prepDiv').style('height', 'auto').style('min-height', 350 + 'px').style('padding', 70 + 'px ' + 0 + 'px ' + 30 + 'px ' + 0 + 'px')
 
+   d3.select('#recTextUx').text('< recipes')
 
     d3.select('.container').selectAll('.col')
         .style('max-width', 'auto')
@@ -857,6 +866,7 @@ function closeArchive() {
         // else if (j == 0) { filter._groups[0][j].style.order = '1' }
         filter.style('order', '1')
     }
+    d3.select('#recTextUx').text('recipes')
 
     d3.select('#openAllArchiveTitle')
         .text('Explore all')

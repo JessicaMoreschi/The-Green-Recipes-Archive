@@ -4,7 +4,7 @@ var cont2 = 0;
 var myFullpage = new fullpage('#fullpage', {
     // Navigation
     lockAnchors: true,
-    anchors: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10'],
+    anchors: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11'],
     sectionsColor: ['#fff', '#fff', '#fff', '#fff', '#fff', '#fff', '#85FF4D', '#fff', '#fff', '#fff'],
     navigation: true,
     navigationPosition: 'right',
@@ -93,7 +93,7 @@ var myFullpage = new fullpage('#fullpage', {
             }
         }
 
-        if (origin.anchor == 9 && destination.anchor == 10) {
+        if (origin.anchor == 10 && destination.anchor == 11) {
             window.open('pages/archive.html', '_self')
         }
     },

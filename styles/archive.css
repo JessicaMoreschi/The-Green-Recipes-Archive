@@ -79,7 +79,7 @@
     font-style: normal;
     font-size: 20pt;
     line-height: 20pt;
-    text-transform: normal;
+    text-transform: capitalize;
     height: auto;
     margin-top: -50px;
     max-width: 160px;
@@ -276,7 +276,7 @@ p.prepText,
     padding-top: 40px;
 }
 
-
+/* 
 .newFooter {
     position: absolute;
     bottom: 0;
@@ -287,4 +287,16 @@ p.prepText,
 
 .newFooter:hover {
     transform: translateY(0px)
+} */
+
+
+#productsSubhead{
+    text-transform:lowercase;
+    font-family: PPEditorial;
+    font-weight: normal;
+    font-style: italic;
+}
+
+.nOfR{
+    gap: 5px;
 }

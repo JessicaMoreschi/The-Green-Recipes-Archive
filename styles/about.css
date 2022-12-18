@@ -137,7 +137,7 @@ sup {
 display: none;
 }
 
-.newFooter {
+/* .newFooter {
     position: absolute;
     bottom: 0;
     background-color: white;
@@ -149,4 +149,4 @@ display: none;
 .newFooter:hover {
     transform: translateY(0px);
     z-index: 1;
-}
+} */
