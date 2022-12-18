@@ -117,7 +117,7 @@ for (let st = 4; st <= 8; st++) {
 
             d3.select('.recipe-row' + st).select('.t' + stt)
                 .append('img')
-                .attr('src', 'assets/icon/topic.svg')
+                .attr('src', 'assets/icon/keyword.svg')
             d3.select('.recipe-row' + st).select('.t' + stt).append('p')
                 .text('topic')
         }
@@ -143,7 +143,18 @@ for (let st = 4; st <= 8; st++) {
                 })
             d3.select('.recipe-row' + st).select('.t' + stt)
                 .append('img')
-                .attr('src', 'assets/icon/topic.svg')
+                .attr('src', function () {
+                    if (st == 7) {
+                        if (stt == 0) {
+                            return 'assets/icon/action.svg'
+                        } else { return 'assets/icon/dissemination.svg' }
+                    }
+                    else {
+                        if (stt == 0) {
+                            return 'assets/icon/data.svg'
+                        } else { return 'assets/icon/groundless.svg' }
+                    }
+                })
             d3.select('.recipe-row' + st).select('.t' + stt).append('p')
                 .text(function () {
                     if (st == 7) {
@@ -394,12 +405,10 @@ for (let i = 0; i < recipeIngredientTitle.length; i++) {
             .attr('src', function (d) {
                 if (i == 0) { return 'assets/icon/keyword.svg' }
                 else if (i == 1) { return 'assets/icon/topic.svg' }
-                else if (i == 2) {
-                   
+                else if (i == 2) {                
                      if (d.Aim == 'take action') { return 'assets/icon/action.svg' } else { return 'assets/icon/dissemination.svg' }
                     }
                 else { 
-    
                     if (d.Evidence == 'TRUE') { return 'assets/icon/data.svg' } else { return 'assets/icon/groundless.svg' } 
                 }
             })
