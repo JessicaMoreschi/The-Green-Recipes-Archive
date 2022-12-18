@@ -174,7 +174,7 @@ p {
 }
 
 
-#allCardImg {
+/* #allCardImg {
     height: 80%;
     bottom: auto;
     top: 50%;
@@ -183,7 +183,7 @@ p {
     animation-iteration-count: infinite;
     animation-timing-function: ease-in-out;
     animation-direction: alternate-reverse;
-}
+} */
 
 #allRecipesImg {
     height: 60%;

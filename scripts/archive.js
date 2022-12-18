@@ -49,13 +49,6 @@ container.select('#colDx').select('.sub')
         else { closeArchive(); closedRecipes() }
     })
 
-//////////qyaaaaaaa
-// container.select('#colDx') 
-// .append('div')
-// .attr('class', 'flex-row head sub')
-// .append('p')
-// .text('preparation')
-// .attr('id', 'productsSubhead')
 
 container.select('#colDx')
     .append('div')
@@ -63,9 +56,7 @@ container.select('#colDx')
     .attr('class', 'flex-column')
 
 let prepDiv = d3.select('#prepDiv')
-// prepDiv.append('p')
-// .attr('class', 'preptitle')
-// .text('About Preparation')
+
 
 prepDiv.append('img')
 .attr('src','assets/imgs/preparation.png')
