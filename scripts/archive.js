@@ -1,14 +1,11 @@
-// Interpret the data as the correct format. Use d3.csv or d3.tsv accordingly.
 data = d3.csv("assets/data/dataset.csv");
 let id = 0
-// let recipeClicked = 4;
-// Select the container where we will put our HTML elements
 let container = d3.select(".container");
 
+//header
 container.append('div')
     .attr('class', 'col')
     .attr('id', 'colSx')
-
     .append('div')
     .attr('class', 'flex-row head sub')
     .append('p')
@@ -23,26 +20,25 @@ container.select('#colSx')
 
 let openAllArchiveBoulean = false;
 
-
+//colonna dx (all products)
 container.append('div')
     .attr('class', 'col-md-auto')
     .attr('id', 'colDx')
 
-
+// subhead
 container.select('#colDx')
     .append('div')
     .attr('class', 'flex-row head sub')
     .append('div')
     .attr('class', 'flex-row nOfR')
-    let nOfR = container.select('.nOfR')
-    nOfR
+let nOfR = container.select('.nOfR')
+nOfR
     .append('p')
     .text('products')
-    nOfR
+nOfR
     .append('p')
     .text('n')
     .attr('id', 'productsSubhead')
-
 
 container.select('#colDx').select('.sub')
     .append('p')
@@ -57,35 +53,31 @@ container.select('#colDx').select('.sub')
         else { closeArchive(); closedRecipes() }
     })
 
-
 container.select('#colDx')
     .append('div')
     .attr('id', 'prepDiv')
     .attr('class', 'flex-column')
 
+
+/////////////////////////////////////// statistics
 let prepDiv = d3.select('#prepDiv')
 
-
 prepDiv.append('img')
-.attr('src','assets/imgs/preparation.png')
-.attr('id', 'statImg')
-
-
+    .attr('src', 'assets/imgs/preparation.png')
+    .attr('id', 'statImg')
 
 for (let st = 4; st <= 8; st++) {
     if (st == 4) {
         prepDiv
             .append('div')
             .attr('class', 'flex-row recipe-row' + st)
-
+        //tags row
         for (let stt = 0; stt < 2; stt++) {
             if (stt == 0) {
                 d3.select('.recipe-row' + st).append('p')
-                .attr('class', 'preptitle')
-                .text('Selected tags :')
+                    .attr('class', 'preptitle')
+                    .text('Selected tags :')
             }
-
-
             d3.select('.recipe-row' + st)
                 .append('div')
                 .attr('class', 'roundTag t' + stt)
@@ -95,7 +87,7 @@ for (let st = 4; st <= 8; st++) {
             d3.select('.recipe-row' + st).select('.t' + stt).append('p')
                 .text('topic')
         }
-    }
+    } // description
     else if (st == 5) {
         prepDiv.append('p')
             .attr('class', 'prepText')
@@ -106,12 +98,11 @@ for (let st = 4; st <= 8; st++) {
         prepDiv
             .append('div')
             .attr('class', 'flex-row recipe-row' + st)
-
+        //keyword
         for (let stt = 0; stt < 1; stt++) {
             d3.select('.recipe-row' + st).append('p')
                 .attr('class', 'preptitle')
                 .text('Most used Keyword :')
-
             d3.select('.recipe-row' + st)
                 .append('div')
                 .attr('class', 'roundTag t' + stt)
@@ -124,16 +115,17 @@ for (let st = 4; st <= 8; st++) {
         }
     }
     else {
+        //action
         prepDiv
             .append('div')
             .attr('class', 'flex-row recipe-row' + st)
-
+        // percentuale action
         d3.select('.recipe-row' + st)
             .append('p')
             .text('15%')
             .attr('class', 'nPercText')
             .style('order', '1')
-
+        //action tags
         for (let stt = 0; stt < 2; stt++) {
             d3.select('.recipe-row' + st)
                 .append('div')
@@ -156,6 +148,7 @@ for (let st = 4; st <= 8; st++) {
                         } else { return 'assets/icon/groundless.svg' }
                     }
                 })
+            //evidence
             d3.select('.recipe-row' + st).select('.t' + stt).append('p')
                 .text(function () {
                     if (st == 7) {
@@ -182,14 +175,13 @@ for (let st = 4; st <= 8; st++) {
                     }
                 })
         }
-
+        //stat % 2
         d3.select('.recipe-row' + st)
             .append('div')
             .attr('class', 'statRec')
             .style('order', '2')
             .append('div')
             .attr('class', 'statRecActive')
-
         d3.select('.recipe-row' + st)
             .append('p')
             .text('15%')
@@ -200,39 +192,22 @@ for (let st = 4; st <= 8; st++) {
 }
 
 
+/////////////////////////////////////// products
 
-
-
-
-
-
-
-
-
-
-
-
+// Load data
 container.select('#colDx')
     .append('div')
     .attr('id', 'all-cards')
     .attr('class', 'card-columns')
 
-
 let cards = d3.select("#all-cards")
 
-
-
-
-// Load data
 data.then(function (data) {
-    // Join your data to the creation of div elements to the same number of items in your dataset.
     let card = cards.selectAll("div")
         .data(data)
         .join("div")
         .attr("class", "flex-column card")
-
-    // We append to the initial card all the parts required.
-    // HEADER
+    //card header
     card.append("div")
         .attr("class", "flex-column cardHeader")
         .append('p')
@@ -243,9 +218,7 @@ data.then(function (data) {
         .attr('target', '_blank')
         .append('img')
         .attr('src', 'assets/icon/link.svg')
-
-
-
+    //context 
     card.append("p")
         .attr("class", "card-content")
         .text(function (d) {
@@ -257,7 +230,7 @@ data.then(function (data) {
         .style('font-style', function (d) {
             if (d.Typology == 'statement') { return 'italic' }
         })
-
+        //context underline with mark.js
         .attr('onload', function (d) {
             var cardContext = card.selectAll('.card-content').nodes()[id]
             var instance = new Mark(cardContext)
@@ -266,14 +239,12 @@ data.then(function (data) {
         })
 
 
-
+    //tags
     card.append("div")
         .attr("class", "flex-row cardFooter")
-    //tags
     var allBtns = ['Keyword', 'Animal', 'Distribution', 'Resources', 'Food', 'Management', 'Waste', 'Actions', 'Evidence', 'Aim'];
 
     for (let i = 0; i < allBtns.length; i++) {
-
         card.select(".cardFooter")
             .append('div')
             .attr("class", function () {
@@ -289,19 +260,12 @@ data.then(function (data) {
                 }
             })
 
-        // .style('opacity', function (d) {
-        //     if (i >= 8) {
-        //         if ((d[allBtns[i]] == 'FALSE') || (d[allBtns[i]] == 'dissemination')) {
-        //             return "0.3"
-        //         }
-        //     }
-        // })
         tag.append('img')
             .attr('src', function (d) {
                 if (i == 0) { return 'assets/icon/keyword.svg' }
                 else if (i <= 7) { return 'assets/icon/topic.svg' }
-                else if (i == 8) { 
-                    if (d.Evidence == 'TRUE') { return 'assets/icon/data.svg' } else { return 'assets/icon/groundless.svg' } 
+                else if (i == 8) {
+                    if (d.Evidence == 'TRUE') { return 'assets/icon/data.svg' } else { return 'assets/icon/groundless.svg' }
                 }
                 else {
                     if (d.Aim == 'take action') { return 'assets/icon/action.svg' } else { return 'assets/icon/dissemination.svg' }
@@ -316,30 +280,18 @@ data.then(function (data) {
                 else if (i == 8) { if (d.Evidence == 'TRUE') { return 'statistics' } else if (d.Evidence == 'FALSE') { return 'groundless' } }
                 else if (i == 9) { return d.Aim }
             })
-
-        // tag.style('opacity', function (d) {
-        //     if (i == 8) {
-        //         if (d[allBtns[i]] == 'TRUE') {
-        //             return '1'
-        //         } else { return '0.3' }
-        //     }
-        //     else if (i == 9) {
-        //         if (d[allBtns[i]] == 'take action') {
-        //             return '1'
-        //         } else { return '0.3' }
-        //     }
-        // })
     }
 })
 
 
 
-//filter
+/////////////////////////////////////// recipes
 
 let filterDiv = d3.select("#all-filters")
 filterDiv.append('img')
     .attr('id', 'archiveImgSide')
     .attr('src', 'assets/imgs/ArchiveSide.png')
+//load data from recipes.js
 let filter = filterDiv.selectAll("div")
     .data(recipes)
     .join("div")
@@ -354,12 +306,14 @@ filter.append("svg").attr("width", 50).attr("height", 50).style('background-colo
 filter.append("div")
     .attr("class", "flex-column card-body")
 var filterBody = filter.select('.card-body')
+//title
 filterBody
     .append('p')
     .attr("class", "card-text")
     .text(function (a) {
         return a.title
     })
+//description
 filterBody
     .append('p')
     .text(function (d) { return d.desc })
@@ -368,30 +322,28 @@ filterBody
     .append('h5')
     .text('ingredients')
 
-
-//iterate
-let recipeIngredientTitle = ['Keyword', 'Topic', 'Aim', 'Evidence'];
+//tags (ingredients)
+let recipeIngredientTitle = ['Keyword', 'Topic', 'Aim', 'Evidence']; //iterate x each row
 for (let i = 0; i < recipeIngredientTitle.length; i++) {
     filterBody
         .append('div')
         .attr("class", "flex-row recipe-row" + i)
     let recipeRow = filterBody.select('.recipe-row' + i)
     recipeRow
-        .append('div')//nome
+        .append('div')
         .attr("class", "recipe-ingredient-title")
         .append('p')
         .text(function () {
             return recipeIngredientTitle[i] + ' :'
         })
     recipeRow
-        .append('div')//nome
+        .append('div')
         .attr("class", "flex-column recipe-row-T" + i)
     let recipeRowT = recipeRow.select('.recipe-row-T' + i)
 
-    //iterate
 
+    //tags in each row
     let nOfTags = 1
-
     if (i == 1) { nOfTags = 2 } else { nOfTags = 1 }
     for (let j = 0; j < nOfTags; j++) {
         recipeRowT.append('div')
@@ -401,21 +353,21 @@ for (let i = 0; i < recipeIngredientTitle.length; i++) {
                 if (i < 2) { return "roundTag" }
                 else { return "squareTag" }
             })
-
         tag.append('img')
             .attr('src', function (d) {
                 if (i == 0) { return 'assets/icon/keyword.svg' }
                 else if (i == 1) { return 'assets/icon/topic.svg' }
-                else if (i == 2) {                
-                     if (d.Aim == 'take action') { return 'assets/icon/action.svg' } else { return 'assets/icon/dissemination.svg' }
-                    }
-                else { 
-                    if (d.Evidence == 'TRUE') { return 'assets/icon/data.svg' } else { return 'assets/icon/groundless.svg' } 
+                else if (i == 2) {
+                    if (d.Aim == 'take action') { return 'assets/icon/action.svg' } else { return 'assets/icon/dissemination.svg' }
+                }
+                else {
+                    if (d.Evidence == 'TRUE') { return 'assets/icon/data.svg' } else { return 'assets/icon/groundless.svg' }
                 }
             })
 
         tag.append("p")
             .text(function (d) {
+                //create array of topic tags
                 let recipeTopicArray = []
                 if (i == 0) { return d.Keyword }
                 else if (i == 1) {
@@ -427,15 +379,15 @@ for (let i = 0; i < recipeIngredientTitle.length; i++) {
                     if (d.Waste == 'TRUE') { recipeTopicArray.push('Waste') }
                     if (d.Actions == 'TRUE') { recipeTopicArray.push('Actions') }
 
+                    // return the 2 topics for each recipe
                     if (j == 0) { return recipeTopicArray[0] }
                     else { return recipeTopicArray[1] }
                 }
+                //aim tag
                 else if (i == 2) {
-                    // if (d.Aim != undefined) {
-                    //     return 'Take action'
-                    // } 
                     return d.Aim
                 }
+                //evidence tag
                 else if (i == 3) {
                     if (d.Evidence == 'TRUE') { return 'statistics' } else if (d.Evidence == 'FALSE') { return 'groundless' }
                 }
@@ -444,20 +396,20 @@ for (let i = 0; i < recipeIngredientTitle.length; i++) {
 }
 
 
+/////////////////////////////////////// archive engine
 var archiveOpen = false
-//fine iterazione
 filter
     .style('cursor', 'pointer')
+    //detect wich recipe I've clicked
     .on('click', function (btnId) {
-
-
         recipeClicked = btnId.srcElement.__data__.recipeId;
         let recipeIdN = recipes[btnId.srcElement.__data__.recipeId];
+        //select all products
         let card = d3.select("#all-cards").selectAll('.card')
         card
-            .style('display', 'none')
+            .style('display', 'none') //hide them all
         let cardSelected = card
-            .filter(function (d) {
+            .filter(function (d) { //filter: results only the products that fullfits the recipe requirements
                 return (
                     (((d.Aim == recipeIdN.Aim) || (recipeIdN.Aim == undefined)) &&
                         ((d.Keyword == recipeIdN.Keyword) || (recipeIdN.Keyword == undefined)) &&
@@ -472,65 +424,68 @@ filter
                 )
             })
         cardSelected
-            .style('display', 'inline-flex')
+            .style('display', 'inline-flex') //return display to selected products
 
+
+        // engine to highlight active tags
         let cardP = cardSelected.select('.cardFooter').selectAll('div').select('p');
-
-        let tagsActive = []
-
+        let tagsActive = [] //push here active recipes tags requirements
         for (let j = 0; j < Object.keys(recipeIdN).length; j++) {
             let key = Object.keys(recipeIdN)[j]
             if (recipeIdN[key] == 'TRUE') {
                 tagsActive.push(key)
             }
-        }
+        } // check if product tags fullfits the requirements
         for (let i = 0; i < cardSelected.select('.cardFooter').selectAll('div').nodes().length; i++) {
+            //topics
             if ((cardP.nodes()[i].innerText.localeCompare(tagsActive[0], 'en', { sensitivity: 'base' }) == 0) || (cardP.nodes()[i].innerText.localeCompare(tagsActive[1], 'en', { sensitivity: 'base' }) == 0)) {
-                cardSelected.select('.cardFooter').selectAll('div').nodes()[i].style.backgroundColor = 'var(--secondary-color)'
-            }
+                cardSelected.select('.cardFooter').selectAll('div').nodes()[i].style.backgroundColor = 'var(--secondary-color)' //return color purple
+            }//keyword
             else if (cardP.nodes()[i].innerText.localeCompare(recipeIdN.Keyword, 'en', { sensitivity: 'base' }) == 0) {
-                cardSelected.select('.cardFooter').selectAll('div').nodes()[i].style.backgroundColor = 'var(--primary-color)'
-            }
-            else { cardSelected.select('.cardFooter').selectAll('div').nodes()[i].style.backgroundColor = 'white' }
+                cardSelected.select('.cardFooter').selectAll('div').nodes()[i].style.backgroundColor = 'var(--primary-color)' //return color green
+            }//else 
+            else { cardSelected.select('.cardFooter').selectAll('div').nodes()[i].style.backgroundColor = 'white' } //return white
         }
 
-
-
-
+        // input to open the archive
         openRecipe(btnId)
         if (archiveOpen == false) {
             openArchive()
-
         }
-
+        //n. of products displayed
         let productsSubhead = d3.select("#productsSubhead")
         let totResults = cardSelected.size()
         productsSubhead.text(function () {
-            return '('+ totResults + ' results)'
+            return '(' + totResults + ' results)'
         })
 
-
-        //statistiche
+        /////////////////////////////////////statistics engine
+        //take data from clicked recipe
         d3.select('.recipe-row7').select('.t0')
             .style('opacity', function () {
+                // % take action (sx)
                 if (recipeIdN.TaPerc < 50) { return 0.3 }
                 else { return 1 }
             })
         d3.select('.recipe-row7').select('.t1')
             .style('opacity', function () {
+                // % take action (dx)
                 if (recipeIdN.TaPerc > 50) { return 0.3 }
                 else { return 1 }
             })
         d3.select('.recipe-row8').select('.t0')
             .style('opacity', function () {
+                // % evidence (sx)
                 if (recipeIdN.GrPerc < 50) { return 0.3 }
                 else { return 1 }
             })
         d3.select('.recipe-row8').select('.t1')
             .style('opacity', function () {
+                // % evidence (dx)
                 if (recipeIdN.GrPerc > 50) { return 0.3 }
                 else { return 1 }
             })
+        //tags
         d3.select('.recipe-row4').select('.t0').select('p')
             .text(function () { return tagsActive[0] })
         d3.select('.recipe-row4').select('.t1').select('p')
@@ -566,8 +521,10 @@ filter
 
 
 
-// filtri personalizzabili
+////////////////////////////////////// archivio 'explore all'
+//filters
 let formArrayTitles = ['Keyword', 'Topic', 'Aim', 'Evidence']
+//filters options
 let formArray = {
     Keyword: ['greenhouse gas', 'impact', 'sustainability', 'commitment', 'energy', 'responsibility', 'environmental', 'planet', 'recycle', 'emissions', 'natural', 'deforestation', 'green', 'climate change', 'carbon footprint', 'renewable energy', 'single-use', 'organic', 'eco-friendly', 'biodegradable', 'net-zero', 'zero-waste', 'preservation', 'reforestation'],
     Topic: ['Actions', 'Animal', 'Distribution', 'Resources', 'Food', 'Management', 'Waste'],
@@ -580,7 +537,7 @@ d3.select('#colSx')
     .attr('id', 'filtriCustom')
 let filtriCustom = d3.select('#colSx').select('#filtriCustom')
 
-
+//create form
 for (let f = 0; f < formArrayTitles.length; f++) {
     filtriCustom
         .append('form')
@@ -591,11 +548,12 @@ for (let f = 0; f < formArrayTitles.length; f++) {
         .attr('for', function () { return formArrayTitles[f] })
         .text(function () { return formArrayTitles[f] })
 
+    //take data from form click and push them to the "ghost recipe obj"
     divFormK
         .append('select')
         .on('change', function () {
             let card = d3.select("#all-cards").selectAll('.card')
-
+            //topic
             if (this.name == 'Topic') {
                 for (let v = 0; v < formArray.Topic.length; v++) {
                     if (formArray.Topic[v] == this.value) {
@@ -603,12 +561,12 @@ for (let f = 0; f < formArrayTitles.length; f++) {
                     }
                     else { ghostRecipe[formArray.Topic[v]] = 'undefined' }
                 }
-
             } else { ghostRecipe[this.name] = this.value }
 
             card
                 .style('display', 'none')
             let cardSelected = card
+                //filter product (same as before, but with the custom recipe created)
                 .filter(function (d) {
                     return (
                         (((d.Aim == ghostRecipe.Aim) || (ghostRecipe.Aim == 'undefined')) &&
@@ -634,21 +592,21 @@ for (let f = 0; f < formArrayTitles.length; f++) {
                 })
             cardSelected
                 .style('display', 'inline-flex')
-
+            //change n.of product displayed
             let productsSubhead2 = d3.select("#productsSubhead")
             let totResults2 = cardSelected.size()
             productsSubhead2.text(function () {
                 return 'products (' + totResults2 + ')'
             })
-
+            //reset scroll when recipe click
             document.getElementById('colDx').scrollTo({
                 top: 0,
                 left: 0,
                 behavior: 'smooth'
             });
 
+            // highlight active tags (same as before)
             let cardP = cardSelected.select('.cardFooter').selectAll('div').select('p');
-
             let tagsActive = []
 
             for (let j = 0; j < Object.keys(ghostRecipe).length; j++) {
@@ -687,9 +645,6 @@ for (let f = 0; f < formArrayTitles.length; f++) {
         formK
             .append('option')
             .attr('value', formArray[formArrayTitles[f]][k])
-            // .text(formArray[formArrayTitles[f]][k])
-
-
             .text(function () {
                 if (f == 3) {
                     if (formArray[formArrayTitles[f]][k] == 'TRUE') {
@@ -701,6 +656,7 @@ for (let f = 0; f < formArrayTitles.length; f++) {
             })
     }
 }
+//reset filters
 filtriCustom
     .append('div')
     .attr('class', 'roundTag')
@@ -721,15 +677,14 @@ filtriCustom
         }
         for (let r = 0; r < 10; r++) {
             ghostRecipe;
-
         }
-
+        //reset n.of product text
         let productsSubhead3 = d3.select("#productsSubhead")
         let totResults3 = card.size()
         productsSubhead3.text(function () {
             return 'products (' + totResults3 + ')'
         })
-
+        //reset scroll
         document.getElementById('colDx').scrollTo({
             top: 0,
             left: 0,
@@ -738,7 +693,7 @@ filtriCustom
     })
 
 
-
+//function to close recipes (reset it to initial values)
 function closedRecipes() {
     let filterDiv = d3.select("#all-filters")
     let filter = filterDiv.selectAll(".recipe");
@@ -755,29 +710,30 @@ function closedRecipes() {
     }
 }
 
+//function to open recipe
 function openRecipe(btnId) {
+    //display all cards if clicked on explore all
     if (btnId == 0) {
         let card = d3.select("#all-cards").selectAll('.card')
         card.style('display', 'inline-flex')
 
         card.selectAll('div')
             .style('background-color', 'white')
-
+        //change result txt
         let productsSubhead = d3.select("#productsSubhead")
         let totResults = card.size()
         productsSubhead.text(function () {
             return 'products (' + totResults + ')'
         })
 
-
     } else {
         recipeClicked = btnId.srcElement.__data__.recipeId;
         for (let j = 0; j < recipes.length; j++) {
+            //format to apply at not clicked recipes
             if (j != recipeClicked) {
                 if (archiveOpen == false) {
                     filter._groups[0][j].style.order = '1'
                 }
-
                 for (let i = 0; i < 4; i++) {
                     filter.selectAll('.orecchio')._groups[j][i].style.display = 'block'
                 }
@@ -790,10 +746,10 @@ function openRecipe(btnId) {
                 }
             }
             else if (j == recipeClicked) {
+                //format to apply to active recipe
                 if (archiveOpen == false) {
                     filter._groups[0][j].style.order = '0'
                 }
-
                 for (let i = 0; i < 4; i++) {
                     filter.selectAll('.orecchio')._groups[j][i].style.display = 'none'
                 }
@@ -812,7 +768,6 @@ function openRecipe(btnId) {
                     behavior: 'smooth'
                 });
 
-
                 if (filter.select('.recipe-row-T0').select('.roundTag').select('p')._groups[0][j].innerText != '') { filter.select('.recipe-row-T0').select('.roundTag')._groups[0][j].style.backgroundColor = 'var(--primary-color)' };
 
                 if (filter.select('.recipe-row-T1').select('.roundTag').select('p')._groups[0][j].innerText != '') {
@@ -828,13 +783,13 @@ function openRecipe(btnId) {
 
 
 
-
+//function to open archive (col dx)
 function openArchive() {
     archiveOpen = true
 
     d3.select('#prepDiv').style('height', 'auto').style('min-height', 350 + 'px').style('padding', 70 + 'px ' + 0 + 'px ' + 30 + 'px ' + 0 + 'px')
 
-   d3.select('#recTextUx').text('< recipes')
+    d3.select('#recTextUx').text('< recipes')
 
     d3.select('.container').selectAll('.col')
         .style('max-width', 'auto')
@@ -853,17 +808,15 @@ function openArchive() {
     d3.select('#archiveImgSide')
         .style('display', 'none')
 
-        d3.select('#all-cards').style('padding-top', '40px')
-
+    d3.select('#all-cards').style('padding-top', '40px')
 }
 
+//function to close archive (reset to initial conditions)
 function closeArchive() {
     openAllArchiveBoulean = false;
     archiveOpen = false
 
     if (archiveOpen == false) {
-        // if (j != 0) { filter._groups[0][j].style.order = '0.5' }
-        // else if (j == 0) { filter._groups[0][j].style.order = '1' }
         filter.style('order', '1')
     }
     d3.select('#recTextUx').text('recipes')
@@ -895,28 +848,21 @@ function closeArchive() {
         .delay(1500)
         .style('display', 'initial')
 
-    // d3.select('.card-columns').style('column-count', '3')
-
-
     d3.selectAll('#all-filters')
         .style('display', 'flex')
     d3.selectAll('#filtriCustom')
         .style('display', 'none')
 
-
     d3.selectAll('#all-filters')
         .style('opacity', '1')
-    // const t = d3.timer((elapsed) => {
-    //     t.stop();
-    // }, 1500);
-
 }
 
+
+//function to open all archive ('explore all')
 function openAllArchive() {
     openAllArchiveBoulean = true;
     d3.select('#openAllArchiveTitle')
         .text('Close')
-
     openRecipe(0)
 
     document.getElementById('colDx').scrollTo({
@@ -939,8 +885,6 @@ function openAllArchive() {
         .duration(2000)
         .style('width', '100%')
 
-    // d3.select('.card-columns').style('column-count', '4')
-
     d3.select('#prepDiv').style('height', 0 + 'px').style('min-height', 0 + 'px').style('padding', 0 + 'px ' + 0 + 'px ' + 0 + 'px ' + 0 + 'px')
 
 
@@ -954,9 +898,3 @@ function openAllArchive() {
         t.stop();
     }, 1500);
 }
-
-
-
-
-
-

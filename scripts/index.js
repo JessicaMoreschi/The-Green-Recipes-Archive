@@ -58,13 +58,6 @@ var myFullpage = new fullpage('#fullpage', {
     responsiveSlides: false,
     parallax: false,
     parallaxOptions: { type: 'reveal', percentage: 62, property: 'translate' },
-    // dropEffect: false,
-    // dropEffectOptions: { speed: 2300, color: '#F82F4D', zIndex: 9999},
-    // waterEffect: false,
-    // waterEffectOptions: { animateContent: true, animateOnMouseMove: true},
-    // cards: false,
-    // cardsOptions: {perspective: 100, fadeContent: true, fadeBackground: true},
-
     // Custom selectors
     sectionSelector: '.section',
     slideSelector: '.slide',
@@ -75,15 +68,17 @@ var myFullpage = new fullpage('#fullpage', {
 
     // Events
     beforeLeave: function (origin, destination, direction, trigger) {
-        if (cont < 2) {
-            if (origin.anchor == 5 && destination.anchor == 6) { //pagina su cui sono e pagina su cui vado
-                cont++; //incremento 
-                document.getElementById('imgToMove').style.left = 80 + '%'; //azione mia
- 
-                return cont === 2; //quante volte devo scroll prima che cambi
+         // block the scroll and fire action
+        if (cont < 2) { 
+            // move img to the left
+            if (origin.anchor == 5 && destination.anchor == 6) { 
+                cont++; 
+                document.getElementById('imgToMove').style.left = 80 + '%'; 
+                return cont === 2; 
             }
         }
         if (cont2 < 2) {
+            // see all contexts
             if ((origin.anchor == 7 && destination.anchor == 8)) {
                 cont2++;
                 document.getElementById('clip-circle').style.transition = 'all 1000ms ease'
@@ -92,13 +87,15 @@ var myFullpage = new fullpage('#fullpage', {
                 return cont2 === 2;
             }
         }
-
+        //open archive on scroll
         if (origin.anchor == 10 && destination.anchor == 11) {
             window.open('pages/archive.html', '_self')
         }
     },
+
     onLeave: function (origin, destination, direction, trigger) {
         if (origin.anchor == 1 && destination.anchor == 2) {
+            //reset slides after animations
             document.getElementById('landingImg').style.transform = 'translate(-50%, 0%)'
             document.getElementById('landingContainer').style.transitionDelay = '500ms !important'
             document.getElementById('landingContainer').style.opacity = '0'
@@ -123,28 +120,26 @@ var myFullpage = new fullpage('#fullpage', {
             document.getElementById('landingContainer').style.opacity = '0'
             document.getElementById('landingContainer').style.zIndex = '0'
         }
-
-
-
     },
     afterLoad: function (origin, destination, direction, trigger) {
         if (destination.anchor == 1) {
+            //animate title homepage
             document.getElementById('tag1').style.transform = 'translate(-210px, -160px)';
             document.getElementById('tag2').style.transform = 'translate(50px, -75px)';
             document.getElementById('tag3').style.transform = 'translate(-315px, 15px)';
             document.getElementById('tag4').style.transform = 'translate(75px, 120px)';
         }
         if (destination.anchor == 2) {
+            //rise hands and green rectangle
             document.getElementById('landingImg').style.transform = 'translate(-50%, +100%)'
-   
                 document.getElementById('rect').style.bottom = 0 + 'vh';
-            
         }
         if (destination.anchor == 6) {
             document.getElementById('imgToAppear').style.opacity = 1;
         }
 
         if (destination.anchor == 7) {
+            //lens animation
             let cursX
             let cursY
             document.getElementById('fullpage').onmousemove = function (event) {
@@ -157,6 +152,7 @@ var myFullpage = new fullpage('#fullpage', {
         }
 
         if (destination.anchor == 9) {
+            //rise all recipes
             document.getElementById('allRecipesImg').style.transform = 'translate(-50%, 40%)';
         }
     },
@@ -169,5 +165,5 @@ var myFullpage = new fullpage('#fullpage', {
     onScrollOverflow: function (section, slide, position, direction) { }
 });
 
-
+//hide access to last 'fake' slide (necessary to permit access to archive on scroll)
 d3.select('#fp-nav').select('ul').selectAll('li').nodes()[d3.select('#fp-nav').select('ul').selectAll('li').nodes().length - 1].style.display = 'none'

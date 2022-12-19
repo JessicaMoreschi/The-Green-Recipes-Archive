@@ -1,3 +1,4 @@
+//all recipes
 const recipes = [
     {  
         recipeId: 0,
@@ -163,11 +164,9 @@ const recipes = [
         GrPerc: '13',
         StatisticText: '“Your life will never be-o the same”. Bio-Scatter Nugget Burger will make you fall in love with its incredible personality. Distribution and Food are its most lovable characteristics. But you will get mad about it even more when you get to know its best virtue: Natural. Don’t let its 56% of disseminated behavior and 87% groundless statements let you doubt its promising quality. It will turn your life upside down.'
     }
-    
-   
-
 ]
 
+//custom filters
 let ghostRecipe={
     Keyword: 'undefined',
     Actions: 'undefined',

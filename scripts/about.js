@@ -3,7 +3,6 @@ var myFullpage = new fullpage('#fullpage', {
     // Navigation
     lockAnchors: false,
     anchors: ['0', '1', '2'],
-    // sectionsColor: ['#85FF4D', '#fff', '#fff', '#fff', '#fff', '#fff', '#85FF4D'],
     navigation: false,
     navigationPosition: 'right',
     slidesNavigation: false,
@@ -29,7 +28,6 @@ var myFullpage = new fullpage('#fullpage', {
     offsetSections: false,
     resetSliders: true,
     fadingEffect: false,
-    // normalScrollElements: '#element1, .element2',
     scrollOverflow: true,
     scrollOverflowMacStyle: false,
     scrollOverflowReset: true,
@@ -56,12 +54,6 @@ var myFullpage = new fullpage('#fullpage', {
     responsiveSlides: false,
     parallax: false,
     parallaxOptions: { type: 'reveal', percentage: 62, property: 'translate' },
-    // dropEffect: false,
-    // dropEffectOptions: { speed: 2300, color: '#F82F4D', zIndex: 9999},
-    // waterEffect: false,
-    // waterEffectOptions: { animateContent: true, animateOnMouseMove: true},
-    // cards: false,
-    // cardsOptions: {perspective: 100, fadeContent: true, fadeBackground: true},
 
     // Custom selectors
     sectionSelector: '.section',
