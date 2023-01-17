@@ -268,7 +268,7 @@ p.prepText,
 .statRecActive {
     height: 100%;
     width: 0%;
-    background-color: var(--primary-color);
+    background-color: #dddddd;
     transition: all 1000ms ease;
 }
 

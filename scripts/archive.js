@@ -102,7 +102,7 @@ for (let st = 4; st <= 8; st++) {
         for (let stt = 0; stt < 1; stt++) {
             d3.select('.recipe-row' + st).append('p')
                 .attr('class', 'preptitle')
-                .text('Most used Keyword :')
+                .text('Selected Keyword :')
             d3.select('.recipe-row' + st)
                 .append('div')
                 .attr('class', 'roundTag t' + stt)
@@ -159,7 +159,7 @@ for (let st = 4; st <= 8; st++) {
                     else {
                         if (stt == 0) {
                             return 'statistics'
-                        } else { return 'groundless' }
+                        } else { return 'no data' }
                     }
                 })
                 .style('width', function () {
@@ -277,7 +277,7 @@ data.then(function (data) {
                     return d.Keyword
                 }
                 else if (i <= 7) { return allBtns[i] }
-                else if (i == 8) { if (d.Evidence == 'TRUE') { return 'statistics' } else if (d.Evidence == 'FALSE') { return 'groundless' } }
+                else if (i == 8) { if (d.Evidence == 'TRUE') { return 'statistics' } else if (d.Evidence == 'FALSE') { return 'no data' } }
                 else if (i == 9) { return d.Aim }
             })
     }
@@ -353,6 +353,8 @@ for (let i = 0; i < recipeIngredientTitle.length; i++) {
                 if (i < 2) { return "roundTag" }
                 else { return "squareTag" }
             })
+        if (i == 0) { tag.style("background-color", "var(--primary-color)") }
+        if (i == 1) { tag.style("background-color", "var(--secondary-color)") }
         tag.append('img')
             .attr('src', function (d) {
                 if (i == 0) { return 'assets/icon/keyword.svg' }
@@ -389,7 +391,7 @@ for (let i = 0; i < recipeIngredientTitle.length; i++) {
                 }
                 //evidence tag
                 else if (i == 3) {
-                    if (d.Evidence == 'TRUE') { return 'statistics' } else if (d.Evidence == 'FALSE') { return 'groundless' }
+                    if (d.Evidence == 'TRUE') { return 'statistics' } else if (d.Evidence == 'FALSE') { return 'no data' }
                 }
             })
     }
@@ -461,30 +463,30 @@ filter
 
         /////////////////////////////////////statistics engine
         //take data from clicked recipe
-        d3.select('.recipe-row7').select('.t0')
-            .style('opacity', function () {
-                // % take action (sx)
-                if (recipeIdN.TaPerc < 50) { return 0.3 }
-                else { return 1 }
-            })
-        d3.select('.recipe-row7').select('.t1')
-            .style('opacity', function () {
-                // % take action (dx)
-                if (recipeIdN.TaPerc > 50) { return 0.3 }
-                else { return 1 }
-            })
-        d3.select('.recipe-row8').select('.t0')
-            .style('opacity', function () {
-                // % evidence (sx)
-                if (recipeIdN.GrPerc < 50) { return 0.3 }
-                else { return 1 }
-            })
-        d3.select('.recipe-row8').select('.t1')
-            .style('opacity', function () {
-                // % evidence (dx)
-                if (recipeIdN.GrPerc > 50) { return 0.3 }
-                else { return 1 }
-            })
+        // d3.select('.recipe-row7').select('.t0')
+        //     .style('opacity', function () {
+        //         // % take action (sx)
+        //         if (recipeIdN.TaPerc < 50) { return 0.3 }
+        //         else { return 1 }
+        //     })
+        // d3.select('.recipe-row7').select('.t1')
+        //     .style('opacity', function () {
+        //         // % take action (dx)
+        //         if (recipeIdN.TaPerc > 50) { return 0.3 }
+        //         else { return 1 }
+        //     })
+        // d3.select('.recipe-row8').select('.t0')
+        //     .style('opacity', function () {
+        //         // % evidence (sx)
+        //         if (recipeIdN.GrPerc < 50) { return 0.3 }
+        //         else { return 1 }
+        //     })
+        // d3.select('.recipe-row8').select('.t1')
+        //     .style('opacity', function () {
+        //         // % evidence (dx)
+        //         if (recipeIdN.GrPerc > 50) { return 0.3 }
+        //         else { return 1 }
+        //     })
         //tags
         d3.select('.recipe-row4').select('.t0').select('p')
             .text(function () { return tagsActive[0] })
@@ -650,7 +652,7 @@ for (let f = 0; f < formArrayTitles.length; f++) {
                     if (formArray[formArrayTitles[f]][k] == 'TRUE') {
                         return 'statistics'
                     } else if (formArray[formArrayTitles[f]][k] == 'FALSE') {
-                        return 'groundless'
+                        return 'no data'
                     }
                 } else if (f != 3) { return formArray[formArrayTitles[f]][k] }
             })
@@ -703,10 +705,10 @@ function closedRecipes() {
         }
         filter.select('.card-body').select('.card-text')._groups[0][j].style.marginTop = "-50px"
         filter._groups[0][j].style.opacity = '1'
-        filter.select('.recipe-row-T0').select('.roundTag')._groups[0][j].style.backgroundColor = 'white'
-        for (let n = 0; n < filter.select('.recipe-row-T1').selectAll('.roundTag')._groups[j].length; n++) {
-            filter.select('.recipe-row-T1').selectAll('.roundTag')._groups[j][n].style.backgroundColor = 'white'
-        }
+        // filter.select('.recipe-row-T0').select('.roundTag')._groups[0][j].style.backgroundColor = 'white'
+        // for (let n = 0; n < filter.select('.recipe-row-T1').selectAll('.roundTag')._groups[j].length; n++) {
+        //     filter.select('.recipe-row-T1').selectAll('.roundTag')._groups[j][n].style.backgroundColor = 'white'
+        // }
     }
 }
 
@@ -717,8 +719,9 @@ function openRecipe(btnId) {
         let card = d3.select("#all-cards").selectAll('.card')
         card.style('display', 'inline-flex')
 
-        card.selectAll('div')
-            .style('background-color', 'white')
+        // card.selectAll('div')
+        //     .style('background-color', 'white')
+
         //change result txt
         let productsSubhead = d3.select("#productsSubhead")
         let totResults = card.size()
@@ -740,10 +743,10 @@ function openRecipe(btnId) {
                 filter.select('.card-body').select('.card-text')._groups[0][j].style.marginTop = "-50px"
 
                 filter._groups[0][j].style.opacity = '0.3'
-                filter.select('.recipe-row-T0').select('.roundTag')._groups[0][j].style.backgroundColor = 'white'
-                for (let n = 0; n < filter.select('.recipe-row-T1').selectAll('.roundTag')._groups[j].length; n++) {
-                    filter.select('.recipe-row-T1').selectAll('.roundTag')._groups[j][n].style.backgroundColor = 'white'
-                }
+                // filter.select('.recipe-row-T0').select('.roundTag')._groups[0][j].style.backgroundColor = 'white'
+                // for (let n = 0; n < filter.select('.recipe-row-T1').selectAll('.roundTag')._groups[j].length; n++) {
+                //     filter.select('.recipe-row-T1').selectAll('.roundTag')._groups[j][n].style.backgroundColor = 'white'
+                // }
             }
             else if (j == recipeClicked) {
                 //format to apply to active recipe
@@ -768,13 +771,13 @@ function openRecipe(btnId) {
                     behavior: 'smooth'
                 });
 
-                if (filter.select('.recipe-row-T0').select('.roundTag').select('p')._groups[0][j].innerText != '') { filter.select('.recipe-row-T0').select('.roundTag')._groups[0][j].style.backgroundColor = 'var(--primary-color)' };
+                // if (filter.select('.recipe-row-T0').select('.roundTag').select('p')._groups[0][j].innerText != '') { filter.select('.recipe-row-T0').select('.roundTag')._groups[0][j].style.backgroundColor = 'var(--primary-color)' };
 
-                if (filter.select('.recipe-row-T1').select('.roundTag').select('p')._groups[0][j].innerText != '') {
-                    for (let n = 0; n < filter.select('.recipe-row-T1').selectAll('.roundTag')._groups[j].length; n++) {
-                        filter.select('.recipe-row-T1').selectAll('.roundTag')._groups[j][n].style.backgroundColor = 'var(--secondary-color)'
-                    }
-                };
+                // if (filter.select('.recipe-row-T1').select('.roundTag').select('p')._groups[0][j].innerText != '') {
+                //     for (let n = 0; n < filter.select('.recipe-row-T1').selectAll('.roundTag')._groups[j].length; n++) {
+                //         filter.select('.recipe-row-T1').selectAll('.roundTag')._groups[j][n].style.backgroundColor = 'var(--secondary-color)'
+                //     }
+                // };
             }
         }
     }
