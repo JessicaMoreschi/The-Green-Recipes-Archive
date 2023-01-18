@@ -197,7 +197,7 @@ p {
 #allRecipesImg:hover {
     transition: all 500ms ease-in-out;
     -webkit-transition: all 500ms ease-in-out;
-    transform: translate(-50%, 0%) !important;
+    transform: translate(-50%, 10%) !important;
 }
 
 @keyframes allCardImgT {
