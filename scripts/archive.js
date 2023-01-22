@@ -158,7 +158,7 @@ for (let st = 4; st <= 8; st++) {
                     }
                     else {
                         if (stt == 0) {
-                            return 'statistics'
+                            return 'data'
                         } else { return 'no data' }
                     }
                 })
@@ -277,7 +277,7 @@ data.then(function (data) {
                     return d.Keyword
                 }
                 else if (i <= 7) { return allBtns[i] }
-                else if (i == 8) { if (d.Evidence == 'TRUE') { return 'statistics' } else if (d.Evidence == 'FALSE') { return 'no data' } }
+                else if (i == 8) { if (d.Evidence == 'TRUE') { return 'data' } else if (d.Evidence == 'FALSE') { return 'no data' } }
                 else if (i == 9) { return d.Aim }
             })
     }
@@ -391,7 +391,7 @@ for (let i = 0; i < recipeIngredientTitle.length; i++) {
                 }
                 //evidence tag
                 else if (i == 3) {
-                    if (d.Evidence == 'TRUE') { return 'statistics' } else if (d.Evidence == 'FALSE') { return 'no data' }
+                    if (d.Evidence == 'TRUE') { return 'data' } else if (d.Evidence == 'FALSE') { return 'no data' }
                 }
             })
     }
@@ -650,7 +650,7 @@ for (let f = 0; f < formArrayTitles.length; f++) {
             .text(function () {
                 if (f == 3) {
                     if (formArray[formArrayTitles[f]][k] == 'TRUE') {
-                        return 'statistics'
+                        return 'data'
                     } else if (formArray[formArrayTitles[f]][k] == 'FALSE') {
                         return 'no data'
                     }
