@@ -33,15 +33,17 @@
     <div class="flex-row head" id="head">
       <div class="flex-row">
         <a href="index.html"
-          ><p class="pageSelected">the green recipes archive</p></a>
+          ><p class="pageSelected">the green recipes archive</p></a
+        >
       </div>
       <div class="flex-row" style="gap: 20px">
         <a href="./pages/archive.html"
-          ><p class="pageNotSelected">archive</p></a>
+          ><p class="pageNotSelected">archive</p></a
+        >
         <a href="./pages/about.html#1"><p class="pageNotSelected">about</p></a>
       </div>
     </div>
-   <!-- slides -->
+    <!-- slides -->
     <div class="container" id="landingContainer">
       <div
         style="
@@ -59,17 +61,10 @@
 
       <div
         class="roundTag center"
-        style="transform: translate(-100vw, -160px)"
-        id="tag1"
-      >
-        <p>how fast food</p>
-      </div>
-      <div
-        class="roundTag center"
         style="transform: translate(100vw, -75px)"
         id="tag2"
       >
-        <p>are talking about</p>
+        <p>sustainability</p>
       </div>
       <div
         class="roundTag center"
@@ -78,14 +73,54 @@
       >
         <p>Environment</p>
       </div>
-      <div
-        class="roundTag center"
-        style="transform: translate(100vw, 120px)"
-        id="tag4"
-      >
-        <p>& sustainability</p>
-      </div>
+
       <h1 id="landingArrow" onclick="fullpage_api.moveSectionDown()">↓</h1>
+    </div>
+
+    <div id="runningTxtDiv">
+      <script>
+        // SCROLLING TEXT 
+        let leftValue = 0;
+        let updMsg =
+          "how fast foods are talking about environment & sustainability";
+        function text(msg, ctrlwidth) {
+          msg = " — " + msg;
+          newmsg = msg;
+          while (newmsg.length < ctrlwidth) {
+            newmsg += msg;
+          }
+          document.write('<FORM NAME="Scrolltext">');
+          document.write(
+            '<INPUT id="runningTxt" NAME="text" VALUE= "' +
+              newmsg +
+              '" SIZE= ' +
+              ctrlwidth +
+              " disabled>"
+          );
+          document.write("</FORM>");
+          rollmsg(updMsg);
+        }
+        function rollmsg(msg) {
+          updMsg = msg;
+          leftValue += 10;
+          document.getElementById("runningTxt").scrollTo({
+            top: 0,
+            left: leftValue,
+            behavior: "smooth",
+          });
+          msg = " — " + msg;
+          newmsg = msg;
+          while (newmsg.length < ctrlwidth) {
+            newmsg += msg;
+          }
+          document.getElementById("runningTxt").attributes[2].value = newmsg;
+
+          setTimeout("rollmsg(updMsg)", 100);
+        }
+        msg = "how fast foods are talking about environment & sustainability";
+        ctrlwidth = innerWidth;
+        text(msg, ctrlwidth);
+      </script>
     </div>
 
     <img
@@ -202,8 +237,9 @@
       </div>
       <div class="section alTop">
         <h2>
-        These discriminants are now ingredients of <b>9 recipes</b>, showing the most 
-          <b>recurring patterns</b> of the dataset, from the most to the less used:
+          These discriminants are now ingredients of <b>9 recipes</b>, showing
+          the most <b>recurring patterns</b> of the dataset, from the most to
+          the less used:
         </h2>
         <a href="./pages/archive.html">
           <img
@@ -224,7 +260,7 @@
         </a>
       </div>
 
-       <!-- footer -->
+      <!-- footer -->
       <div class="section fp-auto-height">
         <div class="newFooter">
           <div

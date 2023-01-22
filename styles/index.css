@@ -63,7 +63,7 @@ h2 b {
     position: absolute;
     left: 50%;
     transform: translate(-50%);
-    bottom: -45vh;
+    bottom: -40vh;
     animation-name: landingArrow;
     animation-duration: 2s;
     animation-iteration-count: infinite;
@@ -75,19 +75,19 @@ h2 b {
 
 @keyframes landingArrow {
     0% {
-        bottom: -45vh;
-    }
-
-    20% {
         bottom: -40vh;
     }
 
+    20% {
+        bottom: -36vh;
+    }
+
     60% {
-        bottom: -45vh;
+        bottom: -40vh;
     }
 
     100% {
-        bottom: -45vh;
+        bottom: -40vh;
     }
 }
 
@@ -208,4 +208,28 @@ p {
     100% {
         left: 120vh;
     }
+}
+
+#runningTxtDiv{
+    position: absolute;
+    z-index: 1;
+    bottom: 0px;
+    display: block;
+}
+
+#runningTxt {
+    transition: all 200ms ease;
+}
+
+input {
+    background-color: #fff;
+    border: none;
+    color: #000;
+    text-decoration: none;
+    width: 100%;
+    height: auto;
+    text-transform: uppercase;
+    padding: 10px 0;
+    font-size: 14pt;
+    bottom: 0;
 }

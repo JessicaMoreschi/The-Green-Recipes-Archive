@@ -99,7 +99,7 @@ var myFullpage = new fullpage('#fullpage', {
             document.getElementById('landingImg').style.transform = 'translate(-50%, 0%)'
             document.getElementById('landingContainer').style.transitionDelay = '500ms !important'
             document.getElementById('landingContainer').style.opacity = '0'
-            document.getElementById('landingContainer').style.zIndex = '0'
+            document.getElementById('landingContainer').style.zIndex = '0'            
         }
         if (origin.anchor == 2) {
             document.getElementById('rect').style.bottom = -34 + 'vh';
@@ -115,19 +115,21 @@ var myFullpage = new fullpage('#fullpage', {
             document.getElementById('landingContainer').style.transitionDelay = '0ms !important'
             document.getElementById('landingContainer').style.opacity = '1'
             document.getElementById('landingContainer').style.zIndex = '1'
+            document.getElementById('runningTxtDiv').style.display = 'block'
+
         } else {
             document.getElementById('landingContainer').style.transitionDelay = '500ms !important'
             document.getElementById('landingContainer').style.opacity = '0'
             document.getElementById('landingContainer').style.zIndex = '0'
+            document.getElementById('runningTxtDiv').style.display = 'none'
+
         }
     },
     afterLoad: function (origin, destination, direction, trigger) {
         if (destination.anchor == 1) {
             //animate title homepage
-            document.getElementById('tag1').style.transform = 'translate(-210px, -160px)';
-            document.getElementById('tag2').style.transform = 'translate(50px, -75px)';
-            document.getElementById('tag3').style.transform = 'translate(-315px, 15px)';
-            document.getElementById('tag4').style.transform = 'translate(75px, 120px)';
+            document.getElementById('tag2').style.transform = 'translate(100px, -75px)';
+            document.getElementById('tag3').style.transform = 'translate(-340px, 15px)';
         }
         if (destination.anchor == 2) {
             //rise hands and green rectangle
