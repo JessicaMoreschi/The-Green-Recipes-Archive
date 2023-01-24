@@ -58,7 +58,7 @@ container.select('#colDx').select('.sub')
     //tag icon
     d3.select('#openAllArchiveTitle').append('img')
         .attr('src', './assets/icon/asterisk.svg')
-        .style('order', '2')
+        .style('order', '0')
     //tag name
     d3.select('#openAllArchiveTitle').append('p')
     // .attr('id', 'productsSubhead')

@@ -401,3 +401,7 @@ p.prepText,
     cursor: pointer;
     padding: 0 !important;
 }
+
+#recTextUx img{
+    width: 10px !important;
+}
