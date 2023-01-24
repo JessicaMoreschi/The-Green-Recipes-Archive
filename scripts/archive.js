@@ -41,17 +41,36 @@ nOfR
     .attr('id', 'productsSubhead')
 
 container.select('#colDx').select('.sub')
-    .append('p')
+    // .append('p')
+    // .attr('id', 'openAllArchiveTitle')
+    // .text('explore all')
+    // .style('text-transform', 'capitalize')
+    // .style('cursor', 'pointer')
+
+
+
+
+    .append('div')
+    .attr('class', 'roundTag explAll')
     .attr('id', 'openAllArchiveTitle')
-    .text('explore all')
-    .style('text-transform', 'capitalize')
-    .style('cursor', 'pointer')
+
+    //tag icon
+    d3.select('#openAllArchiveTitle').append('img')
+        .attr('src', './assets/icon/asterisk.svg')
+        .style('order', '2')
+    //tag name
+    d3.select('#openAllArchiveTitle').append('p')
+    // .attr('id', 'productsSubhead')
+        .text('explore all')
+
+    d3.select('#openAllArchiveTitle')
     .on('click', function () {
         if (openAllArchiveBoulean == false) {
             openAllArchive()
         }
         else { closeArchive(); closedRecipes() }
     })
+    .style('cursor', 'pointer')
 
 container.select('#colDx')
     .append('div')
@@ -675,7 +694,7 @@ for (let f = 0; f < formArrayTitles.length; f++) {
             })
             //reset scroll when recipe click
             document.getElementById('colDx').scrollTo({
-                top: 0,
+                top: 1000,
                 left: 0,
                 behavior: 'smooth'
             });
@@ -734,7 +753,7 @@ for (let f = 0; f < formArrayTitles.length; f++) {
 //reset filters
 filtriCustom
     .append('div')
-    .attr('class', 'roundTag')
+    .attr('class', 'explAll roundTag')
     .append('p')
     .attr('id', 'resetBtn')
     .text('reset')
@@ -882,9 +901,6 @@ function closeArchive() {
     }
     d3.select('#recTextUx').text('recipes')
 
-    d3.select('#openAllArchiveTitle')
-        .text('Explore all')
-
     d3.select('.container').selectAll('.col')
         .style('max-width', '100%')
         .transition()
@@ -936,6 +952,12 @@ function closeArchive() {
         d3.select('.recipe-row6').style('display', 'flex')
         d3.select('.recipe-row7').style('display', 'flex')
         d3.select('.recipe-row8').style('display', 'flex')
+       
+        d3.select('#openAllArchiveTitle').select('p')
+        .text('Explore all')
+        d3.select('#openAllArchiveTitle').select('img')
+        .attr('src', './assets/icon/asterisk.svg')
+
         t.stop();
     }, 1500);
 }
@@ -944,8 +966,10 @@ function closeArchive() {
 //function to open all archive ('explore all')
 function openAllArchive() {
     openAllArchiveBoulean = true;
-    d3.select('#openAllArchiveTitle')
+    d3.select('#openAllArchiveTitle').select('p')
         .text('Close')
+        d3.select('#openAllArchiveTitle').select('img')
+        .attr('src', './assets/icon/x-close.svg')
     openRecipe(0)
 
     document.getElementById('colDx').scrollTo({

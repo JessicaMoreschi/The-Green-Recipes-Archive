@@ -306,11 +306,15 @@ p.prepText,
     align-content: flex-start;
 }
 
+#filtriCustom .explAll{
+    transform: translateY(0%);
+}
+
 #resetBtn {
-    font-family: PPEditorial;
+    /* font-family: PPEditorial;
     font-weight: normal;
     font-style: italic;
-    font-size: 10pt;
+    font-size: 10pt; */
     text-transform: capitalize;
     cursor: pointer;
 }
@@ -368,4 +372,25 @@ p.prepText,
 .s{
     height: 22px;
     padding: 5px 5px !important;
+}
+
+.explAll{
+    background-color: black;
+    padding: 5px 10px !important;
+    transform: translateY(-30%);
+    border: 1px solid white !important;
+    height: 26px !important;
+}
+
+.explAll:hover{
+    filter: invert();
+
+}
+
+.explAll *{
+    font-size: 8pt !important;
+    color: white !important;
+    text-transform: capitalize !important;
+    max-height: 14px;
+    line-height: 14pt;
 }
