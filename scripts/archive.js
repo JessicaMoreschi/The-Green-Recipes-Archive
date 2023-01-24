@@ -8,11 +8,21 @@ container.append('div')
     .attr('id', 'colSx')
     .append('div')
     .attr('class', 'flex-row head sub')
-    .append('p')
-    .text('recipes')
+    
+    .append('div')
     .attr('id', 'recTextUx')
-    .on('click', function () { closeArchive(); closedRecipes() })
+    .style('display', 'none')
     .style('cursor', 'pointer')
+    .attr('class', 'roundTag explAll')
+    .on('click', function () { closeArchive(); closedRecipes() })
+    .append('img')
+    .attr('src', './assets/icon/leftArrow.svg')
+
+d3.select('#colSx').select('.sub')
+.style('justify-content', 'flex-start').style('gap', '5px')
+    .append('p')
+    .text('recipes')   
+ 
 container.select('#colSx')
     .append('div')
     .attr('id', 'all-filters')
@@ -41,15 +51,6 @@ nOfR
     .attr('id', 'productsSubhead')
 
 container.select('#colDx').select('.sub')
-    // .append('p')
-    // .attr('id', 'openAllArchiveTitle')
-    // .text('explore all')
-    // .style('text-transform', 'capitalize')
-    // .style('cursor', 'pointer')
-
-
-
-
     .append('div')
     .attr('class', 'roundTag explAll')
     .attr('id', 'openAllArchiveTitle')
@@ -865,7 +866,7 @@ function openArchive() {
 
     // d3.select('#prepDiv').style('height', 'auto').style('min-height', 350 + 'px').style('padding', 70 + 'px ' + 0 + 'px ' + 30 + 'px ' + 0 + 'px')
 
-    d3.select('#recTextUx').text('< recipes')
+    d3.select('#recTextUx').style('display', 'flex')
 
     d3.select('.container').selectAll('.col')
         .style('max-width', 'auto')
@@ -899,7 +900,7 @@ function closeArchive() {
     if (archiveOpen == false) {
         filter.style('order', '1')
     }
-    d3.select('#recTextUx').text('recipes')
+    d3.select('#recTextUx').style('display', 'none')
 
     d3.select('.container').selectAll('.col')
         .style('max-width', '100%')

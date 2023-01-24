@@ -394,3 +394,10 @@ p.prepText,
     max-height: 14px;
     line-height: 14pt;
 }
+
+#recTextUx{
+    width: 26px !important;
+    height: 26px !important;
+    cursor: pointer;
+    padding: 0 !important;
+}
