@@ -135,6 +135,22 @@ form label {
     height: 100%
 }
 
+.statRec {
+    height: 10px;
+    width: calc(100% - 270px);
+    background-color: white;
+    border-radius: 5px;
+    border: 1px solid black;
+    overflow: hidden;
+}
+
+.statRecActive {
+    height: 100%;
+    width: 0%;
+    background-color: #dddddd;
+    transition: all 1000ms ease;
+}
+
 .recipe-row0,
 .recipe-row1,
 .recipe-row2,
@@ -143,10 +159,19 @@ form label {
 .recipe-row5,
 .recipe-row6,
 .recipe-row7,
-.recipe-row8 {
+.recipe-row8,
+.recipe-row9,
+.recipe-row10,
+.recipe-row11,
+.recipe-row12,
+.recipe-row13,
+.recipe-row14,
+.recipe-row15,
+.recipe-row16,
+.recipe-row17,
+.recipe-row18 {
     height: auto;
     padding: 10px 0;
-    border-top: 0.5px solid var(--main-color);
     flex-wrap: wrap;
 }
 
@@ -155,13 +180,26 @@ p.prepText,
 .recipe-row5,
 .recipe-row6,
 .recipe-row7,
-.recipe-row8 {
+.recipe-row8,
+.recipe-row11,
+.recipe-row12,
+.recipe-row13,
+.recipe-row14,
+.recipe-row17 {
     padding: 10px 20px;
     column-gap: 5px;
     align-items: center;
-    border: none;
     height: 50px;
 }
+
+.recipe-row13, .recipe-row14, .recipe-row17 {
+    border-top: 0.5px solid var(--main-color);
+    margin-top: 20px;
+    padding-top: 20px;
+}
+
+.recipe-row11, .recipe-row12
+{margin-top: -20px; margin-bottom: -10px;}
 
 .recipe-row4 {
     margin-top: -50px;
@@ -175,7 +213,9 @@ p.prepText,
 
 
 .recipe-row7,
-.recipe-row8 {
+.recipe-row8,
+.recipe-row11,
+.recipe-row12 {
     justify-content: space-between;
     padding: 0 20px;
 }
@@ -194,9 +234,43 @@ p.prepText,
     background-color: var(--secondary-color);
 }
 
-.recipe-row6 * {
+.recipe-row6 *,
+.recipe-row13 * {
     background-color: var(--primary-color);
 }
+
+.recipe-row9,
+.recipe-row10 {
+    width: calc(100% - 40px);
+    justify-content: space-between;
+    background-image: url(../assets/imgs/lines.svg);
+    background-repeat: repeat-x;
+    background-position: top;
+    background-size: auto calc(100% - 48px);
+    /* overflow-x: scroll; */
+    margin: 0 20px 0 20px;
+    padding: 0;
+    flex-wrap: nowrap;
+    gap: 10px;
+}
+
+
+.histogramTopic {
+    width: 10px;
+    order: 0;
+    height: 0%;
+    transition: all 1000ms ease;
+
+}
+
+.histogramDiv {
+    display: flex;
+    align-items: flex-end;
+    height: calc(100% - 50px);
+}
+
+
+
 
 
 @media (max-width: 1200px) {
@@ -249,27 +323,11 @@ p.prepText,
     padding: 70px 0px 30px 0px;
     border-bottom: 1px solid;
     overflow: hidden;
-    transition: all 1000ms ease;
+    /* transition: all 1000ms ease; */
 }
 
 .prepText {
     width: 100%;
-}
-
-.statRec {
-    height: 10px;
-    width: calc(100% - 330px);
-    background-color: white;
-    border-radius: 5px;
-    border: 1px solid black;
-    overflow: hidden;
-}
-
-.statRecActive {
-    height: 100%;
-    width: 0%;
-    background-color: #dddddd;
-    transition: all 1000ms ease;
 }
 
 #all-cards {
@@ -290,13 +348,24 @@ p.prepText,
 } */
 
 
-#productsSubhead{
-    text-transform:lowercase;
+#productsSubhead {
+    text-transform: lowercase;
     font-family: PPEditorial;
     font-weight: normal;
     font-style: italic;
 }
 
-.nOfR{
+.nOfR {
     gap: 5px;
+}
+
+.s p, .s img{
+    font-size: 6pt;
+    line-height: 12pt;
+    max-height: 12px;
+}
+
+.s{
+    height: 22px;
+    padding: 5px 5px !important;
 }

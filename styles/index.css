@@ -60,12 +60,13 @@ h2 b {
 
 
 #landingArrow {
+    scale: 80%;
     position: absolute;
     left: 50%;
     transform: translate(-50%);
-    bottom: -40vh;
+    bottom: -38vh;
     animation-name: landingArrow;
-    animation-duration: 2s;
+    animation-duration: 1.5s;
     animation-iteration-count: infinite;
     animation-timing-function: ease-in-out;
     cursor: pointer;
@@ -75,7 +76,7 @@ h2 b {
 
 @keyframes landingArrow {
     0% {
-        bottom: -40vh;
+        bottom: -38vh;
     }
 
     20% {
@@ -83,11 +84,11 @@ h2 b {
     }
 
     60% {
-        bottom: -40vh;
+        bottom: -38vh;
     }
 
     100% {
-        bottom: -40vh;
+        bottom: -38vh;
     }
 }
 

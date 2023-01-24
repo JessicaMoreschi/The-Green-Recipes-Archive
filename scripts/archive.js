@@ -66,70 +66,172 @@ prepDiv.append('img')
     .attr('src', 'assets/imgs/preparation.png')
     .attr('id', 'statImg')
 
-for (let st = 4; st <= 8; st++) {
-    if (st == 4) {
+for (let st = 4; st <= 18; st++) {
+    //RIGA DEL TITOLO
+    if ((st == 4) || (st == 6) || (st == 13) || (st == 14) || (st == 17)) {
         prepDiv
             .append('div')
             .attr('class', 'flex-row recipe-row' + st)
+            .style('order', function () {
+                if (st == 4) { return 0 }
+                else if (st == 6) { return 2 }
+                else if (st == 13) { return 8 }
+                else if (st == 14) { return 11 }
+                else if (st == 17) { return 13 }
+            })
         //tags row
-        for (let stt = 0; stt < 2; stt++) {
+        let nOfTagsNeeded
+        if (st == 4) { nOfTagsNeeded = 2 } else { nOfTagsNeeded = 1 }
+        for (let stt = 0; stt < nOfTagsNeeded; stt++) {
             if (stt == 0) {
                 d3.select('.recipe-row' + st).append('p')
                     .attr('class', 'preptitle')
-                    .text('Selected tags :')
+                    .text(function () {
+                        if (st == 6) { return 'Selected Keyword :' }
+                        else { return 'Selected tags :' }
+                    })
             }
             d3.select('.recipe-row' + st)
                 .append('div')
-                .attr('class', 'roundTag t' + stt)
+                .attr('class',
+                    function () {
+                        if (st == 14 || st == 17) { return 'squareTag t' + stt }
+                        else { return 'roundTag t' + stt }
+                    }
+                )
+                .style('background-color',
+                    function () {
+                        if (st == 14 || st == 17) { return '#dddddd' }
+                    }
+                )
             d3.select('.recipe-row' + st).select('.t' + stt)
                 .append('img')
-                .attr('src', 'assets/icon/topic.svg')
+                .attr('src', function () {
+                    if (st == 6 || st == 13) { return 'assets/icon/keyword.svg' }
+                    if (st == 14) { return 'assets/icon/action.svg' }
+                    if (st == 17) { return 'assets/icon/data.svg' }
+                    else { return 'assets/icon/topic.svg' }
+                })
             d3.select('.recipe-row' + st).select('.t' + stt).append('p')
-                .text('topic')
-        }
-    } // description
-    else if (st == 5) {
-        prepDiv.append('p')
-            .attr('class', 'prepText')
-            .style('height', 'auto')
-            .text('testo')
-    }
-    else if (st == 6) {
-        prepDiv
-            .append('div')
-            .attr('class', 'flex-row recipe-row' + st)
-        //keyword
-        for (let stt = 0; stt < 1; stt++) {
-            d3.select('.recipe-row' + st).append('p')
-                .attr('class', 'preptitle')
-                .text('Selected Keyword :')
-            d3.select('.recipe-row' + st)
-                .append('div')
-                .attr('class', 'roundTag t' + stt)
+                .text(function () {
+                    if (st == 6 || st == 13) { return 'keywords' }
+                    if (st == 14) { return 'aim' }
+                    if (st == 17) { return 'evidence' }
+                    else { return 'topic' }
+                })
 
-            d3.select('.recipe-row' + st).select('.t' + stt)
-                .append('img')
-                .attr('src', 'assets/icon/keyword.svg')
-            d3.select('.recipe-row' + st).select('.t' + stt).append('p')
-                .text('topic')
+
         }
+    } // RIGA DESCRIZIONE
+    else if ((st == 5) || (st == 15) || (st == 16) || (st == 18)) {
+        prepDiv.append('p')
+            .attr('class', 'prepText recipe-row' + st)
+            .style('height', 'auto')
+            .text(function () {
+                if (st == 15) { return generalStat[1].text }
+                else if (st == 16) { return generalStat[2].text }
+                else if (st == 18) { return generalStat[3].text }
+            })
+            .style('order', function () {
+                if (st == 5) { return 1 }
+                else if (st == 15) { return 9 }
+                else if (st == 16) { return 12 }
+                else if (st == 18) { return 14 }
+            })
     }
-    else {
-        //action
+    //RIGA ISTOGRAMMA
+    else if (st == 9 || st == 10) {
         prepDiv
             .append('div')
             .attr('class', 'flex-row recipe-row' + st)
-        // percentuale action
+            .style('order', function () {
+                if (st == 9) { return 7 }
+                else if (st == 10) { return 10 }
+            })
+
+        for (let stt = 0; stt < generalStat[st - 9].nOfData; stt++) {
+            //create divs for each voice
+            d3.select('.recipe-row' + st)
+                .style('height', '200px')
+                .append('div')
+                .attr('class', 'flex-column rr' + stt)
+                .style('align-items', 'center')
+                .style('justify-content', 'flex-end')
+                .style('align-content', 'center')
+                .style('gap', '5px')
+                .style('height', '100%')
+                .style('cursor', function () { if (st == 10) { return 'pointer' } })
+
+
+                //append tag
+                .append('div')
+                .attr('class', 'roundTag s t' + stt)
+                .style('order', '2')
+                .style('opacity', function () { if (st == 10 && stt > 0) { return '0' } })
+                .style('max-width', function () { if (st == 10 && stt > 0) { return '0px' } })
+                .style('transition', ' max-width 1000ms ease')
+
+            d3.select('.recipe-row' + st).select('.rr' + stt)
+                .on('mouseover', function () { if (st == 10 && stt > 0) { d3.select('.recipe-row' + st).select('.t' + stt).style('opacity', '1').style('max-width', '150px') } })
+                .on('mouseout', function () { if (st == 10 && stt > 0) { d3.select('.recipe-row' + st).select('.t' + stt).style('opacity', '0').style('max-width', '0px') } })
+
+            //tag icon
+            d3.select('.recipe-row' + st).select('.t' + stt)
+                .append('img')
+                .attr('src', function () {
+                    if (st == 9) { return './assets/icon/topic.svg' }
+                    else if (st == 10) { return './assets/icon/keyword.svg' }
+                }
+                )
+            //tag name
+            d3.select('.recipe-row' + st).select('.t' + stt).append('p')
+                .text(function () { return generalStat[st - 9]["d" + stt] })
+            //append rectangle
+            d3.select('.recipe-row' + st).select('.rr' + stt)
+                .append('div')
+                .attr('class', 'histogramDiv')
+                .style('order', '0')
+                .append('div')
+                .attr('class', 'statRec histogramTopic')
+                .style('height', 'calc(' + ((generalStat[st - 9]['v' + stt]) * 100 / (generalStat[st - 9].v0)) + '%')
+                .style('background-color', function () {
+                    if (st == 9) { return 'var(--secondary-color)' }
+                    else if (st == 10) { return 'var(--primary-color)' }
+                })
+            //append rectangleValue
+            d3.select('.recipe-row' + st).select('.rr' + stt)
+                .append('p')
+                .attr('class', 'nPercText')
+                .text(function () { return generalStat[st - 9]['v' + stt] })
+                .style('order', '1')
+        }
+    }
+    //RIGA GRAFICI ORIZZONTALI
+    else if (st == 7 || st == 8 || st == 11 || st == 12) {
+        prepDiv
+            .append('div')
+            .attr('class', 'flex-row recipe-row' + st)
+            .style('order', function () {
+                if (st == 7) { return 3 }
+                else if (st == 8) { return 4 }
+                else if (st == 11) { return 13 }
+                else if (st == 12) { return 16 }
+            })
+        // % sx
         d3.select('.recipe-row' + st)
             .append('p')
-            .text('15%')
+            .text(function () {
+                if (st == 11) { return generalStat[2].v0 + '%' }
+                else if (st == 12) { return generalStat[3].v0 + '%' }
+            }
+            )
             .attr('class', 'nPercText')
             .style('order', '1')
         //action tags
         for (let stt = 0; stt < 2; stt++) {
             d3.select('.recipe-row' + st)
                 .append('div')
-                .attr('class', 'squareTag t' + stt)
+                .attr('class', 'squareTag s t' + stt)
                 .style('order', function () {
                     if (stt == 0) { return 0 }
                     else { return 4 }
@@ -137,7 +239,7 @@ for (let st = 4; st <= 8; st++) {
             d3.select('.recipe-row' + st).select('.t' + stt)
                 .append('img')
                 .attr('src', function () {
-                    if (st == 7) {
+                    if ((st == 7) || (st == 11)) {
                         if (stt == 0) {
                             return 'assets/icon/action.svg'
                         } else { return 'assets/icon/dissemination.svg' }
@@ -151,7 +253,7 @@ for (let st = 4; st <= 8; st++) {
             //evidence
             d3.select('.recipe-row' + st).select('.t' + stt).append('p')
                 .text(function () {
-                    if (st == 7) {
+                    if ((st == 7) || (st == 11)) {
                         if (stt == 0) {
                             return 'take action'
                         } else { return 'dissemination' }
@@ -162,29 +264,25 @@ for (let st = 4; st <= 8; st++) {
                         } else { return 'no data' }
                     }
                 })
-                .style('width', function () {
-                    if (st == 7) {
-                        if (stt == 0) {
-                            return '75px'
-                        } else { return '95px' }
-                    }
-                    else {
-                        if (stt == 0) {
-                            return '75px'
-                        } else { return '95px' }
-                    }
-                })
+                .style('width', '68px')
         }
-        //stat % 2
+        // % dx
         d3.select('.recipe-row' + st)
             .append('div')
             .attr('class', 'statRec')
             .style('order', '2')
             .append('div')
             .attr('class', 'statRecActive')
+            .style('width', function () {
+                if (st == 11) { return generalStat[2].v0 + '%' }
+                else if (st == 12) { return generalStat[3].v0 + '%' }
+            })
         d3.select('.recipe-row' + st)
             .append('p')
-            .text('15%')
+            .text(function () {
+                if (st == 11) { return generalStat[2].v1 + '%' }
+                else if (st == 12) { return generalStat[3].v1 + '%' }
+            })
             .attr('class', 'nPercText')
             .style('order', '3')
     }
@@ -462,31 +560,6 @@ filter
         })
 
         /////////////////////////////////////statistics engine
-        //take data from clicked recipe
-        // d3.select('.recipe-row7').select('.t0')
-        //     .style('opacity', function () {
-        //         // % take action (sx)
-        //         if (recipeIdN.TaPerc < 50) { return 0.3 }
-        //         else { return 1 }
-        //     })
-        // d3.select('.recipe-row7').select('.t1')
-        //     .style('opacity', function () {
-        //         // % take action (dx)
-        //         if (recipeIdN.TaPerc > 50) { return 0.3 }
-        //         else { return 1 }
-        //     })
-        // d3.select('.recipe-row8').select('.t0')
-        //     .style('opacity', function () {
-        //         // % evidence (sx)
-        //         if (recipeIdN.GrPerc < 50) { return 0.3 }
-        //         else { return 1 }
-        //     })
-        // d3.select('.recipe-row8').select('.t1')
-        //     .style('opacity', function () {
-        //         // % evidence (dx)
-        //         if (recipeIdN.GrPerc > 50) { return 0.3 }
-        //         else { return 1 }
-        //     })
         //tags
         d3.select('.recipe-row4').select('.t0').select('p')
             .text(function () { return tagsActive[0] })
@@ -705,10 +778,6 @@ function closedRecipes() {
         }
         filter.select('.card-body').select('.card-text')._groups[0][j].style.marginTop = "-50px"
         filter._groups[0][j].style.opacity = '1'
-        // filter.select('.recipe-row-T0').select('.roundTag')._groups[0][j].style.backgroundColor = 'white'
-        // for (let n = 0; n < filter.select('.recipe-row-T1').selectAll('.roundTag')._groups[j].length; n++) {
-        //     filter.select('.recipe-row-T1').selectAll('.roundTag')._groups[j][n].style.backgroundColor = 'white'
-        // }
     }
 }
 
@@ -718,9 +787,6 @@ function openRecipe(btnId) {
     if (btnId == 0) {
         let card = d3.select("#all-cards").selectAll('.card')
         card.style('display', 'inline-flex')
-
-        // card.selectAll('div')
-        //     .style('background-color', 'white')
 
         //change result txt
         let productsSubhead = d3.select("#productsSubhead")
@@ -743,10 +809,6 @@ function openRecipe(btnId) {
                 filter.select('.card-body').select('.card-text')._groups[0][j].style.marginTop = "-50px"
 
                 filter._groups[0][j].style.opacity = '0.3'
-                // filter.select('.recipe-row-T0').select('.roundTag')._groups[0][j].style.backgroundColor = 'white'
-                // for (let n = 0; n < filter.select('.recipe-row-T1').selectAll('.roundTag')._groups[j].length; n++) {
-                //     filter.select('.recipe-row-T1').selectAll('.roundTag')._groups[j][n].style.backgroundColor = 'white'
-                // }
             }
             else if (j == recipeClicked) {
                 //format to apply to active recipe
@@ -770,14 +832,6 @@ function openRecipe(btnId) {
                     left: 0,
                     behavior: 'smooth'
                 });
-
-                // if (filter.select('.recipe-row-T0').select('.roundTag').select('p')._groups[0][j].innerText != '') { filter.select('.recipe-row-T0').select('.roundTag')._groups[0][j].style.backgroundColor = 'var(--primary-color)' };
-
-                // if (filter.select('.recipe-row-T1').select('.roundTag').select('p')._groups[0][j].innerText != '') {
-                //     for (let n = 0; n < filter.select('.recipe-row-T1').selectAll('.roundTag')._groups[j].length; n++) {
-                //         filter.select('.recipe-row-T1').selectAll('.roundTag')._groups[j][n].style.backgroundColor = 'var(--secondary-color)'
-                //     }
-                // };
             }
         }
     }
@@ -790,7 +844,7 @@ function openRecipe(btnId) {
 function openArchive() {
     archiveOpen = true
 
-    d3.select('#prepDiv').style('height', 'auto').style('min-height', 350 + 'px').style('padding', 70 + 'px ' + 0 + 'px ' + 30 + 'px ' + 0 + 'px')
+    // d3.select('#prepDiv').style('height', 'auto').style('min-height', 350 + 'px').style('padding', 70 + 'px ' + 0 + 'px ' + 30 + 'px ' + 0 + 'px')
 
     d3.select('#recTextUx').text('< recipes')
 
@@ -812,6 +866,10 @@ function openArchive() {
         .style('display', 'none')
 
     d3.select('#all-cards').style('padding-top', '40px')
+
+    for (let count = 9; count <= 18; count++) {
+        d3.select('.recipe-row' + count).style('display', 'none')
+    }
 }
 
 //function to close archive (reset to initial conditions)
@@ -858,6 +916,28 @@ function closeArchive() {
 
     d3.selectAll('#all-filters')
         .style('opacity', '1')
+
+    //reset standard stat interface
+    const t = d3.timer((elapsed) => {
+        d3.select('#prepDiv').node().style.padding = '70px 0px 30px 0px'
+        d3.select('#statImg').style('display', 'block')
+        d3.select('.recipe-row4').select('.t1')
+            .style('display', 'flex')
+        d3.select('.recipe-row4').select('.preptitle')
+            .style('display', 'flex')
+        d3.select('.recipe-row13').select('.preptitle')
+            .style('display', 'flex')
+        d3.select('.recipe-row14').select('.preptitle')
+            .style('display', 'flex')
+        d3.select('.recipe-row17').select('.preptitle')
+            .style('display', 'flex')
+        d3.select('.prepText')
+            .text(function () { return generalStat[0].text })
+        d3.select('.recipe-row6').style('display', 'flex')
+        d3.select('.recipe-row7').style('display', 'flex')
+        d3.select('.recipe-row8').style('display', 'flex')
+        t.stop();
+    }, 1500);
 }
 
 
@@ -874,7 +954,33 @@ function openAllArchive() {
         behavior: 'smooth'
     });
 
-    d3.select('#all-cards').style('padding-top', '70px')
+    /////////////////////////////////////statistics engine
+    //general statistic interface
+    d3.select('.recipe-row4').select('.t0').select('p')
+        .text(function () { return generalStat[0].data })
+    d3.select('#prepDiv').node().style.padding = '100px 0px 30px 0px'
+    d3.select('#statImg').style('display', 'none')
+    d3.select('.recipe-row4').select('.t1')
+        .style('display', 'none')
+    d3.select('.recipe-row4').select('.preptitle')
+        .style('display', 'none')
+    d3.select('.recipe-row13').select('.preptitle')
+        .style('display', 'none')
+    d3.select('.recipe-row14').select('.preptitle')
+        .style('display', 'none')
+    d3.select('.recipe-row17').select('.preptitle')
+        .style('display', 'none')
+    d3.select('.prepText')
+        .text(function () { return generalStat[0].text })
+    d3.select('.recipe-row6').style('display', 'none')
+    d3.select('.recipe-row7').style('display', 'none')
+    d3.select('.recipe-row8').style('display', 'none')
+    for (let count = 9; count <= 18; count++) {
+        d3.select('.recipe-row' + count).style('display', 'flex')
+    }
+
+
+
     d3.select('.container').selectAll('.col')
         .style('max-width', 'auto')
         .transition()
@@ -888,16 +994,14 @@ function openAllArchive() {
         .duration(2000)
         .style('width', '100%')
 
-    d3.select('#prepDiv').style('height', 0 + 'px').style('min-height', 0 + 'px').style('padding', 0 + 'px ' + 0 + 'px ' + 0 + 'px ' + 0 + 'px')
 
+    // const t = d3.timer((elapsed) => {
+    d3.selectAll('#all-filters')
+        .style('display', 'none')
 
-    const t = d3.timer((elapsed) => {
-        d3.selectAll('#all-filters')
-            .style('display', 'none')
+    d3.select('#filtriCustom')
+        .style('display', 'flex')
 
-        d3.select('#filtriCustom')
-            .style('display', 'flex')
-
-        t.stop();
-    }, 1500);
+    //     t.stop();
+    // }, 1500);
 }

@@ -1,6 +1,6 @@
 //all recipes
 const recipes = [
-    {  
+    {
         recipeId: 0,
         title: 'Quarter earth burger',
         desc: '“The best fit for you if you put your heart and mind in what you believe in! It grants outstanding educational information and even more overwhelming idle evidences.”',
@@ -16,10 +16,10 @@ const recipes = [
         Aim: 'dissemination',
         TaPerc: '26',
         GrPerc: '4',
-        StatisticText:'“This Lip-smacking Deliciousness Won’t Betray Your Planet”. Is one of your goals trying to put your heart and mind in what you believe in? Then, the Quarter Earth Pounder is the best fit for you! Its conscious recipe relies on Actions and Management, but is mainly supported by the Impact you want to make. It grants an outstanding 74% of educational information and even more overwhelming idle evidences, reaching 96% of all contexts. Hope-filled promises with not-so-clear premises.'
+        StatisticText: '“This Lip-smacking Deliciousness Won’t Betray Your Planet”. Is one of your goals trying to put your heart and mind in what you believe in? Then, the Quarter Earth Pounder is the best fit for you! Its conscious recipe relies on Actions and Management, but is mainly supported by the Impact you want to make. It grants an outstanding 74% of educational information and even more overwhelming idle evidences, reaching 96% of all contexts. Hope-filled promises with not-so-clear premises.'
     },
 
-    {  
+    {
         recipeId: 1,
         title: 'Double reuse goals burger',
         desc: '“For those who love environment and composting, created to provide your daily dose of pro-active attitude but with a strong lack of evidence.”',
@@ -37,7 +37,7 @@ const recipes = [
         GrPerc: '11',
         StatisticText: 'Reuse Goals Burger is back Double”. For those who love environment and composting, this burger is here for you. Created by taking in consideration both Waste and Management, it was possible to select the most nourishing keyword as its main ingredient: Environmental. It provides your daily dose of pro-active attitude (60% take action) but with a strong lack of evidence (just 11% of contexts is providing actual data). It’s like the classic, but greener.'
     },
-    {  
+    {
         recipeId: 2,
         title: 'Deluxe recy-pounder',
         desc: '“If you thrive for recycling, this is the meal for you: it grants an unforgettable taste with a dynamic approach, supported by high levels of groundless data.”',
@@ -55,7 +55,7 @@ const recipes = [
         GrPerc: '15',
         StatisticText: '“Because you deserve to be recycled in the best way”. If you thrive for cleaner environment and recycling, this is the right thing for you. With the indispensable ingredient Environmental, this mixture gives the opportunity to bite Waste and Action granting you an unforgettable taste. Deluxe Recy-pounder provides to you a good amount of dynamic approach (66% take action) but as well as high percentage of groundless data (only 15% of contexts is containing accurate data). Ready to try it?'
     },
-    {  
+    {
         recipeId: 3,
         title: 'Smoky forest burger',
         desc: '“Food is delicious. Sources are scarce. A win-win situation is all that we have left. Its smoky flavour bestows immense knowledge, but slim analytical data”',
@@ -71,9 +71,9 @@ const recipes = [
         Aim: 'dissemination',
         TaPerc: '45',
         GrPerc: '14',
-        StatisticText:'“Blessed by the tree gods”. Food is delicious. Sources are scarce. A win-win situation is all that we have left. Its smoky flavour was obtained by burning the finest stumps of Food and Management. Filled with high quality Responsibility, this fancy and reliable burger bestows its eaters a 55% of disseminated knowledge, but also features a slim 14% of precise analytical data. A commitment to Mother Nature and her precious soil.'
+        StatisticText: '“Blessed by the tree gods”. Food is delicious. Sources are scarce. A win-win situation is all that we have left. Its smoky flavour was obtained by burning the finest stumps of Food and Management. Filled with high quality Responsibility, this fancy and reliable burger bestows its eaters a 55% of disseminated knowledge, but also features a slim 14% of precise analytical data. A commitment to Mother Nature and her precious soil.'
     },
-    {  
+    {
         recipeId: 4,
         title: 'Zero CO2 big Wrap',
         desc: '“The freshness of the purest Planet is what makes this wrap so unique! Its dissemination statements allow you to sustain a healthy and balanced diet without added evidence.”',
@@ -86,13 +86,13 @@ const recipes = [
         Management: 'TRUE',
         Waste: undefined,
         Evidence: 'FALSE',
-        Aim:  'dissemination',
+        Aim: 'dissemination',
         TaPerc: '48',
         GrPerc: '6',
         StatisticText: '“The Freshness Of Oxygen, Wrapped Up For You”. The freshness of the purest Planet is what makes Zero CO2 Wrap unique of its kind! The Energy Resourcing and Management-based sauce give it the flavour that has caught the attention of our customers. Plus with its 52% of dissemination statements it allows you to sustain a healthy and balanced diet without added evidence (92% groundless).'
     },
-    
-    {  
+
+    {
         recipeId: 5,
         title: 'Spicy planet-saver wrap',
         desc: '“This one is ready to burn your tongue. Prepared with the spiciest ingredient of all, its nourishment will grant information and not-so incredible data.”',
@@ -110,7 +110,7 @@ const recipes = [
         GrPerc: ' 13',
         StatisticText: '“For the hot ones”.  This seasoned combo of Food and Action are ready to burn your tongue. And if you still think it is not piquant enough, don’t worry because we prepared the spiciest ingredient of all:  Sustainability. The nourishment is granted with 54% of dissemination and incredible 87% of groundless data. Spicy Planet-saver Burger is one of the flavorsome burger you’ll ever try. Recommended by our chef Lumiere Lobster.'
     },
-    {  
+    {
         recipeId: 6,
         title: 'Crispy animal-welfare burger',
         desc: '“A custom-made meal for livestock rights activists that proposes many purposed-filled intentions and a huge amount of groundless information.”',
@@ -128,7 +128,7 @@ const recipes = [
         GrPerc: '13',
         StatisticText: '“Fight For The Healthiest Bite”. A custom-made meal for livestock rights activists who believe in more ethical farming. It requires a strong interest in Animal and Food, supported by a delicious patty made of Sustainability. Even though it proposes a 68% of purposed-filled intentions, its main characteristic is a huge amount of groundless information, which stacks up to the 87% of the total excerpts. For healthier and happier cows, chickens and fishes.'
     },
-    {  
+    {
         recipeId: 7,
         title: 'Filet-o-green sandwich',
         desc: '“Sometimes all it takes to surprise is two simple ingredients: Energy and Action. Show your commitment by consuming a creation on par to the Tree Gods.”',
@@ -146,7 +146,7 @@ const recipes = [
         GrPerc: '59',
         StatisticText: '“A Green Touch In Every Bite”. For those who love environment and composting, the Double Globe Warming Burger is here for you. Created by taking in consideration both Waste and Management, it was possible to select the most nourishing keyword as its main ingredient: Environmental. It provides your daily dose of pro-active attitude (60% take action) but with a strong lack of evidence (just 11% of contexts is providing actual data). It’s like the classic, but greener.'
     },
-    {  
+    {
         recipeId: 8,
         title: 'Bio-scatter nugget burger',
         desc: '“It will make you fall in love with its incredible personality. Its best virtue? Being Natural. Don’t let its behaviour and statements let you doubt its quality.”',
@@ -167,7 +167,7 @@ const recipes = [
 ]
 
 //custom filters
-let ghostRecipe={
+let ghostRecipe = {
     Keyword: 'undefined',
     Actions: 'undefined',
     Animal: 'undefined',
@@ -179,3 +179,103 @@ let ghostRecipe={
     Evidence: 'undefined',
     Aim: 'undefined'
 }
+
+
+const generalStat = [
+    {
+        statId: 0,
+        text: "Topics are the recurring themes present in sustainability pages.",
+        data: "topic",
+        nOfData: 7,
+        d0: "Management",
+        d1: "Actions",
+        d2: "Waste",
+        d3: "Food",
+        d4: "Energy",
+        d5: "Animal",
+        d6: "Distribution",
+        v0: 459,
+        v1: 274,
+        v2: 255,
+        v3: 229,
+        v4: 220,
+        v5: 117,
+        v6: 68,
+        sum: 1622
+    },
+    {
+        statId: 1,
+        text: "The custom-made green glossary includes terms which are related to environmental issues.",
+        data: "keywords",
+        nOfData: 23,
+        d0: "Sustainability",
+        d1: "Impact",
+        d2: "Energy",
+        d3: "Environmental",
+        d4: "Planet",
+        d5: "Resposibility",
+        d6: "Emissions",
+        d7: "Recycle",
+        d8: "Green",
+        d9: "Greenhouse gas",
+        d10: "Deforestation",
+        d11: "Climate change",
+        d12: "Natural",
+        d13: "Renewable energy",
+        d14: "Carbon footprint",
+        d15: "Single-use",
+        d16: "Eco-friendly",
+        d17: "Organic",
+        d18: "Zero-waste",
+        d19: "Reforestation",
+        d20: "Preservation",
+        d21: "Biodegradable",
+        d22: "Net-zero",
+        v0: 407,
+        v1: 379,
+        v2: 327,
+        v3: 250,
+        v4: 196,
+        v5: 149,
+        v6: 142,
+        v7: 128,
+        v8: 117,
+        v9: 112,
+        v10: 108,
+        v11: 69,
+        v12: 57,
+        v13: 50,
+        v14: 48,
+        v15: 21,
+        v16: 9,
+        v17: 6,
+        v18: 6,
+        v19: 6,
+        v20: 5,
+        v21: 4,
+        v22: 2,
+        sum: 2598
+    },
+{
+    statId: 2,
+    text: "Aim defines whether the type of language of text excerpts is focused on facts/goals or information.",
+    data: "aim",
+    nOfData: 2,
+    d0: "TakeAction",
+    d1: "Dissemination",
+    v0: 55,
+    v1: 45,
+    sum: 100
+},
+{
+    statId: 3,
+    text: "Evidence corresponds to the presence or lack of tangible statistical data.",
+    data: "evidence",
+    nOfData: 2,
+    d0: "data",
+    d1: "noData",
+    v0: 21,
+    v1: 79,
+    sum: 100
+}
+]
