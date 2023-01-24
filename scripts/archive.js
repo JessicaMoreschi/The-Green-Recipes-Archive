@@ -896,6 +896,8 @@ function openArchive() {
 function closeArchive() {
     openAllArchiveBoulean = false;
     archiveOpen = false
+    document.getElementsByClassName('card-columns')[0].style.columnCount= Math.floor((window. innerWidth-300)/250)
+
 
     if (archiveOpen == false) {
         filter.style('order', '1')
@@ -967,6 +969,8 @@ function closeArchive() {
 //function to open all archive ('explore all')
 function openAllArchive() {
     openAllArchiveBoulean = true;
+    document.getElementsByClassName('card-columns')[0].style.columnCount= Math.floor((window. innerWidth-200)/250)
+
     d3.select('#openAllArchiveTitle').select('p')
         .text('Close')
         d3.select('#openAllArchiveTitle').select('img')
@@ -1020,13 +1024,14 @@ function openAllArchive() {
         .style('width', '100%')
 
 
-    // const t = d3.timer((elapsed) => {
     d3.selectAll('#all-filters')
         .style('display', 'none')
 
     d3.select('#filtriCustom')
         .style('display', 'flex')
-
-    //     t.stop();
-    // }, 1500);
 }
+
+//make column responsive
+window.addEventListener('resize', function(event) {
+    document.getElementsByClassName('card-columns')[0].style.columnCount= Math.floor((window. innerWidth-300)/250)
+}, true);

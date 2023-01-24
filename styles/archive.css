@@ -6,6 +6,7 @@
 
 .card-columns {
     transition-delay: 500ms !important;
+    column-count: 3;
 }
 
 .filter {
@@ -118,6 +119,7 @@ form label {
     font-style: normal;
     width: auto;
     line-height: 13pt;
+    font-size: 12pt;
 }
 
 .nPercText {
@@ -206,7 +208,7 @@ p.prepText,
 }
 
 #statImg {
-    width: 55%;
+    height: 90px;
     margin-top: -16px;
     margin-left: 25px;
 }
