@@ -67,6 +67,7 @@
     border: 2px solid var(--main-color);
     max-width: 250px;
     width: 250px;
+    height: fit-content;
 }
 
 .recipe:hover {
@@ -135,6 +136,12 @@ form label {
     justify-content: center;
     flex-direction: column;
     height: 100%
+}
+
+.recipe-ingredient-title p{
+    height: auto;
+    /* margin-top: 50%; */
+    transform: translateY(50%);
 }
 
 .statRec {
