@@ -759,6 +759,9 @@ filtriCustom
     .attr('id', 'resetBtn')
     .text('reset')
     .on('click', function () {
+        // for (let i = 0; i < d3.select("#all-cards").selectAll('.card').select('.cardFooter').selectAll('div').nodes().length; i++) {
+        //     d3.select("#all-cards").selectAll('.card').select('.cardFooter').selectAll('div').nodes()[i].style.backgroundColor = 'white' 
+        // }
         document.getElementById('divFormK0').reset()
         document.getElementById('divFormK1').reset()
         document.getElementById('divFormK2').reset()
