@@ -3,7 +3,7 @@ const recipes = [
     {
         recipeId: 0,
         title: 'Quarter earth burger',
-        desc: '“The best fit for you if you put your heart and mind in what you believe in! It grants outstanding educational information and even more overwhelming idle evidences.”',
+        desc: '“It grants educational information about the huge impact companies have on the environment and the importance of reducing it: through initiatives and business adjustments, the final goal is to be greener and eco-friendlier.”',
         Keyword: 'impact',
         Actions: 'TRUE',
         Animal: undefined,
@@ -22,7 +22,7 @@ const recipes = [
     {
         recipeId: 1,
         title: 'Double reuse goals burger',
-        desc: '“For those who love environment and composting, created to provide your daily dose of pro-active attitude but with a strong lack of evidence.”',
+        desc: '“For those who love environment and composting, the recipe revolves around steps and measures which corps take to decrease their waste, whether it’s by introducing compostable single-use cutlery or reduce the amount of plastic.”',
         Keyword: 'environmental',
         Actions: undefined,
         Animal: undefined,
@@ -40,7 +40,7 @@ const recipes = [
     {
         recipeId: 2,
         title: 'Deluxe recy-pounder',
-        desc: '“If you thrive for recycling, this is the meal for you: it grants an unforgettable taste with a dynamic approach, supported by high levels of groundless data.”',
+        desc: '“It presents a dynamic approach to waste reduction and focuses on making green ideals and goals come true, through concrete actions, designed to better improve and lessen corporates’ weight on the environment.”',
         Keyword: 'environmental',
         Actions: 'TRUE',
         Animal: undefined,
@@ -58,7 +58,7 @@ const recipes = [
     {
         recipeId: 3,
         title: 'Smoky forest burger',
-        desc: '“Food is delicious. Sources are scarce. A win-win situation is all that we have left. Its smoky flavour bestows immense knowledge, but slim analytical data”',
+        desc: '“Fast food companies greatly depend on the quality of their menus; that is why this recipe considers how businesses are managing their ingredients and most of all how they are harvested and grown.”',
         Keyword: 'responsibility',
         Actions: undefined,
         Animal: undefined,
@@ -76,7 +76,7 @@ const recipes = [
     {
         recipeId: 4,
         title: 'Zero CO2 big Wrap',
-        desc: '“The freshness of the purest Planet is what makes this wrap so unique! Its dissemination statements allow you to sustain a healthy and balanced diet without added evidence.”',
+        desc: '“Its uniqueness dwells in how energy sourcing is being managed by the fast food industry, in terms of carbon emissions. It shows a slow but seemingly consistent switch to renewable energies, and greater attention to the territory”',
         Keyword: 'planet',
         Actions: undefined,
         Animal: undefined,
@@ -95,7 +95,7 @@ const recipes = [
     {
         recipeId: 5,
         title: 'Spicy planet-saver wrap',
-        desc: '“This one is ready to burn your tongue. Prepared with the spiciest ingredient of all, its nourishment will grant information and not-so incredible data.”',
+        desc: '“This recipe is all about committing to more sustainable and eco-friendlier ways of growing crops and farming animals, followed by concrete actions that improves both food quality and its way of being collected. A particular focus is put in the territory.”',
         Keyword: 'sustainability',
         Actions: 'TRUE',
         Animal: undefined,
@@ -113,7 +113,7 @@ const recipes = [
     {
         recipeId: 6,
         title: 'Crispy animal-welfare burger',
-        desc: '“A custom-made meal for livestock rights activists that proposes many purposed-filled intentions and a huge amount of groundless information.”',
+        desc: '“Mainly devoted to animals, this recipe focuses on the living conditions of the livestock in the intensive farms. It explores both their rights, wellbeing and exploitation: the main focus is on ethical choices regarding food sourcing.”',
         Keyword: 'sustainability',
         Actions: undefined,
         Animal: 'TRUE',
@@ -131,7 +131,7 @@ const recipes = [
     {
         recipeId: 7,
         title: 'Filet-o-green sandwich',
-        desc: '“Sometimes all it takes to surprise is two simple ingredients: Energy and Action. Show your commitment by consuming a creation on par to the Tree Gods.”',
+        desc: '“In order to show their commitment towards a greener future, companies are now providing data and studies related to resources consumption, which further concretises in sustainable initiatives taken to reduce wastage of energy sourcing.”',
         Keyword: 'energy',
         Actions: 'TRUE',
         Animal: undefined,
@@ -149,7 +149,7 @@ const recipes = [
     {
         recipeId: 8,
         title: 'Bio-scatter nugget burger',
-        desc: '“It will make you fall in love with its incredible personality. Its best virtue? Being Natural. Don’t let its behaviour and statements let you doubt its quality.”',
+        desc: '“Dealing with food has its foundation in health but the next step regards its distribution. How do people can savour new meals? And most importantly, is it sustainable for the environment? This recipe examines all those measures.”',
         Keyword: 'natural',
         Actions: undefined,
         Animal: undefined,
