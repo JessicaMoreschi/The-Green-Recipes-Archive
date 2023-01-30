@@ -804,14 +804,12 @@ filtriCustom
     .attr('id', 'resetBtn')
     .text('reset')
     .on('click', function () {
-        // for (let i = 0; i < d3.select("#all-cards").selectAll('.card').select('.cardFooter').selectAll('div').nodes().length; i++) {
-        //     d3.select("#all-cards").selectAll('.card').select('.cardFooter').selectAll('div').nodes()[i].style.backgroundColor = 'white' 
-        // }
         document.getElementById('divFormK0').reset()
         document.getElementById('divFormK1').reset()
         document.getElementById('divFormK2').reset()
         document.getElementById('divFormK3').reset()
         let card = d3.select("#all-cards").selectAll('.card')
+        card.select('.cardFooter').selectAll('div').style('background-color', 'white')
         card.style('display', 'inline-flex')
         let arrayReset = ['Keyword', 'Topic', 'Aim', 'Evidence', 'Actions', 'Animal', 'Distribution', 'Resources', 'Food', 'Management', 'Waste']
 
@@ -855,6 +853,8 @@ function openRecipe(btnId) {
     if (btnId == 0) {
         let card = d3.select("#all-cards").selectAll('.card')
         card.style('display', 'inline-flex')
+        card.select('.cardFooter').selectAll('div')
+        .style('background-color', 'white')
 
         //change result txt
         let productsSubhead = d3.select("#productsSubhead")
@@ -1023,6 +1023,7 @@ function openAllArchive() {
         .text('Close')
     d3.select('#openAllArchiveTitle').select('img')
         .attr('src', './assets/icon/x-close.svg')
+
     openRecipe(0)
 
     document.getElementById('colDx').scrollTo({
@@ -1030,6 +1031,17 @@ function openAllArchive() {
         left: 0,
         behavior: 'smooth'
     });
+
+
+    // for (let i = 0; i < cardSelected.select('.cardFooter').selectAll('div').nodes().length; i++) {
+    //     if ((cardP.nodes()[i].innerText.localeCompare(tagsActive[0], 'en', { sensitivity: 'base' }) == 0)) {
+    //         cardSelected.select('.cardFooter').selectAll('div').nodes()[i].style.backgroundColor = 'var(--secondary-color)'
+    //     }
+    //     else if (cardP.nodes()[i].innerText.localeCompare(ghostRecipe.Keyword, 'en', { sensitivity: 'base' }) == 0) {
+    //         cardSelected.select('.cardFooter').selectAll('div').nodes()[i].style.backgroundColor = 'var(--primary-color)'
+    //     }
+    //     else { cardSelected.select('.cardFooter').selectAll('div').nodes()[i].style.backgroundColor = 'white' }
+    // }
 
     /////////////////////////////////////statistics engine
     //general statistic interface
