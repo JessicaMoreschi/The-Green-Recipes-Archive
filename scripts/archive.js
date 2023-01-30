@@ -8,7 +8,6 @@ container.append('div')
     .attr('id', 'colSx')
     .append('div')
     .attr('class', 'flex-row head sub')
-    
     .append('div')
     .attr('id', 'recTextUx')
     .style('display', 'none')
@@ -19,10 +18,10 @@ container.append('div')
     .attr('src', './assets/icon/leftArrow.svg')
 
 d3.select('#colSx').select('.sub')
-.style('justify-content', 'flex-start').style('gap', '5px')
+    .style('justify-content', 'flex-start').style('gap', '5px')
     .append('p')
-    .text('recipes')   
- 
+    .text('recipes')
+
 container.select('#colSx')
     .append('div')
     .attr('id', 'all-filters')
@@ -55,16 +54,16 @@ container.select('#colDx').select('.sub')
     .attr('class', 'roundTag explAll')
     .attr('id', 'openAllArchiveTitle')
 
-    //tag icon
-    d3.select('#openAllArchiveTitle').append('img')
-        .attr('src', './assets/icon/asterisk.svg')
-        .style('order', '0')
-    //tag name
-    d3.select('#openAllArchiveTitle').append('p')
+//tag icon
+d3.select('#openAllArchiveTitle').append('img')
+    .attr('src', './assets/icon/asterisk.svg')
+    .style('order', '0')
+//tag name
+d3.select('#openAllArchiveTitle').append('p')
     // .attr('id', 'productsSubhead')
-        .text('explore all')
+    .text('explore all')
 
-    d3.select('#openAllArchiveTitle')
+d3.select('#openAllArchiveTitle')
     .on('click', function () {
         if (openAllArchiveBoulean == false) {
             openAllArchive()
@@ -291,12 +290,35 @@ for (let st = 4; st <= 18; st++) {
             .append('div')
             .attr('class', 'statRec')
             .style('order', '2')
+            .style('background-color', function () {
+                if (st == 11) {
+                    if (generalStat[2].v0 > 50) { return 'white' }
+                    else { return '#dddddd' }
+                }
+                else if (st == 12) {
+                    if (generalStat[3].v0 > 50) { return 'white' }
+                    else { return '#dddddd' }
+                }
+            })
+
             .append('div')
             .attr('class', 'statRecActive')
             .style('width', function () {
                 if (st == 11) { return generalStat[2].v0 + '%' }
                 else if (st == 12) { return generalStat[3].v0 + '%' }
             })
+            .style('background-color', function () {
+                if (st == 11) {
+                    if (generalStat[2].v0 > 50) { return '#dddddd' }
+                    else { return 'white' }
+                }
+                else if (st == 12) {
+                    if (generalStat[3].v0 > 50) { return '#dddddd' }
+                    else { return 'white' }
+                }
+            })
+
+
         d3.select('.recipe-row' + st)
             .append('p')
             .text(function () {
@@ -589,8 +611,19 @@ filter
             .text(function () { return recipeIdN.Keyword })
         d3.select('#prepDiv').select('.prepText')
             .text(function () { return recipeIdN.StatisticText })
+
+        d3.select('.statRec')
+            .style('background-color', function () {
+                if (recipeIdN.TaPerc > 50) { return 'white' }
+                else { return '#dddddd' }
+            })
+
         d3.select('.statRecActive')
             .style('width', function () { return recipeIdN.TaPerc + '%' })
+            .style('background-color', function () {
+                if (recipeIdN.TaPerc > 50) { return '#dddddd' }
+                else { return 'white' }
+            })
         d3.select('.recipe-row7').selectAll('.nPercText')
             .filter(function () {
                 return this.style.order == 1
@@ -601,7 +634,19 @@ filter
                 return this.style.order == 3
             })
             .text(function () { return 100 - recipeIdN.TaPerc + '%' })
-        d3.select('.recipe-row8').select('.statRecActive').style('width', function () { return recipeIdN.GrPerc + '%' })
+
+        d3.select('.recipe-row8').select('.statRec')
+            .style('background-color', function () {
+                if (recipeIdN.GrPerc > 50) { return 'white' }
+                else { return '#dddddd' }
+            })
+
+        d3.select('.recipe-row8').select('.statRecActive')
+            .style('width', function () { return recipeIdN.GrPerc + '%' })
+            .style('background-color', function () {
+                if (recipeIdN.GrPerc > 50) { return '#dddddd' }
+                else { return 'white' }
+            })
         d3.select('.recipe-row8').selectAll('.nPercText')
             .filter(function () {
                 return this.style.order == 1
@@ -899,7 +944,7 @@ function openArchive() {
 function closeArchive() {
     openAllArchiveBoulean = false;
     archiveOpen = false
-    document.getElementsByClassName('card-columns')[0].style.columnCount= Math.floor((window. innerWidth-300)/250)
+    document.getElementsByClassName('card-columns')[0].style.columnCount = Math.floor((window.innerWidth - 300) / 250)
 
 
     if (archiveOpen == false) {
@@ -958,11 +1003,11 @@ function closeArchive() {
         d3.select('.recipe-row6').style('display', 'flex')
         d3.select('.recipe-row7').style('display', 'flex')
         d3.select('.recipe-row8').style('display', 'flex')
-       
+
         d3.select('#openAllArchiveTitle').select('p')
-        .text('Explore all')
+            .text('Explore all')
         d3.select('#openAllArchiveTitle').select('img')
-        .attr('src', './assets/icon/asterisk.svg')
+            .attr('src', './assets/icon/asterisk.svg')
 
         t.stop();
     }, 1500);
@@ -972,11 +1017,11 @@ function closeArchive() {
 //function to open all archive ('explore all')
 function openAllArchive() {
     openAllArchiveBoulean = true;
-    document.getElementsByClassName('card-columns')[0].style.columnCount= Math.floor((window. innerWidth-200)/250)
+    document.getElementsByClassName('card-columns')[0].style.columnCount = Math.floor((window.innerWidth - 200) / 250)
 
     d3.select('#openAllArchiveTitle').select('p')
         .text('Close')
-        d3.select('#openAllArchiveTitle').select('img')
+    d3.select('#openAllArchiveTitle').select('img')
         .attr('src', './assets/icon/x-close.svg')
     openRecipe(0)
 
@@ -1035,6 +1080,6 @@ function openAllArchive() {
 }
 
 //make column responsive
-window.addEventListener('resize', function(event) {
-    document.getElementsByClassName('card-columns')[0].style.columnCount= Math.floor((window. innerWidth-300)/250)
+window.addEventListener('resize', function (event) {
+    document.getElementsByClassName('card-columns')[0].style.columnCount = Math.floor((window.innerWidth - 300) / 250)
 }, true);

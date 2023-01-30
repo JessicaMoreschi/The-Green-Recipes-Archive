@@ -156,7 +156,8 @@ form label {
 .statRecActive {
     height: 100%;
     width: 0%;
-    background-color: #dddddd;
+    border-right: 2px solid black;
+    /* background-color: #dddddd; */
     transition: all 1000ms ease;
 }
 
