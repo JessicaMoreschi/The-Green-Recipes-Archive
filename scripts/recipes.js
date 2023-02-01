@@ -35,7 +35,7 @@ const recipes = [
         Aim: 'take action',
         TaPerc: '60',
         GrPerc: '11',
-        StatisticText: 'Reuse Goals Burger is back Double”. For those who love environment and composting, this burger is here for you. Created by taking in consideration both Waste and Management, it was possible to select the most nourishing keyword as its main ingredient: Environmental. It provides your daily dose of pro-active attitude (60% take action) but with a strong lack of evidence (just 11% of contexts is providing actual data). It’s like the classic, but greener.'
+        StatisticText: '“Recycling Goals Burger is back Double”.  The conversation around Waste and Management is mainly characterised by terms related to biodegradability, such as “single-use” and “reduce”. However, the most recurring keyword is Environmental, for its wide and rich adjustability to any context. The featured websites usually present a pro-active attitude (60% take action), by sharing their long-term eco-friendly goals but just 11% of total excerpts are providing actual data.'
     },
     {
         recipeId: 2,
@@ -53,7 +53,7 @@ const recipes = [
         Aim: 'take action',
         TaPerc: '66',
         GrPerc: '15',
-        StatisticText: '“Because you deserve to be recycled in the best way”. If you thrive for cleaner environment and recycling, this is the right thing for you. With the indispensable ingredient Environmental, this mixture gives the opportunity to bite Waste and Action granting you an unforgettable taste. Deluxe Recy-pounder provides to you a good amount of dynamic approach (66% take action) but as well as high percentage of groundless data (only 15% of contexts is containing accurate data). Ready to try it?'
+        StatisticText: '“Because you deserve to be recycled in the best way”. By having Waste and Action as main topics, the recipe is predominantly focused on deeds aimed to achieve a cleaner environment and promote recycling. The key ingredient is the word Environmental, which slightly outnumbers terms such as “sustainability” and “energy”. This dynamic approach focuses on factuality, which concretises in a 66% of take action; however the percentage of accurate data amounts to only 15% of total contexts.'
     },
     {
         recipeId: 3,
@@ -71,7 +71,7 @@ const recipes = [
         Aim: 'dissemination',
         TaPerc: '45',
         GrPerc: '14',
-        StatisticText: '“Blessed by the tree gods”. Food is delicious. Sources are scarce. A win-win situation is all that we have left. Its smoky flavour was obtained by burning the finest stumps of Food and Management. Filled with high quality Responsibility, this fancy and reliable burger bestows its eaters a 55% of disseminated knowledge, but also features a slim 14% of precise analytical data. A commitment to Mother Nature and her precious soil.'
+        StatisticText: '“Blessed by the tree gods”. Food is the main form of human livelihood because it fuels our bodies and its sourcing is the most crucial aspect when it comes to restaurant chains. Hence, Food and Management are the major topics, while the keyword that best depicts this recipe is Responsibility, significantly directed towards animals, environment and people’s health. The total results amount to 55% of disseminated knowledge and feature 14% of precise analytical data.'
     },
     {
         recipeId: 4,
@@ -89,7 +89,7 @@ const recipes = [
         Aim: 'dissemination',
         TaPerc: '48',
         GrPerc: '6',
-        StatisticText: '“The Freshness Of Oxygen, Wrapped Up For You”. The freshness of the purest Planet is what makes Zero CO2 Wrap unique of its kind! The Energy Resourcing and Management-based sauce give it the flavour that has caught the attention of our customers. Plus with its 52% of dissemination statements it allows you to sustain a healthy and balanced diet without added evidence (92% groundless).'
+        StatisticText: '“The Freshness Of Oxygen, Wrapped Up For You”. The most recurring keyword is Planet, which embodies the protagonist of all those decisions and steps required to reach a more sustainable business model. Rooted in Resourcing and Management, its attention is facing towards new green technologies in the energy field. The following statements display 52% of disseminated information while 92% of context consists of no analytical data.'
     },
 
     {
@@ -108,7 +108,7 @@ const recipes = [
         Aim: 'dissemination',
         TaPerc: '46',
         GrPerc: ' 13',
-        StatisticText: '“For the hot ones”.  This seasoned combo of Food and Action are ready to burn your tongue. And if you still think it is not piquant enough, don’t worry because we prepared the spiciest ingredient of all:  Sustainability. The nourishment is granted with 54% of dissemination and incredible 87% of groundless data. Spicy Planet-saver Burger is one of the flavorsome burger you’ll ever try. Recommended by our chef Lumiere Lobster.'
+        StatisticText: '“For the smoking hot ones”. Food and Action are the major topics for this recipe because it discovers how companies deal with their ingredients and how they are promoting new farming methods to reduce their footprint on the environment. Hence, the most important term is Sustainability. The dataset indicates that 54% of content that is more focused on information dissemination while 87% of its totality is characterised by the lack of tangible data.'
     },
     {
         recipeId: 6,
@@ -126,7 +126,7 @@ const recipes = [
         Aim: 'take action',
         TaPerc: '68',
         GrPerc: '13',
-        StatisticText: '“Fight For The Healthiest Bite”. A custom-made meal for livestock rights activists who believe in more ethical farming. It requires a strong interest in Animal and Food, supported by a delicious patty made of Sustainability. Even though it proposes a 68% of purposed-filled intentions, its main characteristic is a huge amount of groundless information, which stacks up to the 87% of the total excerpts. For healthier and happier cows, chickens and fishes.'
+        StatisticText: '“Fight For The Healthiest Bite”. This recipe investigates the themes of Animal and Food, in particular the relationship between livestock and companies, claiming or aiming to use more ethical farming techniques. The selected keyword is Sustainability because the quality of food resides in its sourcing. The results propose a 68% of purposed-filled intentions to improve the health condition of animals but the conversation shows little to none statistical basis (87% of no data).'
     },
     {
         recipeId: 7,
@@ -144,7 +144,7 @@ const recipes = [
         Aim: 'take action',
         TaPerc: '66',
         GrPerc: '59',
-        StatisticText: '“A Green Touch In Every Bite”. For those who love environment and composting, the Double Globe Warming Burger is here for you. Created by taking in consideration both Waste and Management, it was possible to select the most nourishing keyword as its main ingredient: Environmental. It provides your daily dose of pro-active attitude (60% take action) but with a strong lack of evidence (just 11% of contexts is providing actual data). It’s like the classic, but greener.'
+        StatisticText: '“A Green Touch In Every Bite”. The fuel that support the fast food industry is Resourcing: beyond food, the other important aspect is the one related to Energy, the keyword of this discourse. The aim is to show all those Actions aimed to encourage the use of new energy forms. The contexts examined  feature precise analytics (59%) related to carbon footprint and sustainable technologies, while also showing companies’ keen commitment to action (66%) by sharing their goals for a greener future.'
     },
     {
         recipeId: 8,
@@ -162,7 +162,7 @@ const recipes = [
         Aim: 'dissemination',
         TaPerc: '44',
         GrPerc: '13',
-        StatisticText: '“Your life will never be-o the same”. Bio-Scatter Nugget Burger will make you fall in love with its incredible personality. Distribution and Food are its most lovable characteristics. But you will get mad about it even more when you get to know its best virtue: Natural. Don’t let its 56% of disseminated behavior and 87% groundless statements let you doubt its promising quality. It will turn your life upside down.'
+        StatisticText: '“Your life will never be-o the same”. The recipe faces all those aspects related to Food Distribution. It examines how food chains advertise and market their new meals, in terms of ways to reduce, reuse and recycle. Being committed to the cause, means having a genuine approach to distribution, thus the selected word is Natural. The following websites consist in 56% of disseminated information and 87% of its totality deals with supported by no data.'
     }
 ]
 
